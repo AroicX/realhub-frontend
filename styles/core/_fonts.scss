@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"),
+    url(../../assets/fonts/Inter-Light.ttf) format("ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Inter-lighter";
+  src: local("Inter"),
+    url(../../assets/fonts/Inter-ExtraLight.ttf) format("ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Inter-bold";
+  src: local("Inter"),
+    url(../../assets/fonts/Inter-Bold.ttf) format("ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Inter-mid";
+  src: local("Inter"),
+    url(../../assets/fonts/Inter-Medium.ttf) format("ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Inter-reg";
+  src: local("Inter"),
+    url(../../assets/fonts/Inter-Regular.ttf) format("ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Inter-heavy";
+  src: local("Inter"),
+    url(../../assets/fonts/Inter-ExtraBold.ttf) format("ttf");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "Unna";
+  src: local("Unna"),
+    url(../../assets/fonts/Unna-Regular.ttf) format("ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Unna-italic";
+  src: local("Unna"),
+    url(../../assets/fonts/Unna-Italic.ttf) format("ttf");
+  font-weight: 600;
+}
+
+.font-dm {
+  font-family: "Inter-reg", serif;
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif;
+
+  &--bold {
+    font-family: "Inter-bold",sans-serif;
+    letter-spacing: 0.04em;
+    font-weight: bold;
+
+  }
+
+  &--light {
+    font-family: "Inter-lighter", sans-serif;
+    font-weight: 100;
+  }
+
+  &--reg {
+    font-family: "Inter-reg", sans-serif;
+  }
+
+  &--mid {
+    font-family: "Inter-mid", sans-serif;
+  }
+
+  &--bolder {
+    font-family: "Inter-heavy";
+    font-weight: 600;
+  }
+}
+
+.font-unna {
+  font-family: "Unna";
+  // letter-spacing: 0.09em;
+
+
+  &--bold {
+    font-family: "Unna";
+    font-weight: 500;
+
+    letter-spacing: 0.05em;
+  }
+
+  &--italic {
+    font-family: "Unna-italic";
+    letter-spacing: 0.04em;
+  }
+
+
+}
+
+.font-10 {
+  font-size: 10px;
+}
+.font-11 {
+  font-size: 11px;
+}
+.font-sm {
+  font-size: 12px;
+}
+
+
+
+.font-15 {
+  font-size: 15px;
+
+  &.md-smaller {
+    @include media("<=phone") {
+      font-size: 13px;
+    }
+  }
+}
+
+.font-13 {
+  font-size: 13px;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.font-18 {
+  font-size: 17px;
+}
+
+.font-22 {
+  font-size: 22px;
+
+  @include media("<=tablet") {
+    font-size: 1.25rem;
+  }
+}
+
+.font-28 {
+  font-size: 28px;
+
+  @include media("<=tablet") {
+    font-size: 1.5rem;
+  }
+}

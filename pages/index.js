@@ -1,65 +1,47 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useState } from "react";
+
+import Search from "@/components/global/search";
+import Layout from "@/components/layout/layout";
+import Link from "@/components/link";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout>
+      <div className='w-full flex flex-col lg:flex-row justify-between'>
+        <h4 className='font-unna--italic font-22 text-gray p-5 italic'>
+          What would you like to <br /> do today?
+        </h4>
+        <Search />
+      </div>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <div className='w-full p-5'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+          {/* grid */}
+          <Link to='/listings' className='quick-listings'>
+            <div className='circle'>
+              <span></span>
+            </div>
+            <img src={"./images/image1.png"} alt='*' />
+            <span className='font-unna--bold'> Shor-term Stay</span>
+          </Link>
+          <Link to='/listings' className='quick-listings'>
+            <div className='circle'>
+              <span></span>
+            </div>
+            <img src={"./images/image2.png"} alt='*' />
+            <span className='font-unna--bold'> Rent</span>
+          </Link>
+          <Link to='/listings' className='quick-listings'>
+            <div className='circle'>
+              <span></span>
+            </div>
+            <img src={"./images/image3.png"} alt='*' />
+            <span className='font-unna--bold'> List your home</span>
+          </Link>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          {/* grid */}
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+      </div>
+    </Layout>
+  );
 }

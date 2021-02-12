@@ -1,0 +1,140 @@
+.quick-listings {
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  left: 0;
+
+  .circle {
+    position: absolute;
+    top: -25px;
+    right: -15px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.86);
+    border-radius: 50%;
+
+    @include shadow();
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      z-index: 1;
+
+      &+img {
+        filter: grayscale(0%);
+        transform: translateY(-10px);
+        transition: all 0.8s ease-in-out;
+        @include shadow();
+      }
+
+      &+span {
+        visibility: visible;
+        transition: all 0.3s ease-in-out;
+
+      }
+
+    }
+  }
+
+
+  img {
+    width: 100%;
+    height: 634px;
+    filter: grayscale(100%);
+    transition: all 0.8s ease-in-out;
+
+
+    &:hover {
+      filter: grayscale(0%);
+      transform: translateY(-10px);
+      transition: all 0.8s ease-in-out;
+      @include shadow();
+
+      &+span {
+        visibility: visible;
+        transition: all 0.3s ease-in-out;
+
+      }
+
+    }
+  }
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    padding: 1.2rem 2rem;
+    border: 1px solid #000;
+    font-size: 1.1rem;
+    transform: translate(-50%, 50%);
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      visibility: visible;
+      transition: all 0.3s ease-in-out;
+
+      &+img {
+        filter: grayscale(100%);
+
+        transition: all 0.8s ease-in-out;
+        @include shadow();
+      }
+
+
+
+    }
+
+
+  }
+
+
+}
+
+
+.dropdown {
+
+
+  .dropdown-menu {
+    display: block;
+    position: absolute;
+    margin: 1rem 0;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    background: #fff;
+    border: 2px solid #000;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+
+    &::after {
+
+      content: "";
+      height: 23.73px;
+      width: 23.73px;
+      position: absolute;
+      background-color: #fff;
+      top: -14px;
+      right: 50px;
+      border-top: 2px solid #000;
+      border-left: 2px solid #000;
+      transform: rotate(45deg);
+    }
+  }
+
+  
+
+}
+
+
+
+
+.slide-down{
+  display: block;
+  animation: slide-down .3s ease-in-out;
+}
+
+@keyframes slide-down {
+  100% { opacity: 1; -webkit-transform: translateY(0); }
+  0% { opacity: 0; -webkit-transform: translateY(-10%); }   
+}
