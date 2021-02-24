@@ -1,0 +1,10 @@
+export const stepOne = "sddhddshdshdssdhsd";
+export const stepTwo = "whewhwisiosjdsdssdh";
+export const stepThree = "sdiddshdhbdsdsfnbds";
+export const upload = "dwshdsnbuhdsbsud";
+export const stepFour = "dauhjkjadsnaisubsaubsasuda";
+export const stepFive = "dwiudwhudwebweuydbwuwy";
+export const stepSix = "sdudybhsyudsdauysd";
+export const stepSeven = "dskjdsnhjdbshjdbssdfbjdf";
+export const stepEight = "SDjingsadyasdjasnasjn";
+export const success = "dsiusnduyfdsbdsuyfdvsy";
