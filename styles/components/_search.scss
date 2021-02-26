@@ -1,0 +1,55 @@
+.r-search {
+  position: relative;
+  width: 400px;
+  max-height: 45px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+
+  input {
+    width: 90%;
+    padding: .8rem;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+
+    &:focus,
+    &:hover {
+      outline: none;
+      transition: all 0.3s ease-in-out;
+      font-size: 1.1rem;
+    }
+  }
+
+  @include media("<=tablet") {
+    width: 90%;
+  }
+
+  &--result{
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background: #fff;
+    max-height: 200px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    @include noscrollbar();
+
+    .card{
+      margin: .5rem 0;
+      border-bottom: 1px solid #999;
+      @include shadow();
+    }
+
+     @include media("<=tablet") {
+    max-height: 400px;
+
+      }
+    
+  }
+
+}

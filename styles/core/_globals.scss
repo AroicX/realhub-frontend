@@ -1,0 +1,74 @@
+body {
+  overflow-x: hidden;
+  background: #fff;
+  &.no-scroll {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+#page{
+  padding-bottom: 5rem;
+  height: 50vh auto;
+}
+
+.hide{
+  @include media("<=tablet") {
+    display: none;
+  }
+}
+
+button{
+  outline: none !important;
+}
+
+.nav-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #ffffff;
+  animation: moveDown 0.5s ease-in-out;
+  z-index: 20;
+  .inner-nav {
+    @keyframes moveDown {
+      from {
+        transform: translateY(-5rem);
+      }
+      to {
+        transform: translateY(0rem);
+      }
+    }
+  }
+
+  .c-mobilenav {
+    &__button {
+      background: $col-red;
+      color: #ffffff;
+    }
+  }
+}
+
+.content-container.content-container {
+  max-width: 1200px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @include media("<=tablet") {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  @include media("<=500px") {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
+.svg-white{
+  filter: brightness(0) invert(1);
+}
