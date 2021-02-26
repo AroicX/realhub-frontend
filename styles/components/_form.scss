@@ -1,0 +1,93 @@
+.form-group {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+
+  label {
+    font-size: 11px;
+  }
+
+
+  .with-password {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #000;
+
+  }
+
+  .form-control {
+    position: relative;
+    width: 100%;
+    padding: .8rem;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    margin: .3rem 0;
+    color: #242424;
+
+    &:focus,
+    &:hover {
+      background: #fff;
+      outline: none;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+
+  
+}
+
+
+.form-checkbox{
+  width: 18px;
+  height: 18px;
+
+  &:checked {
+    background-color: #000;
+  }
+}
+
+
+.PhoneInput{
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #000;
+
+
+  
+
+  &Country{
+
+    display: flex;
+    flex-direction: row;
+
+    &Select{
+      max-width: 100px;
+      padding: 10px;
+    }
+
+    &IconImg{
+      display: none;
+      position: relative;
+      width: 4.7rem;
+
+    }
+  }
+
+ 
+
+  &Input{
+
+    outline: none !important;
+    width: 70%;
+    flex: 1;
+    padding: .8rem;
+
+  }
+
+  
+}
