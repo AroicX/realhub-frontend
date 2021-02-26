@@ -43,24 +43,10 @@ export default function Login({ modalHandler }) {
 
       <hr className="my-10 mx-5" style={{ width: '90%' }} />
 
-      {errorMessage && (
-        <div
-          className="p-3 m-5 bg-red-md text-white cursor-pointer"
-          onClick={() => setErrorMessage(null)}
-        >
-          <div className="flex">
-            <SVG src="/svg/close.svg" className="mr-3 svg-white"></SVG>
-            <span> {errorMessage}</span>
-          </div>
-        </div>
-      )}
-
-      <form className="my-10 relative" onSubmit={loginHandler} ref={formRef}>
+      <form className="my-10 relative">
         <div className="form-group">
           <label htmlFor="email">EMAIL ADDRESS</label>
           <input
-            id="signEmail"
-            name="signEmail"
             className="form-control border border-black"
             type="email"
             placeholder="Enter Your Email"
@@ -74,30 +60,19 @@ export default function Login({ modalHandler }) {
           </span>
           <div className="with-password my-2">
             <input
-              id="signPassword"
-              name="signPassword"
               className="form-control"
-              type={`${togglePassword ? 'text' : 'password'}`}
+              type="password"
               placeholder="Enter Your Password"
             />
 
-            <button
-              className="mx-2"
-              type="button"
-              onClick={() => setTogglePassword(!togglePassword)}
-            >
-              {`${togglePassword ? 'Hide' : 'Show'}`}
+            <button className="mx-2" type="button">
+              Show
             </button>
           </div>
         </div>
         <div className="form-group">
-          <button
-            type="submit"
-            className="w-full bg-black p-4 text-white text-sm"
-            disabled={loading}
-          >
+          <button className="w-full bg-black p-4 text-white text-sm">
             Login To My Account
-            {loading && <span className="ml-3 spinner spinner-white"></span>}
           </button>
         </div>
       </form>
