@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import { getToken, setCookie, deleteCookie } from "@/services/cookies";
 import api from "@/services/api";
-import Toastr from "toastr";
 
 const authContext = createContext();
 
