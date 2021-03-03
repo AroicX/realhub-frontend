@@ -1,11 +1,10 @@
-import React from "react";
-import Formheader from "@/components/dashboard/formheader";
-import { stepFive, stepThree } from "@/utils/steps";
+import React from 'react'
+import Formheader from '@/components/dashboard/formheader'
 
-export default function StepFour({ setStep }) {
+export default function StepFour({ currentStep, setStep }) {
   const back = () => {
-    setStep(stepThree);
-  };
+    setStep(currentStep - 1)
+  }
   return (
     <>
       <Formheader title="Tell Us More About Your Property" back={back} />
@@ -19,11 +18,7 @@ export default function StepFour({ setStep }) {
         <div className="mb-8">
           <div className="text-bright sm:pl-6 pl-3 pr-3 sm:pr-6 box-border pt-4 pb-4 sm:pt-5 sm:pb-5 border w-full mb-8 flex flex-row">
             <div className="flex-1 sm:text-lg text-xs">3 - Bedrooms</div>
-            <img
-              className="cursor-pointer"
-              src="/svg/Dropdown.svg"
-              alt="*"
-            />
+            <img className="cursor-pointer" src="/svg/Dropdown.svg" alt="*" />
           </div>
         </div>
         <div className="mb-3 font-medium text-sm uppercase">
@@ -32,11 +27,7 @@ export default function StepFour({ setStep }) {
         <div className="mb-14">
           <div className="text-bright pl-3 pr-3 sm:pl-6 sm:pr-6 box-border pt-4 pb-4 sm:pt-5 sm:pb-5 border w-full mb-8 flex flex-row">
             <div className="flex-1 sm:text-lg text-xs">2 - Bathrooms</div>
-            <img
-              className="cursor-pointer"
-              src="/svg/Dropdown.svg"
-              alt="*"
-            />
+            <img className="cursor-pointer" src="/svg/Dropdown.svg" alt="*" />
           </div>
           <div className="mb-3 font-medium text-sm uppercase">
             What Amenities Do you Have Avaliable?
@@ -57,21 +48,17 @@ export default function StepFour({ setStep }) {
                   <img src="/svg/cancel-sm.svg" alt="*" />
                 </div>
               </div>
-              <img
-                className="cursor-pointer"
-                src="/svg/Dropdown.svg"
-                alt="*"
-              />
+              <img className="cursor-pointer" src="/svg/Dropdown.svg" alt="*" />
             </div>
           </div>
           <button
-            onClick={() => setStep(stepFive)}
-            className="w-full bg-light sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"
+            onClick={() => setStep(currentStep + 1)}
+            className="w-full bg-black sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"
           >
             Continue
           </button>
         </div>
       </div>
     </>
-  );
+  )
 }

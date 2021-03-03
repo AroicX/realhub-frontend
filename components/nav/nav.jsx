@@ -56,12 +56,12 @@ export default function Nav({}) {
           </Link>
         </div>
 
-        <div className="flex flex-col lg:flex-row ">
+        <div className="flex flex-col lg:flex-row hide">
           <div
             className="relative dropdown"
             onClick={() => setIsActive(!isActive)}
           >
-            <div className="flex font-inter--light font-15 mx-5">
+            <div className="flex font-inter--light font-15 mx-5 cursor-pointer">
               {' '}
               <SVG className="my-0 mx-5" src={`/svg/account.svg`}></SVG>
               {user ? user.user.name : 'Account'}
@@ -80,7 +80,10 @@ export default function Nav({}) {
                         LogOut
                       </p>
                       <hr />
-                      <Link to="/" className="font-sm my-2 cursor-pointer">
+                      <Link
+                        to="/dashboard"
+                        className="font-sm my-2 cursor-pointer"
+                      >
                         List your home
                       </Link>
                       <Link to="/" className="font-sm my-2 cursor-pointer">

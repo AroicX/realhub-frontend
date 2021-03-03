@@ -104,3 +104,28 @@
     margin: 0;
   }
 }
+
+.add-listing-form {
+  width: 800px;
+
+  @include media("<=tablet") {
+    width: 100%;
+    margin: .2rem;
+
+  }
+}
+
+.hover-svg {
+
+  transition: all 0.5s ease-in;
+
+ &:hover{
+  transition: all 0.8s ease-in-out;
+
+  svg {
+    filter: brightness(0) invert(1);
+    transition: all 0.8s ease-in-out;
+
+  }
+ }
+}

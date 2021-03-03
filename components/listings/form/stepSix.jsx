@@ -1,12 +1,11 @@
-import React from "react";
-import Alert from "@/components/dashboard/alert";
-import Formheader from "@/components/dashboard/formheader";
-import { stepFive, stepSeven } from "@/utils/steps";
+import React from 'react'
+import Alert from '@/components/dashboard/alert'
+import Formheader from '@/components/dashboard/formheader'
 
-export default function StepSix({ setStep }) {
+export default function StepSix({ currentStep, setStep }) {
   const back = () => {
-    setStep(stepFive);
-  };
+    setStep(currentStep - 1)
+  }
   return (
     <>
       <Formheader title="Location" back={back} />
@@ -22,12 +21,12 @@ export default function StepSix({ setStep }) {
         <Alert content="Full address would only be disclosed to guests who have booked." />
         <img className="sm:mt-20 mt-10" src="/png/map.png" alt="*" />
         <button
-          onClick={() => setStep(stepSeven)}
+          onClick={() => setStep(currentStep + 1)}
           className="sm:mt-20 sm:mb-14 mt-10 mb-7 w-full bg-black mb-14 sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"
         >
           Continue
         </button>
       </div>
     </>
-  );
+  )
 }

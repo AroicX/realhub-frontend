@@ -1,11 +1,10 @@
-import React from "react";
-import Formheader from "@/components/dashboard/formheader";
-import { stepSeven, success } from "@/utils/steps";
+import React from 'react'
+import Formheader from '@/components/dashboard/formheader'
 
-export default function StepEight({ setStep }) {
+export default function StepEight({ currentStep, setStep }) {
   const back = () => {
-    setStep(stepSeven);
-  };
+    setStep(currentStep - 1)
+  }
   return (
     <>
       <Formheader title="Tag your listing" back={back} />
@@ -22,12 +21,12 @@ export default function StepEight({ setStep }) {
           className="placeholder-secondary pl-6 pr-6 box-border pt-5 pb-5 sm:pt-5 border w-full mb-2 flex flex-row outline-none"
         />
         <button
-          onClick={() => setStep(success)}
+          onClick={() => setStep(currentStep + 1)}
           className="mt-8 sm:mb-14 mb-7 w-full bg-black mb-14 sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"
         >
           Submit and Save
         </button>
       </div>
     </>
-  );
+  )
 }

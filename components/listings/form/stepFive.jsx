@@ -1,11 +1,10 @@
-import React from "react";
-import Formheader from "@/components/dashboard/formheader";
-import { stepFour, stepSix } from "@/utils/steps";
+import React from 'react'
+import Formheader from '@/components/dashboard/formheader'
 
-export default function StepFive({ setStep }) {
+export default function StepFive({ currentStep, setStep }) {
   const back = () => {
-    setStep(stepFour);
-  };
+    setStep(currentStep - 1)
+  }
   return (
     <>
       <Formheader back={back} title="Other Property Information / Policy" />
@@ -29,12 +28,12 @@ export default function StepFive({ setStep }) {
           className="placeholder-primary pl-6 pr-6 mb-6 box-border pt-4 pb-32 sm:pt-5 border w-full mb-8 flex flex-row outline-none"
         />
         <button
-          onClick={() => setStep(stepSix)}
+          onClick={() => setStep(currentStep + 1)}
           className="w-full bg-black mb-14 sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"
         >
           Continue
         </button>
       </div>
     </>
-  );
+  )
 }

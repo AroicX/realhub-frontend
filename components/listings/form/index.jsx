@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Header from '@/components/dashboard/header'
-import Stepone from './stepone'
+
+import Stepone from './stepOne'
 import StepThree from './stepThree'
 import StepFour from './stepFour'
 import StepTwo from './stepTwo'
@@ -11,22 +11,10 @@ import StepSeven from './stepSeven'
 import StepEight from './stepEight'
 import Item from '@/components/dashboard/item'
 import Allset from './allset'
-import {
-  stepEight,
-  stepFive,
-  stepFour,
-  stepOne,
-  stepSeven,
-  stepSix,
-  stepThree,
-  stepTwo,
-  success,
-  upload,
-} from '@/utils/steps'
 import Layout from '@/components/layout/layout'
 
-export default function Add() {
-  const [step, setStep] = useState(stepOne)
+export default function AddListing() {
+  const [step, setStep] = useState(3)
 
   return (
     <Layout>
@@ -34,26 +22,29 @@ export default function Add() {
         <div className="font--unna text-xl flex-1">Add a new listing</div>
       </div>
       <div className="flex 2xl:flex-row flex-row justify-center items-start mt-20">
-        {step === stepEight && <Item />}
-        {step === stepEight && (
+        {step === 8 && <Item />}
+        {step === 8 && (
           <div className="hidden 2xl:block mt-40">
             <hr className="border-dotted w-80 h-2 mr-5 ml-5 mt-30" />
           </div>
         )}
 
         <div className="flex items-center justify-center mb-10">
-          <form className="bg-white md:w-90 w-full box-border pt-8 border border-dark">
-            {step === stepOne && <Stepone setStep={setStep} />}
-            {step === stepTwo && <StepTwo setStep={setStep} />}
-            {step === stepThree && <StepThree setStep={setStep} />}
-            {step === upload && <Upload setStep={setStep} />}
-            {step === stepFour && <StepFour setStep={setStep} />}
-            {step === stepFive && <StepFive setStep={setStep} />}
-            {step === stepSix && <StepSix setStep={setStep} />}
-            {step === stepSeven && <StepSeven setStep={setStep} />}
-            {step === stepEight && <StepEight setStep={setStep} />}
-            {step === success && <Allset setStep={setStep} />}
-          </form>
+          <div
+            className="bg-white md:w-90 w-full box-border pt-8 border border-black add-listing-form"
+
+          >
+            {step === 1 && <Stepone setStep={setStep} currentStep={step} />}
+            {step === 2 && <StepTwo setStep={setStep} currentStep={step} />}
+            {step === 3 && <StepThree setStep={setStep} currentStep={step} />}
+            {step === 4 && <Upload setStep={setStep} currentStep={step} />}
+            {step === 5 && <StepFour setStep={setStep} currentStep={step} />}
+            {step === 6 && <StepFive setStep={setStep} currentStep={step} />}
+            {step === 7 && <StepSix setStep={setStep} currentStep={step} />}
+            {step === 8 && <StepSeven setStep={setStep} currentStep={step} />}
+            {step === 9 && <StepEight setStep={setStep} currentStep={step} />}
+            {step === 10 && <Allset setStep={setStep} currentStep={step} />}
+          </div>
         </div>
       </div>
     </Layout>
