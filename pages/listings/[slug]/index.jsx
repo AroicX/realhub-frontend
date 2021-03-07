@@ -3,9 +3,18 @@ import SVG from 'react-inlinesvg'
 import useWheel from '@/hooks/useWheel'
 import { useRouter } from 'next/router'
 import Layout from '@/components/layout/layout'
+import Modal from '@/components/global/modal'
+import BookingModal from '@/components/booking/bookingModal'
 
 const ListingPage = () => {
   const { isCollapse } = useWheel()
+
+  const [bookingModal, setBookingModal] = useState(false)
+
+  const toggleBookingModal = () => {
+    setBookingModal(!bookingModal)
+    document.querySelector('body').classList.toggle('no-scroll')
+  }
 
   const router = useRouter()
   const slug = router.query.slug
@@ -13,6 +22,13 @@ const ListingPage = () => {
   return (
     <div>
       <Layout type="navigation">
+        <Modal
+          title="Book a Physical Tour"
+          showmodal={bookingModal}
+          modalHandler={toggleBookingModal}
+          children={<BookingModal />}
+          width="400px"
+        />
         <div className="w-full p-5">
           <div className="flex flex-col lg:flex-row">
             <div className="s__listing">
@@ -55,7 +71,7 @@ const ListingPage = () => {
                   Property Description
                 </p>
 
-                <p className="font-inter--light text-black-700 font-18 px-5">
+                <p className="font-inter--light text-black-700 font-18 ">
                   Southern Charmer available for sale in HOT EAST COBB area,
                   located right off Alabama rd near Fulton/Cobb border.
                   Shopping, dining, and easy access to 400 or 575! TOP LASSITER
@@ -96,7 +112,10 @@ const ListingPage = () => {
                   height="10px"
                 ></SVG>
               </button>
-              <button className="s__booking--button">
+              <button
+                className="s__booking--button"
+                onClick={() => toggleBookingModal()}
+              >
                 <div className="flex flex-row">
                   <SVG
                     className="m-3"

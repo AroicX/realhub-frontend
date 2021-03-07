@@ -1,8 +1,17 @@
 import React from 'react'
 import Formheader from '@/components/dashboard/formheader'
+import DropDown from '@/components/forms/dropdown'
+import Select from 'react-select'
+
+let colourOptions = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+]
 
 export default function StepFour({ currentStep, setStep }) {
   const back = () => {
+    alert('going')
     setStep(currentStep - 1)
   }
   return (
@@ -16,40 +25,34 @@ export default function StepFour({ currentStep, setStep }) {
           Number of Bedrooms
         </div>
         <div className="mb-8">
-          <div className="text-bright sm:pl-6 pl-3 pr-3 sm:pr-6 box-border pt-4 pb-4 sm:pt-5 sm:pb-5 border w-full mb-8 flex flex-row">
-            <div className="flex-1 sm:text-lg text-xs">3 - Bedrooms</div>
-            <img className="cursor-pointer" src="/svg/Dropdown.svg" alt="*" />
-          </div>
+          <DropDown
+            placeholder="Select Number of Bedrooms"
+            options={['1 Bedroom', '2 Bedrooms', '3 Bedrooms']}
+            value={(e) => console.log(e)}
+          />
         </div>
         <div className="mb-3 font-medium text-sm uppercase">
           Number of Bathrooms
         </div>
         <div className="mb-14">
-          <div className="text-bright pl-3 pr-3 sm:pl-6 sm:pr-6 box-border pt-4 pb-4 sm:pt-5 sm:pb-5 border w-full mb-8 flex flex-row">
-            <div className="flex-1 sm:text-lg text-xs">2 - Bathrooms</div>
-            <img className="cursor-pointer" src="/svg/Dropdown.svg" alt="*" />
-          </div>
+          <DropDown
+            placeholder="Select Number of Bathrooms"
+            options={['1 Bathroom', '2 Bathrooms', '3 Bathrooms']}
+            value={(e) => console.log(e)}
+          />
           <div className="mb-3 font-medium text-sm uppercase">
             What Amenities Do you Have Avaliable?
           </div>
           <div className="mb-14">
-            <div className="text-bright sm:pl-6 sm:pr-6 pl-3 pr-3 box-border pt-4 pb-4 sm:pt-5 sm:pb-5 border w-full mb-8 flex flex-row items-start">
-              <div className="flex-1 flex flex-row flex-wrap">
-                <div className="bg-gray pl-4 pr-4 rounded-2xl pt-2 pb-2 flex flex-row mr-4 mb-4">
-                  <div className="mr-3">Gym</div>
-                  <img src="/svg/cancel-sm.svg" alt="*" />
-                </div>
-                <div className="bg-gray pl-4 pr-4 rounded-2xl pt-2 pb-2 flex flex-row mr-4 mb-4">
-                  <div className="mr-3">Concierge</div>
-                  <img src="/svg/cancel-sm.svg" alt="*" />
-                </div>
-                <div className="bg-gray pl-4 pr-4 rounded-2xl pt-2 pb-2 flex flex-row mr-4">
-                  <div className="mr-3">Pool</div>
-                  <img src="/svg/cancel-sm.svg" alt="*" />
-                </div>
-              </div>
-              <img className="cursor-pointer" src="/svg/Dropdown.svg" alt="*" />
-            </div>
+            <Select
+              defaultValue={[colourOptions[2], colourOptions[3]]}
+              isMulti
+              name="amenities"
+              options={colourOptions}
+              className="basic-multi-select form-control"
+              classNamePrefix="select"
+              placeholder="Select Amenities"
+            />
           </div>
           <button
             onClick={() => setStep(currentStep + 1)}

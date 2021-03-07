@@ -36,11 +36,56 @@
   }
 
 
-  
+
+}
+
+.form-fields {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  margin: .5rem 0;
+
+  label {
+    position: relative;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 600;
+    // padding-bottom: .5rem;
+  }
+
+
+  .with-password {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #000;
+
+  }
+
+  .form-control {
+    position: relative;
+    width: 100%;
+    padding: .8rem;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    margin: .3rem 0;
+    color: #242424;
+
+    &:focus,
+    &:hover {
+      background: #fff;
+      outline: none;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+
+
 }
 
 
-.form-checkbox{
+.form-checkbox {
   width: 18px;
   height: 18px;
 
@@ -50,7 +95,7 @@
 }
 
 
-.PhoneInput{
+.PhoneInput {
   position: relative;
 
   display: flex;
@@ -58,19 +103,19 @@
   border: 1px solid #000;
 
 
-  
 
-  &Country{
+
+  &Country {
 
     display: flex;
     flex-direction: row;
 
-    &Select{
+    &Select {
       max-width: 100px;
       padding: 10px;
     }
 
-    &IconImg{
+    &IconImg {
       display: none;
       position: relative;
       width: 4.7rem;
@@ -78,9 +123,9 @@
     }
   }
 
- 
 
-  &Input{
+
+  &Input {
 
     outline: none !important;
     width: 70%;
@@ -89,5 +134,5 @@
 
   }
 
-  
+
 }

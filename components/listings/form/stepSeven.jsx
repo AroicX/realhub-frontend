@@ -1,5 +1,6 @@
 import React from 'react'
 import Formheader from '@/components/dashboard/formheader'
+import DropDown from '@/components/forms/dropdown'
 
 export default function StepSeven({ currentStep, setStep }) {
   const back = () => {
@@ -31,10 +32,11 @@ export default function StepSeven({ currentStep, setStep }) {
           </div>
         </div>
         <div className="mb-3 font-medium text-sm uppercase mt-6">Duration</div>
-        <div className="text-bright sm:pl-6 sm:pr-6 pr-3 pl-3 box-border pt-4 pb-4 sm:pt-5 sm:pb-5 border w-full mb-8 flex flex-row">
-          <div className="flex-1 sm:text-lg text-xs">Per Night</div>
-          <img className="cursor-pointer" src="/svg/Dropdown.svg" alt="*" />
-        </div>
+        <DropDown
+          placeholder="Select Duration"
+          options={['Per Night', 'Per Day', 'Per Week']}
+          value={(e) => console.log(e)}
+        />
         <button
           onClick={() => setStep(currentStep + 1)}
           className="mt-8 sm:mb-14 mb-7 w-full bg-black mb-14 sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"

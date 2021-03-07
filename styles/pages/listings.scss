@@ -119,13 +119,60 @@
 
   transition: all 0.5s ease-in;
 
- &:hover{
-  transition: all 0.8s ease-in-out;
-
-  svg {
-    filter: brightness(0) invert(1);
+  &:hover {
     transition: all 0.8s ease-in-out;
 
+    svg {
+      filter: brightness(0) invert(1);
+      transition: all 0.8s ease-in-out;
+
+    }
   }
- }
+}
+
+
+.select__control {
+  padding: .5rem !important;
+  border-radius: 0px !important;
+  outline: none !important;
+}
+
+.select__multi-value__label {
+  padding: 10px !important;
+}
+
+.select__multi-value__remove {
+  margin-right: 5px !important;
+
+}
+
+.select__menu {
+  padding: .5rem !important;
+  border-radius: 0px !important;
+
+}
+
+
+.react-calendar{
+  border: none !important;
+}
+
+.react-calendar__tile{
+  border: 1px solid #E5E5E5 !important;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #000 !important;
+}
+
+
+.react-calendar__tile--active {
+  background: #000 !important;
+  color: white !important;
+}
+
+.react-calendar__tile--now {
+  background: rgb(35, 105, 255) !important;
+  color: white !important;
+
 }

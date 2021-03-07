@@ -36,7 +36,7 @@ export default function DropDown({ placeholder, options, value }) {
 
         {toggle && (
           <div
-            className={`absolute mt-1 w-full rounded-md bg-white shadow-lg `}
+            className={`absolute mt-1 w-full rounded-md bg-white shadow-lg z-50`}
           >
             <ul
               tabIndex="-1"

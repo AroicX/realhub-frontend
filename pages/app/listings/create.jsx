@@ -1,4 +1,4 @@
-import Empty from "@/components/listings/empty";
+import Empty from "@/components/listings/ListingHeader";
 import Form from "@/components/listings/form";
 import Lists from "@/components/listings/lists";
 
