@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Alert from '@/components/dashboard/alert'
 import Formheader from '@/components/dashboard/formheader'
 
-export default function StepSix({ currentStep, setStep }) {
+export default function StepSix({ currentStep, setStep, formdata, propagate }) {
   const back = () => {
     setStep(currentStep - 1)
+  }
+  const [data, setData] = useState({
+    address: formdata?.address || null,
+  })
+
+  const handleStep = () => {
+    propagate(data)
+    console.log(data)
+    setStep(currentStep + 1)
   }
   return (
     <>
@@ -17,11 +26,13 @@ export default function StepSix({ currentStep, setStep }) {
         <input
           placeholder="No.4, Maha Close, Barnawa Kaduna"
           className="placeholder-secondary pl-6 pr-6 box-border pt-5 pb-5 sm:pt-5 border w-full mb-2 flex flex-row outline-none"
+          value={data.address}
+          onChange={(e) => setData({ ...data, address: e.target.value })}
         />
         <Alert content="Full address would only be disclosed to guests who have booked." />
         <img className="sm:mt-20 mt-10" src="/png/map.png" alt="*" />
         <button
-          onClick={() => setStep(currentStep + 1)}
+          onClick={() => handleStep()}
           className="sm:mt-20 sm:mb-14 mt-10 mb-7 w-full bg-black mb-14 sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"
         >
           Continue

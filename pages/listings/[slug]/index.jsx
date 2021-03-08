@@ -29,7 +29,7 @@ const ListingPage = () => {
           children={<BookingModal />}
           width="400px"
         />
-        <div className="w-full p-5">
+        <div className="w-full p-5 mt-14 lg:mt-0">
           <div className="flex flex-col lg:flex-row">
             <div className="s__listing">
               <div className="s__listing--header">

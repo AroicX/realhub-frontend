@@ -1,10 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Formheader from '@/components/dashboard/formheader'
 import DropDown from '@/components/forms/dropdown'
 
-export default function StepSeven({ currentStep, setStep }) {
+export default function StepSeven({
+  currentStep,
+  setStep,
+  formdata,
+  propagate,
+}) {
   const back = () => {
     setStep(currentStep - 1)
+  }
+
+  const [data, setData] = useState({
+    price: formdata?.price || null,
+    duration: formdata?.duration || null,
+  })
+
+  const handleSelected = (string) => {
+    setData({ ...data, duration: string })
+  }
+  const handleStep = () => {
+    propagate(data)
+    console.log(data)
+    setStep(currentStep + 1)
   }
   return (
     <>
@@ -18,6 +37,8 @@ export default function StepSeven({ currentStep, setStep }) {
         <input
           placeholder="₦ 700,000.00"
           className="placeholder-secondary pl-6 pr-6 box-border pt-5 pb-5 sm:pt-5 border w-full mb-2 flex flex-row outline-none"
+          value={data.price}
+          onChange={(e) => setData({ ...data, price: e.target.value })}
         />
         <div className="flex flex-row items-start">
           <div className="flex flex-row items-start text-sm font-medium flex-1 mr-2">
@@ -33,12 +54,12 @@ export default function StepSeven({ currentStep, setStep }) {
         </div>
         <div className="mb-3 font-medium text-sm uppercase mt-6">Duration</div>
         <DropDown
-          placeholder="Select Duration"
+          placeholder={data.bathrooms ? data.bathrooms : 'Select Duration'}
           options={['Per Night', 'Per Day', 'Per Week']}
-          value={(e) => console.log(e)}
+          value={handleSelected}
         />
         <button
-          onClick={() => setStep(currentStep + 1)}
+          onClick={() => handleStep()}
           className="mt-8 sm:mb-14 mb-7 w-full bg-black mb-14 sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"
         >
           Continue

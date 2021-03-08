@@ -109,7 +109,7 @@ export default function StepThree({ currentStep, setStep }) {
         </div>
 
         <button
-          onClick={() => setStep(5)}
+          onClick={() => setStep(currentStep + 1)}
           className="w-full bg-black sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white mt-14 mb-12"
         >
           Continue

@@ -2,15 +2,16 @@ import React, { useState } from 'react'
 import Formheader from '@/components/dashboard/formheader'
 import DropDown from '@/components/forms/dropdown'
 
-export default function StepTwo({ currentStep, setStep }) {
+export default function StepTwo({ currentStep, setStep, formdata, propagate }) {
   const [data, setData] = useState({
-    lease_type: null,
+    lease_type: formdata?.lease_type || null,
   })
 
   const handleSelected = (string) => {
     setData({ ...data, lease_type: string })
   }
   const handleStep = () => {
+    propagate(data)
     console.log(data)
     setStep(currentStep + 1)
   }
@@ -25,7 +26,9 @@ export default function StepTwo({ currentStep, setStep }) {
       <div className="sm:ml-8 mb-3 ml-4 text-lg ">Lease Type</div>
       <div className="sm:pl-8 pl-4 pr-4 sm:pr-8 mb-14">
         <DropDown
-          placeholder="Select A listing Type"
+          placeholder={
+            data.lease_type ? data.lease_type : 'Select A Lease Type'
+          }
           options={['Rent', 'Short Lease']}
           value={handleSelected}
         />

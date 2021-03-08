@@ -55,7 +55,7 @@ export default function Listing() {
   return (
     <Layout type="navigation" title="Listing">
       <div className="w-full flex flex-col lg:flex-row justify-between">
-        <h4 className="font-unna font-40 text-gray p-5  mx-2">
+        <h4 className="font-unna font-40 text-gray p-5 mt-14 lg:mt-0 mx-2">
           Houses to rent <br /> near you.
         </h4>
       </div>

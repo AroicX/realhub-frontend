@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Formheader from '@/components/dashboard/formheader'
 import DropDown from '@/components/forms/dropdown'
 import Select from 'react-select'
@@ -9,11 +9,33 @@ let colourOptions = [
   { value: 'vanilla', label: 'Vanilla' },
 ]
 
-export default function StepFour({ currentStep, setStep }) {
+export default function StepFour({
+  currentStep,
+  setStep,
+  formdata,
+  propagate,
+}) {
+  const [data, setData] = useState({
+    bedrooms: formdata?.bedrooms || null,
+    bathrooms: formdata?.bathrooms || null,
+    amenities: formdata?.amenities || colourOptions,
+  })
+
   const back = () => {
-    alert('going')
     setStep(currentStep - 1)
   }
+
+  const handleSelected = (e, param) => {
+    param === 'bedrooms' ? setData({ ...data, bedrooms: e }) : false
+    param === 'bathrooms' ? setData({ ...data, bathrooms: e }) : false
+  }
+
+  const handleStep = () => {
+    propagate(data)
+    console.log(data)
+    setStep(currentStep + 1)
+  }
+
   return (
     <>
       <Formheader title="Tell Us More About Your Property" back={back} />
@@ -26,9 +48,11 @@ export default function StepFour({ currentStep, setStep }) {
         </div>
         <div className="mb-8">
           <DropDown
-            placeholder="Select Number of Bedrooms"
+            placeholder={
+              data.bedrooms ? data.bedrooms : 'Select Number of Bedrooms'
+            }
             options={['1 Bedroom', '2 Bedrooms', '3 Bedrooms']}
-            value={(e) => console.log(e)}
+            value={(e) => handleSelected(e, 'bedrooms')}
           />
         </div>
         <div className="mb-3 font-medium text-sm uppercase">
@@ -36,9 +60,11 @@ export default function StepFour({ currentStep, setStep }) {
         </div>
         <div className="mb-14">
           <DropDown
-            placeholder="Select Number of Bathrooms"
+            placeholder={
+              data.bathrooms ? data.bathrooms : 'Select Number of Bathrooms'
+            }
             options={['1 Bathroom', '2 Bathrooms', '3 Bathrooms']}
-            value={(e) => console.log(e)}
+            value={(e) => handleSelected(e, 'bathrooms')}
           />
           <div className="mb-3 font-medium text-sm uppercase">
             What Amenities Do you Have Avaliable?
@@ -48,14 +74,15 @@ export default function StepFour({ currentStep, setStep }) {
               defaultValue={[colourOptions[2], colourOptions[3]]}
               isMulti
               name="amenities"
-              options={colourOptions}
+              options={data.amenities}
               className="basic-multi-select form-control"
               classNamePrefix="select"
               placeholder="Select Amenities"
+              onChange={(e) => console.log(e)}
             />
           </div>
           <button
-            onClick={() => setStep(currentStep + 1)}
+            onClick={() => handleStep()}
             className="w-full bg-black sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"
           >
             Continue

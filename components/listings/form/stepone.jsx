@@ -2,18 +2,19 @@ import React, { useState } from 'react'
 import Alert from '@/components/dashboard/alert'
 import DropDown from '@/components/forms/dropdown'
 
-export default function Stepone({ currentStep, setStep }) {
+export default function Stepone({ currentStep, setStep, formdata, propagate }) {
   const [data, setData] = useState({
-    listing_type: null,
-    is_apartment: null,
+    listing_type: formdata?.listing_type || null,
+    is_apartment: formdata?.is_apartment || null,
   })
 
   const handleSelected = (string) => {
     setData({ ...data, listing_type: string })
   }
   const handleStep = () => {
+    propagate(data)
     setStep(currentStep + 1)
-    console.log(data)
+    // console.log(data)
   }
 
   return (
@@ -25,7 +26,9 @@ export default function Stepone({ currentStep, setStep }) {
       </div>
       <div className="sm:pl-8 pl-4 pr-4 sm:pr-8 mb-14">
         <DropDown
-          placeholder="Select A listing Type"
+          placeholder={
+            data.listing_type ? data.listing_type : 'Select A listing Type'
+          }
           options={['Apartment', 'House', 'Coworking Space']}
           value={handleSelected}
         />
@@ -38,15 +41,17 @@ export default function Stepone({ currentStep, setStep }) {
           <input
             type="radio"
             name="is_apartment"
-            onClick={() => setData({ ...data, is_apartment: 1 })}
             className="w-5 h-5"
+            onChange={() => setData({ ...data, is_apartment: 1 })}
+            checked={data.is_apartment === 1 ? true : false}
           />
           <div className="ml-3.5 mr-8 text-lg">Yes</div>
           <input
             type="radio"
             name="is_apartment"
-            onClick={() => setData({ ...data, is_apartment: 0 })}
             className="w-5 h-5 mr-3.5"
+            onChange={() => setData({ ...data, is_apartment: 2 })}
+            checked={data.is_apartment === 2 ? true : false}
           />
           <div>No</div>
         </div>

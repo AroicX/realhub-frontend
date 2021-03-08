@@ -7,16 +7,24 @@ import next from 'next'
 
 export default function BookingModal({}) {
   const [step, setStep] = useState(1)
-  const [value, onChange] = useState(new Date())
+  // const [value, onChange] = useState(new Date())
 
-  useEffect(() => {
-    console.log(value.toUTCString())
-  }, [value])
+  const [booking, setBooking] = useState({
+    date: new Date(),
+    time: '',
+    name: '',
+    email: '',
+    phone: '',
+  })
 
   const next = () => {
     if (step <= 3) {
       setStep(step + 1)
     }
+  }
+
+  const handleSumbit = () => {
+    console.log(booking)
   }
 
   return (
@@ -28,8 +36,8 @@ export default function BookingModal({}) {
 
           <Calendar
             className="my-5 border-none"
-            onChange={onChange}
-            value={value}
+            onChange={(data) => setBooking({ ...booking, date: data })}
+            value={booking.date}
           />
           <button
             className="w-full bg-black p-4 text-white text-sm"
@@ -55,24 +63,50 @@ export default function BookingModal({}) {
               </span>
             </div>
 
-            <span className="font--inter font-sm">{value?.toUTCString()}</span>
+            <span className="font--inter font-sm">
+              {booking.value?.toUTCString()}
+            </span>
           </div>
 
           <div className="w-full flex flex-row border p-5">
-            <input className="m-0.5 w-5 h-5" type="radio" name="time" id="" />
-            <span className="mx-3">12:00 AM</span>
+            <input
+              className="m-0.5 w-5 h-5"
+              type="radio"
+              name="time"
+              onClick={() => setBooking({ ...booking, time: '11:00 AM' })}
+              checked={booking.time === '11:00 AM' ? true : false}
+            />
+            <span className="mx-3">11:00 AM</span>
           </div>
           <div className="w-full flex flex-row border p-5">
-            <input className="m-0.5 w-5 h-5" type="radio" name="time" id="" />
-            <span className="mx-3">12:00 AM</span>
+            <input
+              className="m-0.5 w-5 h-5"
+              type="radio"
+              name="time"
+              onClick={() => setBooking({ ...booking, time: '1:00 PM' })}
+              checked={booking.time === '1:00 PM' ? true : false}
+            />
+            <span className="mx-3">1:00 PM</span>
           </div>
           <div className="w-full flex flex-row border p-5">
-            <input className="m-0.5 w-5 h-5" type="radio" name="time" id="" />
-            <span className="mx-3">12:00 AM</span>
+            <input
+              className="m-0.5 w-5 h-5"
+              type="radio"
+              name="time"
+              onClick={() => setBooking({ ...booking, time: '2:00 PM' })}
+              checked={booking.time === '2:00 PM' ? true : false}
+            />
+            <span className="mx-3">2:00 PM</span>
           </div>
           <div className="w-full flex flex-row border p-5">
-            <input className="m-0.5 w-5 h-5" type="radio" name="time" id="" />
-            <span className="mx-3">12:00 AM</span>
+            <input
+              className="m-0.5 w-5 h-5"
+              type="radio"
+              name="time"
+              onClick={() => setBooking({ ...booking, time: '3:00 PM' })}
+              checked={booking.time === '3:00 PM' ? true : false}
+            />
+            <span className="mx-3">3:00 PM</span>
           </div>
 
           <button
@@ -109,6 +143,8 @@ export default function BookingModal({}) {
               className="form-control border border-black"
               type="name"
               placeholder="Enter Your Name"
+              value={booking.name}
+              onChange={(e) => setBooking({ ...booking, name: e.target.value })}
             />
           </div>
           <div className="form-fields">
@@ -119,6 +155,10 @@ export default function BookingModal({}) {
               className="form-control border border-black"
               type="email"
               placeholder="Enter Your Email"
+              value={booking.email}
+              onChange={(e) =>
+                setBooking({ ...booking, email: e.target.value })
+              }
             />
           </div>
           <div className="form-fields">
@@ -128,8 +168,8 @@ export default function BookingModal({}) {
               international
               countryCallingCodeEditable={false}
               defaultCountry="NG"
-              // value={user.phone}
-              onChange={(e) => console.log(e)}
+              value={booking.phone}
+              onChange={(e) => setBooking({ ...booking, phone: e })}
             />
           </div>
 
@@ -151,7 +191,7 @@ export default function BookingModal({}) {
 
           <button
             className="w-full bg-black p-4 my-5 text-white text-sm"
-            onClick={() => next()}
+            onClick={() => handleSumbit()}
           >
             Happy Touring
           </button>

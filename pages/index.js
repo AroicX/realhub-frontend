@@ -7,7 +7,7 @@ import Link from "@/components/link";
 export default function Home() {
   return (
     <Layout>
-      <div className='w-full flex flex-col lg:flex-row justify-between'>
+      <div className='w-full flex flex-col lg:flex-row justify-between mt-14 lg:my-0'>
         <h4 className='font-unna font-40 text-gray p-5 '>
           What would you like to <br /> do today?
         </h4>
