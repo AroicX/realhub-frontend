@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 
-import Stepone from './stepOne'
+import Item from '@/components/dashboard/item'
+import Layout from '@/components/layout/layout'
+import StepOne from './stepOne'
+import StepTwo from './stepTwo'
 import StepThree from './stepThree'
 import StepFour from './stepFour'
-import StepTwo from './stepTwo'
 import StepFive from './stepFive'
 import StepSix from './stepSix'
 import StepSeven from './stepSeven'
 import StepEight from './stepEight'
-import Item from '@/components/dashboard/item'
-import Allset from './allset'
-import Layout from '@/components/layout/layout'
+import StepCompleted from './StepCompleted'
 
 export default function AddListing() {
   const [step, setStep] = useState(1)
@@ -40,7 +40,7 @@ export default function AddListing() {
         <div className="flex items-center justify-center mb-10">
           <div className="bg-white md:w-90 w-full box-border pt-8 border border-black add-listing-form">
             {step === 1 && (
-              <Stepone
+              <StepOne
                 setStep={setStep}
                 currentStep={step}
                 formdata={form}
@@ -106,7 +106,7 @@ export default function AddListing() {
               />
             )}
             {step === 9 && (
-              <Allset
+              <StepCompleted
                 setStep={setStep}
                 currentStep={step}
                 formdata={form}

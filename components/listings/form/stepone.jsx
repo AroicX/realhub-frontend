@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Alert from '@/components/dashboard/alert'
 import DropDown from '@/components/forms/dropdown'
 
-export default function Stepone({ currentStep, setStep, formdata, propagate }) {
+export default function StepOne({ currentStep, setStep, formdata, propagate }) {
   const [data, setData] = useState({
     listing_type: formdata?.listing_type || null,
     is_apartment: formdata?.is_apartment || null,
