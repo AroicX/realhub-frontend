@@ -99,7 +99,7 @@ export default function Nav({}) {
                       </p>
                       <hr />
                       <Link
-                        to="/dashboard"
+                        to="/app/listings/create"
                         className="font-sm my-2 cursor-pointer"
                       >
                         List your home
@@ -191,7 +191,7 @@ export default function Nav({}) {
                           </p>
                           <hr />
                           <Link
-                            to="/dashboard"
+                            to="/app/listings/create"
                             className="font-sm my-2 cursor-pointer"
                           >
                             List your home

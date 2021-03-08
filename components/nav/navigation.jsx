@@ -87,7 +87,7 @@ export default function Navigation({}) {
                   Login
                 </p>
                 <hr />
-                <Link to="/" className="font-sm my-2 cursor-pointer">
+                <Link to="/app/listings/create" className="font-sm my-2 cursor-pointer">
                   List your home
                 </Link>
                 <Link to="/" className="font-sm my-2 cursor-pointer">
@@ -106,7 +106,6 @@ export default function Navigation({}) {
           }`}
         >
           <div className="flex flex-col lg:flex-row ">
-            
             <Search css="m-5" />
 
             <div className="flex flex-col lg:flex-row my-5 ml-5">
@@ -136,7 +135,7 @@ export default function Navigation({}) {
                           </p>
                           <hr />
                           <Link
-                            to="/dashboard"
+                            to="/app/listings/create"
                             className="font-sm my-2 cursor-pointer"
                           >
                             List your home

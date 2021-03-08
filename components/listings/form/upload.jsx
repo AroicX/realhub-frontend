@@ -1,5 +1,5 @@
 import React from 'react'
-import Formheader from '@/components/dashboard/formheader'
+import Formheader from '@/components/forms/create/node_modules/@/components/dashboard/formheader'
 
 export default function Upload({ currentStep, setStep }) {
   return (
