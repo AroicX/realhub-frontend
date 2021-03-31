@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Layout from '@/components/layout/layout'
+import DropDownMenu from '@/components/global/DropDownMenu'
+import { MapComponent } from '@/components/global/MapComponent'
 import Link from '@/components/link'
+import SVG from 'react-inlinesvg'
 
 const previewCategories = [
   {
@@ -52,16 +55,46 @@ const previewCategories = [
 ]
 
 export default function Listing() {
+  const [grid, setGrid] = useState(4)
+  const [showMap, setShowMap] = useState(false)
+
+  // useEffect(() => {
+
+  // }, []);
+
+  const handleMap = () => {
+    if (grid === 4) {
+      setGrid(2)
+      setShowMap(!showMap)
+    } else {
+      setGrid(4)
+      setShowMap(!showMap)
+    }
+  }
+
   return (
     <Layout type="navigation" title="Listing">
-      <div className="w-full flex flex-col lg:flex-row justify-between">
-        <h4 className="font-unna font-40 text-gray p-5 mt-14 lg:mt-0 mx-2">
-          Houses to rent <br /> near you.
+      <div className="w-full flex flex-col lg:flex-row h-auto ">
+        <h4 className="font-unna font-32 text-gray p-5 mt-14 lg:mt-0 mx-2">
+          Properties to rent near you.
         </h4>
+
+        <div className="flex">
+          <DropDownMenu menuname="Price" cssClass="my-10" />
+          <DropDownMenu menuname="Property Type" cssClass="my-10" />
+        </div>
+
+        <button
+          className="absolute right-10 my-5 flex flex-row border border-black px-6 py-3 text-black"
+          onClick={() => handleMap()}
+        >
+          Open Map
+          <SVG className=" mx-2" src="/svg/map.svg" />
+        </button>
       </div>
 
-      <div className="w-full p-5">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="w-full flex flex-col lg:flex-row p-5">
+        <div className={`grid grid-cols-1 lg:grid-cols-${grid} gap-8`}>
           {/* grid */}
           {previewCategories.map((house, key) => (
             <div className="r-listings" key={key}>
@@ -80,17 +113,18 @@ export default function Listing() {
                 <p className="font-inter font-15">
                   Chill Marble Home - Kaduna Nigeria
                 </p>
-                <span className="font-inter--light font-11">
+                <span className="font-inter--light font-13">
                   5 Bedroom 3 Bathrooms Kitchen Swimming Pool
                 </span>
-                <span className="font-inter--light font-10 block">
+                <span className="font-inter--light font-13 block">
                   Barnawa Kaduna
                 </span>
               </div>
 
+              <br/>
               <Link
                 to="/listings/two-bedroom-duplex"
-                className="w-50 p-3 px-5 mx-5 bg-black text-white"
+                className="w-50 p-3 px-5 mx-5 my-5 bg-black text-white"
               >
                 View Listing
               </Link>
@@ -98,6 +132,18 @@ export default function Listing() {
           ))}
           {/* grid */}
         </div>
+
+        {showMap && (
+          <div className={`w-full p-2 m-2 transition-all ease-in-out`}>
+            <MapComponent
+              isMarkerShown
+              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCuptTb-p50eqTGVfgD8jQDjPr5fBI-m0"
+              loadingElement={<div style={{ height: `100%` }} />}
+              containerElement={<div style={{ height: `100%` }} />}
+              mapElement={<div style={{ height: `100%` }} />}
+            />
+          </div>
+        )}
       </div>
 
       {/*  */}

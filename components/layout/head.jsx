@@ -19,6 +19,8 @@ const Head = ({ title }) => {
       {/* <meta property="og:image" content="https://printivo.s3.amazonaws.com/img/image-seo-share-large.png" /> */}
       <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       <meta property="twitter:card" content="summary_large_image" />
+      <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript">
+</script>
       {/* <meta name="google-site-verification" content="-oWRsxQSz6hMQKGEtpz8lpJAVivXjAQKxBT1Nc8tPOM" /> */}
     </NextHead>
   )

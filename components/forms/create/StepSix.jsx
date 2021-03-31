@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Alert from '@/components/dashboard/alert'
 import Formheader from '@/components/dashboard/formheader'
+import { MapComponent } from '@/components/global/MapComponent'
 
 export default function StepSix({ currentStep, setStep, formdata, propagate }) {
   const back = () => {
@@ -30,10 +31,20 @@ export default function StepSix({ currentStep, setStep, formdata, propagate }) {
           onChange={(e) => setData({ ...data, address: e.target.value })}
         />
         <Alert content="Full address would only be disclosed to guests who have booked." />
-        <img className="sm:mt-20 mt-10" src="/png/map.png" alt="*" />
+        <div className="w-full border border-black mt-5 h-auto">
+          <MapComponent
+            className="my-5"
+            isMarkerShown
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCuptTb-p50eqTGVfgD8jQDjPr5fBI-m0"
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ height: `200px` }} />}
+            mapElement={<div style={{ height: `100%` }} />}
+          />
+        </div>
+
         <button
           onClick={() => handleStep()}
-          className="sm:mt-20 sm:mb-14 mt-10 mb-7 w-full bg-black mb-14 sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"
+          className="sm:mt-20 sm:mb-14 mt-5 mb-7 w-full bg-black mb-14 sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"
         >
           Continue
         </button>

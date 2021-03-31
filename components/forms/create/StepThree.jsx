@@ -2,44 +2,51 @@ import React, { useState, useCallback } from 'react'
 import Formheader from '@/components/dashboard/formheader'
 import { useDropzone } from 'react-dropzone'
 import SVG from 'react-inlinesvg'
-
-let imagePreview = []
+import axios from 'axios'
 
 export default function StepThree({ currentStep, setStep }) {
   const [files, setFiles] = useState(null)
+  const [imagePreview, setImagePreview] = useState(null)
 
   const onDrop = useCallback((acceptedFiles) => {
     let parent = document.getElementById('image-grid')
+    let _images = []
 
+    setFiles(acceptedFiles)
     acceptedFiles.forEach((key, i) => {
-      imagePreview.push({
+      _images.push({
         name: key.name,
         value: window.URL.createObjectURL(key),
       })
 
       setTimeout(() => {
-        window.scrollBy(0, 100)
+        setImagePreview(_images)
+        window.scrollBy(0, 50)
         parent.click()
-      }, 2000)
-
-      //fallback
-      // let div = document.createElement('div')
-      // div.className = 'relative maxh-80'
-      // let img = document.createElement('img')
-      // img.src = window.URL.createObjectURL(key)
-      // img.height = 200
-      // let close = document.createElement('img')
-      // close.className = 'absolute top-0 right-0 cursor-pointer'
-      // close.src = '/svg/cancel.svg'
-      // div.appendChild(img)
-      // div.appendChild(close)
-      // parent.appendChild(div)
+      }, 100)
     })
 
     // Do something with the files
-    console.log(acceptedFiles)
   }, [])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+
+  const uploadFiles = () => {
+    console.log(files)
+    const formData = new FormData()
+    formData.append('file', files)
+    formData.append('upload_preset', 'realhub_listing')
+
+    axios
+      .post('https://api.cloudinary.com/v1_1/aroicx/image/upload', formData)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+
+    console.log('uploading...')
+  }
 
   const remove = (data) => {
     console.log(data)
@@ -109,7 +116,7 @@ export default function StepThree({ currentStep, setStep }) {
         </div>
 
         <button
-          onClick={() => setStep(currentStep + 1)}
+          onClick={() => uploadFiles()}
           className="w-full bg-black sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white mt-14 mb-12"
         >
           Continue

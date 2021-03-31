@@ -13,7 +13,7 @@ import StepEight from '@/components/forms/create/StepEight'
 import StepCompleted from '@/components/forms/create/StepCompleted'
 
 export default function AddListing() {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(3)
   const [form, setForm] = useState([])
 
   useEffect(() => {

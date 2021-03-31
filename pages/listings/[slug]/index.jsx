@@ -9,6 +9,12 @@ import BookingModal from '@/components/booking/bookingModal'
 const ListingPage = () => {
   const { isCollapse } = useWheel()
 
+  const router = useRouter()
+  const slug = router.query.slug
+  useEffect(() => {
+    console.log(slug)
+  }, [router])
+
   const [bookingModal, setBookingModal] = useState(false)
 
   const toggleBookingModal = () => {
@@ -16,9 +22,6 @@ const ListingPage = () => {
     document.querySelector('body').classList.toggle('no-scroll')
   }
 
-  const router = useRouter()
-  const slug = router.query.slug
-  console.log(slug)
   return (
     <div>
       <Layout type="navigation">
@@ -26,7 +29,7 @@ const ListingPage = () => {
           title="Book a Physical Tour"
           showmodal={bookingModal}
           modalHandler={toggleBookingModal}
-          children={<BookingModal />}
+          children={<BookingModal close={toggleBookingModal} />}
           width="400px"
         />
         <div className="w-full p-5 mt-14 lg:mt-0">

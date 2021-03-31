@@ -158,6 +158,13 @@
     font-size: 1.5rem;
   }
 }
+.font-32 {
+  font-size: 32px;
+
+  @include media("<=tablet") {
+    font-size: 1.7rem;
+  }
+}
 .font-40 {
   font-size: 40px;
   line-height: 48px;

@@ -7,9 +7,9 @@ export default function Login({ modalHandler }) {
   // get user hook
   const { login, errorMessage, setErrorMessage, loading } = useUser()
 
-  useEffect(() => {
-    setErrorMessage(null)
-  }, [loading])
+  // useEffect(() => {
+  //   setErrorMessage(null)
+  // }, [loading])
   // use ref to get form data
   const formRef = useRef(null)
   // handle form submit

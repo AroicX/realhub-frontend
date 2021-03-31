@@ -4,17 +4,18 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import PhoneInput from 'react-phone-number-input'
 import next from 'next'
+import { MAKE_BOOKING } from 'actions/requests'
 
-export default function BookingModal({}) {
+export default function BookingModal({ close }) {
   const [step, setStep] = useState(1)
-  // const [value, onChange] = useState(new Date())
 
   const [booking, setBooking] = useState({
+    listingId: 1,
     date: new Date(),
-    time: '',
-    name: '',
-    email: '',
-    phone: '',
+    time: '11:00',
+    name: 'Gabriel Okunola',
+    email: 'Arowosegbe67@gmail.com',
+    phone: '7016762847',
   })
 
   const next = () => {
@@ -25,6 +26,16 @@ export default function BookingModal({}) {
 
   const handleSumbit = () => {
     console.log(booking)
+    const callback = (response) => {
+      console.log(response)
+      setStep(1)
+      close()
+    }
+    const onError = (error) => {
+      console.log(error)
+    }
+
+    MAKE_BOOKING(booking, callback, onError)
   }
 
   return (
@@ -73,7 +84,7 @@ export default function BookingModal({}) {
               className="m-0.5 w-5 h-5"
               type="radio"
               name="time"
-              onClick={() => setBooking({ ...booking, time: '11:00 AM' })}
+              onChange={() => setBooking({ ...booking, time: '11:00 AM' })}
               checked={booking.time === '11:00 AM' ? true : false}
             />
             <span className="mx-3">11:00 AM</span>
@@ -83,7 +94,7 @@ export default function BookingModal({}) {
               className="m-0.5 w-5 h-5"
               type="radio"
               name="time"
-              onClick={() => setBooking({ ...booking, time: '1:00 PM' })}
+              onChange={() => setBooking({ ...booking, time: '1:00 PM' })}
               checked={booking.time === '1:00 PM' ? true : false}
             />
             <span className="mx-3">1:00 PM</span>
@@ -93,7 +104,7 @@ export default function BookingModal({}) {
               className="m-0.5 w-5 h-5"
               type="radio"
               name="time"
-              onClick={() => setBooking({ ...booking, time: '2:00 PM' })}
+              onChange={() => setBooking({ ...booking, time: '2:00 PM' })}
               checked={booking.time === '2:00 PM' ? true : false}
             />
             <span className="mx-3">2:00 PM</span>
@@ -103,7 +114,7 @@ export default function BookingModal({}) {
               className="m-0.5 w-5 h-5"
               type="radio"
               name="time"
-              onClick={() => setBooking({ ...booking, time: '3:00 PM' })}
+              onChange={() => setBooking({ ...booking, time: '3:00 PM' })}
               checked={booking.time === '3:00 PM' ? true : false}
             />
             <span className="mx-3">3:00 PM</span>
