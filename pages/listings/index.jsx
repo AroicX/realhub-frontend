@@ -58,10 +58,6 @@ export default function Listing() {
   const [grid, setGrid] = useState(4)
   const [showMap, setShowMap] = useState(false)
 
-  // useEffect(() => {
-
-  // }, []);
-
   const handleMap = () => {
     if (grid === 4) {
       setGrid(2)
@@ -121,7 +117,7 @@ export default function Listing() {
                 </span>
               </div>
 
-              <br/>
+              <br />
               <Link
                 to="/listings/two-bedroom-duplex"
                 className="w-50 p-3 px-5 mx-5 my-5 bg-black text-white"
@@ -137,7 +133,7 @@ export default function Listing() {
           <div className={`w-full p-2 m-2 transition-all ease-in-out`}>
             <MapComponent
               isMarkerShown
-              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCuptTb-p50eqTGVfgD8jQDjPr5fBI-m0"
+              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`}
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}
