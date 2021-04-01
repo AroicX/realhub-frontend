@@ -18,6 +18,21 @@ api.interceptors.request.use(
   }
 );
 
+export async function ADD_LISTING(data, callback, onError) {
+  try {
+    let listing = await api.post(`/listings`, data);
+    if (listing.data) {
+      callback && callback(listing.data);
+    } else {
+      throw listing;
+    }
+
+    return listing;
+  } catch (err) {
+    onError && onError(err);
+  }
+}
+
 export async function MAKE_BOOKING(data, callback, onError) {
   try {
     let booking = await api.post(`/booking`, data);

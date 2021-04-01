@@ -4,7 +4,7 @@ import { useDropzone } from 'react-dropzone'
 import SVG from 'react-inlinesvg'
 import axios from 'axios'
 
-export default function StepThree({ currentStep, setStep }) {
+export default function StepThree({ currentStep, setStep, propagate }) {
   const [files, setFiles] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
 
@@ -33,19 +33,18 @@ export default function StepThree({ currentStep, setStep }) {
   const uploadFiles = () => {
     console.log(files)
     const formData = new FormData()
-    formData.append('file', files)
+    formData.append('file', files[0])
     formData.append('upload_preset', 'realhub_listing')
 
     axios
       .post('https://api.cloudinary.com/v1_1/aroicx/image/upload', formData)
       .then((response) => {
-        console.log(response)
+        propagate({ images: JSON.stringify([{ image: response.data.url }]) })
+        setStep(currentStep + 1)
       })
       .catch((error) => {
         console.log(error)
       })
-
-    console.log('uploading...')
   }
 
   const remove = (data) => {

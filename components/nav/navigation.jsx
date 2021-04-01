@@ -116,7 +116,7 @@ export default function Navigation({}) {
                 <div className="flex font-inter--light font-15 mx-5 cursor-pointer">
                   {' '}
                   {/* <SVG className="my-0 mx-5" src={`/svg/account.svg`}></SVG> */}
-                  {user ? user.user.name : 'My Account'}
+                  {user ? user.user?.name : 'My Account'}
                 </div>
 
                 {isActive && (

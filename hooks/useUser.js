@@ -11,7 +11,10 @@ const useUserAuth = () => {
 
   const handleUser = (user) => {
     if (user) {
-      setUser(user);
+      // setUser(user);
+      setTimeout(() => {
+        setUser(user);
+      }, 100);
       setLoading(false);
     } else {
       setUser(false);
@@ -65,12 +68,13 @@ const useUserAuth = () => {
     try {
       const { data } = await api.post("/auth/login", userData);
       // const token = data.accessToken;
-      if (data.status === 200) {
-        localStorage.setItem("user-data", JSON.stringify(data));
+      if (data.message) {
+        let response_user = data.data;
+        localStorage.setItem("user-data", JSON.stringify(response_user));
         //set cookie for user
         setCookie(data);
         // handle user to show loggedin
-        console.log("done");
+        // console.log("done");
         handleUser(data);
         //reset-form data
         resetForm();
@@ -142,7 +146,7 @@ const useUserAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const auth = useUserAuth();
-  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+  return <authContext.Provider value={auth}> {children} </authContext.Provider>;
 };
 
 export const useUser = () => {

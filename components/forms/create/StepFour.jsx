@@ -31,6 +31,7 @@ export default function StepFour({
   }
 
   const handleStep = () => {
+    data.amenities = JSON.stringify(data.amenities)
     propagate(data)
     console.log(data)
     setStep(currentStep + 1)

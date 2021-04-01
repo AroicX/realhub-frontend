@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import Toastr from 'toastr'
 import Item from '@/components/dashboard/item'
 import Layout from '@/components/layout/layout'
 import StepOne from '@/components/forms/create/StepOne'
@@ -11,16 +11,46 @@ import StepSix from '@/components/forms/create/StepSix'
 import StepSeven from '@/components/forms/create/StepSeven'
 import StepEight from '@/components/forms/create/StepEight'
 import StepCompleted from '@/components/forms/create/StepCompleted'
+import { ADD_LISTING } from '@/actions/requests'
 
 export default function AddListing() {
   const [step, setStep] = useState(3)
-  const [form, setForm] = useState([])
+  const [form, setForm] = useState({
+    listing_type: 'Apartment',
+    is_apartment: 2,
+    lease_type: 'Short Lease',
+    bedrooms: '1 ',
+    bathrooms: '1 ',
+    property_desc: 'This is a property',
+    property_name: 'Three Bedroom Apartment at lekki, with pool side',
+    policy_res: 'no tone',
+    address: 'No 16A Tunisia cresent',
+    price: '80000',
+    duration: 'Per Week',
+  })
 
   useEffect(() => {
     console.log(form)
   }, [form])
 
   const propagate = (e) => setForm({ ...form, ...e })
+
+  const handleSumbit = () => {
+    const callback = (response) => {
+      if (response.status > 200) {
+        setStep(step + 1)
+        Toastr.success(response.message)
+      }
+    }
+    const onError = (error) => {
+      if (error.response) {
+        const { data } = error.response
+        Toastr.error(data.message)
+      }
+    }
+
+    ADD_LISTING(form, callback, onError)
+  }
 
   return (
     <Layout>
@@ -103,6 +133,7 @@ export default function AddListing() {
                 currentStep={step}
                 formdata={form}
                 propagate={propagate}
+                handleSumbit={handleSumbit}
               />
             )}
             {step === 9 && (

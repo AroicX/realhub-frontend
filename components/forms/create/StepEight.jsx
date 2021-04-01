@@ -1,23 +1,26 @@
 import React, { useState } from 'react'
 import Formheader from '@/components/dashboard/formheader'
+import Toastr from 'toastr'
 
 export default function StepEight({
   currentStep,
   setStep,
   formdata,
   propagate,
+  handleSumbit,
 }) {
   const back = () => {
     setStep(currentStep - 1)
   }
   const [data, setData] = useState({
-    listing_name: formdata?.listing_name || null,
+    property_name: formdata?.property_name || null,
   })
 
   const handleStep = () => {
     propagate(data)
-
-    setStep(currentStep + 1)
+    setTimeout(() => {
+      handleSumbit()
+    }, 1000)
   }
   return (
     <>
@@ -33,8 +36,8 @@ export default function StepEight({
         <input
           placeholder="Gabby’s Minimalistic Home"
           className="placeholder-secondary pl-6 pr-6 box-border pt-5 pb-5 sm:pt-5 border w-full mb-2 flex flex-row outline-none"
-          value={data.listing_name}
-          onChange={(e) => setData({ ...data, listing_name: e.target.value })}
+          value={data.property_name}
+          onChange={(e) => setData({ ...data, property_name: e.target.value })}
         />
         <button
           onClick={() => handleStep()}
