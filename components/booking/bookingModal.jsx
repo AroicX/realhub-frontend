@@ -3,8 +3,8 @@ import SVG from 'react-inlinesvg'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import PhoneInput from 'react-phone-number-input'
-import next from 'next'
 import { MAKE_BOOKING } from 'actions/requests'
+import Toastr from 'toastr'
 
 export default function BookingModal({ close }) {
   const [step, setStep] = useState(1)
@@ -25,9 +25,10 @@ export default function BookingModal({ close }) {
   }
 
   const handleSumbit = () => {
-    console.log(booking)
+    // console.log(booking)
     const callback = (response) => {
-      console.log(response)
+      Toastr.success(response.message)
+
       setStep(1)
       close()
     }

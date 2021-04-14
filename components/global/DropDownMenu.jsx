@@ -4,7 +4,7 @@ export default function DropDownMenu({ menuname, list, cssClass }) {
   const [isActive, setIsActive] = React.useState()
   return (
     <div
-      className={`relative dropdown ${cssClass}`}
+      className={` dropdown ${cssClass}`}
       onClick={() => setIsActive(!isActive)}
     >
       <div className="flex font-inter--light font-15 mx-5 cursor-pointer">

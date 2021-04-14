@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SVG from 'react-inlinesvg'
 
-export default function DropDown({ placeholder, options, value }) {
+export default function DropDown({ css, placeholder, options, value }) {
   const [toggle, setToggle] = useState(false)
   const [selected, setSelected] = useState(null)
 
@@ -21,7 +21,7 @@ export default function DropDown({ placeholder, options, value }) {
           aria-labelledby="listbox-label"
           className={`relative text-bright sm:pl-6 sm:pr-6 pl-3 pr-3 box-border pt-4 pb-4 sm:pt-5 sm:pb-5 border w-full  flex flex-row ${
             toggle ? '' : 'mb-8'
-          }`}
+          } ${css}`}
           onClick={() => setToggle(!toggle)}
         >
           <span className="flex items-center">

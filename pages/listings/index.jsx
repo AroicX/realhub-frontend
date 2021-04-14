@@ -76,8 +76,8 @@ export default function Listing() {
         </h4>
 
         <div className="flex">
-          <DropDownMenu menuname="Price" cssClass="my-10" />
-          <DropDownMenu menuname="Property Type" cssClass="my-10" />
+          <DropDownMenu menuname="Price" cssClass="my-10 relative" />
+          <DropDownMenu menuname="Property Type" cssClass="my-10 relative" />
         </div>
 
         <button
