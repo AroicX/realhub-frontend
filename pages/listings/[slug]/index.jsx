@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import Layout from '@/components/layout/layout'
 import Modal from '@/components/global/modal'
 import BookingModal from '@/components/booking/bookingModal'
+import { MapComponent } from '@/components/global/MapComponent'
 
 const ListingPage = () => {
   const { isCollapse } = useWheel()
@@ -143,6 +144,36 @@ const ListingPage = () => {
               <button className="bg-green-600 text-white p-3 px-12  my-5">
                 Pay For Property
               </button>
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <div className="mt-10">
+                <h2 className="font-inter--bold text-black font-14 my-2 mx-5">
+                  Location
+                </h2>
+                <span className="font-inter--light text-black font-12 mx-5">
+                  Kaduna
+                </span>
+                <MapComponent
+                  isMarkerShown
+                  googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`}
+                  loadingElement={
+                    <div style={{ width: '100%', height: `100%` }} />
+                  }
+                  containerElement={
+                    <div style={{ width: '100%', height: `100%` }} />
+                  }
+                  mapElement={<div style={{ width: '100%', height: `100%` }} />}
+                />
+              </div>
             </div>
           </div>
 

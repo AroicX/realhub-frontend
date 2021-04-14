@@ -14,20 +14,21 @@ import StepCompleted from '@/components/forms/create/StepCompleted'
 import { ADD_LISTING } from '@/actions/requests'
 
 export default function AddListing() {
-  const [step, setStep] = useState(3)
-  const [form, setForm] = useState({
-    listing_type: 'Apartment',
-    is_apartment: 2,
-    lease_type: 'Short Lease',
-    bedrooms: '1 ',
-    bathrooms: '1 ',
-    property_desc: 'This is a property',
-    property_name: 'Three Bedroom Apartment at lekki, with pool side',
-    policy_res: 'no tone',
-    address: 'No 16A Tunisia cresent',
-    price: '80000',
-    duration: 'Per Week',
-  })
+  const [step, setStep] = useState(1)
+  const [form, setForm] = useState({})
+  // const [form, setForm] = useState({
+  //   listing_type: 'Apartment',
+  //   is_apartment: 2,
+  //   lease_type: 'Short Lease',
+  //   bedrooms: '1 ',
+  //   bathrooms: '1 ',
+  //   property_desc: 'This is a property',
+  //   property_name: 'Three Bedroom Apartment at lekki, with pool side',
+  //   policy_res: 'no tone',
+  //   address: 'No 16A Tunisia cresent',
+  //   price: '80000',
+  //   duration: 'Per Week',
+  // })
 
   useEffect(() => {
     console.log(form)

@@ -87,7 +87,10 @@ export default function Navigation({}) {
                   Login
                 </p>
                 <hr />
-                <Link to="/app/listings/create" className="font-sm my-2 cursor-pointer">
+                <Link
+                  to="/app/listings"
+                  className="font-sm my-2 cursor-pointer"
+                >
                   List your home
                 </Link>
                 <Link to="/" className="font-sm my-2 cursor-pointer">
@@ -135,7 +138,7 @@ export default function Navigation({}) {
                           </p>
                           <hr />
                           <Link
-                            to="/app/listings/create"
+                            to="/app/listings/"
                             className="font-sm my-2 cursor-pointer"
                           >
                             List your home
