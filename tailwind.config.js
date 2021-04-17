@@ -30,6 +30,15 @@ module.exports = {
         "pastel-brown": "#FCFBF9",
         "modal-cream": "#FBF9F4",
         "modal-white": "#FFFFFF",
+        "light-gray": "#DDDDDD",
+        "sent": "#353535",
+        "light": "#f5f5f5"
+      },
+      textColor: theme => theme('colors'),
+      textColor: {
+        "dark-gray": "#282828",
+        "light-gray":"#434343",
+        "lighter-gray": "#8F8F8F"
       },
       screens: {
         md: "800px",
