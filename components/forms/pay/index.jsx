@@ -9,8 +9,8 @@ export default function Pay() {
     <>
       {/* <Terms /> */}
       {/* <BreakDown /> */}
-      {/* <Card /> */}
-      <Success />
+      <Card />
+      {/* <Success /> */}
     </>
   );
 }

@@ -1,13 +1,6 @@
-html,
-body {
-  height: 100%;
-  overflow: hidden;
-}
-
 body {
   overflow-x: hidden;
   background: #fff;
-  overflow-y: auto;
 
   &.no-scroll {
     position: fixed;
@@ -78,23 +71,26 @@ button {
   }
 }
 
+
 .svg-white {
   filter: brightness(0) invert(1);
 }
 .svg-white-hover {
-  &:hover {
+  &:hover{
     filter: brightness(0) invert(1);
+
   }
 }
 
-.svg {
+.svg{
   display: block;
-  &-sm {
+  &-sm{
     @include media("<=tablet") {
-      height: 200px !important;
+     height: 200px !important;
     }
   }
 }
+
 
 .show-desktop {
   display: flex;
@@ -110,8 +106,10 @@ button {
   visibility: hidden;
 
   @include media("<=tablet") {
+
     display: flex;
     visibility: visible;
+
   }
 }
 
@@ -124,8 +122,8 @@ button {
       animation: slide-up-fade-in ease 1s;
       animation-iteration-count: 1;
       transform-origin: 50% 50%;
-      animation-fill-mode: forwards; /*when the spec is finished*/
-
+      animation-fill-mode:forwards; /*when the spec is finished*/
+     
       //
       border-top: 1px solid #000;
       display: flex;
@@ -153,6 +151,7 @@ button {
         right: 0;
       }
     }
+
   }
 }
 
@@ -166,14 +165,14 @@ button {
   left: 0 !important;
 }
 
-@keyframes slide-up-fade-in {
+@keyframes slide-up-fade-in{
   0% {
-    opacity: 0;
-    transform: translate(0px, 40px);
+      opacity:0;
+      transform:  translate(0px,40px)  ;
   }
   100% {
-    opacity: 1;
-    transform: translate(0px, 0px);
+      opacity:1;
+      transform:  translate(0px,0px)  ;
   }
 }
 

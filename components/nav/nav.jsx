@@ -59,7 +59,7 @@ export default function Nav({ custom }) {
         </button>
 
         <div className="flex flex-col lg:flex-row hide">
-          <Link
+          {/* <Link
             to="/"
             className={`font-inter--light ${
               !custom ? "text-blue-md" : ""
@@ -67,16 +67,22 @@ export default function Nav({ custom }) {
           >
             Make a choice
             {!custom && <SVG className="my-1 mx-7" src={`/svg/span.svg`}></SVG>}
-          </Link>
-          {!custom &&<Link to="/listings" className="font-inter--light font-13 mx-5">
+          </Link> */}
+          <Link to="/listings" className="font-inter--light font-13 mx-5">
             View all listings
-          </Link>}
+          </Link>
           <Link to="/app/listings" className="font-inter--light font-13 mx-5">
             Become a host
           </Link>
         </div>
 
         <div className="flex flex-col lg:flex-row hide">
+          <Link to="/app/notifications" className="mr-14 flex items-center">
+            <SVG src="/svg/bell.svg"></SVG>
+          </Link>
+          <Link to="/app/inbox" className="mr-5 flex items-center">
+            <SVG src="/svg/message.svg"></SVG>
+          </Link>
           <div
             className="relative dropdown"
             onClick={() => setIsActive(!isActive)}
@@ -153,12 +159,12 @@ export default function Nav({ custom }) {
               <SVG className="my-0 mx-5" src={`/svg/logo.svg`}></SVG>
               Realhub Africa
             </Link>
-            <Link
+            {/* <Link
               to="/"
               className="font-inter--light text-blue-md font-13 mx-5 flex flex-col justify-between"
             >
               Make a choice
-            </Link>
+            </Link> */}
             <Link to="/listings" className="font-inter--light font-13 mx-5">
               View all listings
             </Link>

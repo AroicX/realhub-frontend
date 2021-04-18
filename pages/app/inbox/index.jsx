@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import Nav from "@/components/nav/nav";
 import SVG from "react-inlinesvg";
+import Nav from "@/components/nav/nav";
 
 const Inbox = () => {
   const [noMessage, setMessage] = useState(false);
   return (
     <div className=" font-inter h-screen">
       <Nav custom={true} />
-      <div className="w-full flex flex-row pt-12 h-full">
+      <div className="w-full flex flex-row pt-12 inbox_container">
         <div className="w-2/5 border-r-2 border-light-gray">
           <div className="px-8 py-4 font-unna text-dark-gray text-4xl flex flex-row items-center justify-between mb-10">
             <div>Conversations</div>
@@ -72,14 +72,14 @@ const Inbox = () => {
             </div>
           </div>
         </div>
-        <div className="w-3/5 inbox_bg flex flex-col h-full justify-end">
+        <div className="w-3/5 inbox_bg flex flex-col h-full justify-end pb-20">
           {noMessage && (
             <div className="w-full h-full flex items-center justify-center pb-10 px-10 font-unna text-4xl leading-10 px-24 text-center">
               Connect and share experiences with other Hubspot users
             </div>
           )}
           {!noMessage && (
-            <div className="overflow-y-scroll h-full">
+            <div className="overflow-y-auto h-full px-10 flex flex-col justify-end">
               <div className="flex flex-row justify-end">
                 <div className="text-white bg-sent px-4 pt-8 pb-2 max-2/4">
                   <div>
@@ -100,7 +100,7 @@ const Inbox = () => {
               </div>
             </div>
           )}
-          <div className="mt-10 bg-white flex flex-row border pr-8">
+          <div className="mt-10 bg-white flex flex-row border pr-8 items-center mx-10">
             <input
               className="bg-white w-full py-4 pl-4"
               placeholder="Type your message"

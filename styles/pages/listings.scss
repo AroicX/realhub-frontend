@@ -60,13 +60,6 @@
   }
 }
 
-.s__booking__container {
-  display: grid;
-  grid-template-columns: 70% 30%;
-  column-gap: 1rem;
-  row-gap: 1rem;
-}
-
 .s__booking {
   width: 30%;
   position: relative;
@@ -75,10 +68,8 @@
   &--button {
     position: relative;
     display: flex;
-    font-weight: 600;
     flex-direction: row;
-    // justify-content: space-between;
-    align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding: 1rem;
     background: #fff;
@@ -86,17 +77,62 @@
     transition: all 0.8s ease-in-out;
 
     span {
-      font-size: 0.9rem;
+      font-size: 12px;
       margin: 1rem 0;
-      flex: 1;
+    }
+
+    &:hover {
+      background: #000;
+      transition: all 0.5s ease-in-out;
+
+      svg {
+        filter: brightness(0) invert(1);
+      }
+
+      span {
+        color: #fff;
+      }
     }
   }
-
-  @include media("<=tablet") {
-    width: 100%;
-    margin: 0;
-  }
 }
+
+// .s__booking__container {
+//   display: grid;
+//   grid-template-columns: 70% 30%;
+//   column-gap: 1rem;
+//   row-gap: 1rem;
+// }
+
+// .s__booking {
+//   width: 30%;
+//   position: relative;
+//   margin: 8rem 2rem;
+
+//   &--button {
+//     position: relative;
+//     display: flex;
+//     font-weight: 600;
+//     flex-direction: row;
+//     // justify-content: space-between;
+//     align-items: center;
+//     width: 100%;
+//     padding: 1rem;
+//     background: #fff;
+//     border: 1px solid #000;
+//     transition: all 0.8s ease-in-out;
+
+//     span {
+//       font-size: 0.9rem;
+//       margin: 1rem 0;
+//       flex: 1;
+//     }
+//   }
+
+//   @include media("<=tablet") {
+//     width: 100%;
+//     margin: 0;
+//   }
+// }
 
 .add-listing-form {
   width: 800px;
@@ -183,15 +219,17 @@
   background: transparent; /* make scrollbar transparent */
 }
 
-input {
-  outline: none;
-  border: 1px solid black;
-
-  &::placeholder {
-    color: #333333;
-  }
-
-  &:focus {
+.custom__input {
+  input {
     outline: none;
+    border: 1px solid black;
+
+    &::placeholder {
+      color: #333333;
+    }
+
+    &:focus {
+      outline: none;
+    }
   }
 }

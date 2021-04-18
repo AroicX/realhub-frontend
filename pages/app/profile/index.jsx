@@ -4,9 +4,9 @@ import Nav from "@/components/nav/nav";
 
 const Profile = () => {
   return (
-    <div className="pb-20">
+    <div className="h-screen overflow-auto">
       <Nav custom={true} />
-      <div className="md:px-6 px-4">
+      <div className="md:px-6 px-4 pb-20">
         <div className="font-unna text-2xl md:text-4xl mt-10">My Profile</div>
         <div className="mt-8 flex flex-row font-inter mt-10">
           <img src="/images/joy.png" className="w-24 h-24 rounded-full" />
@@ -30,10 +30,10 @@ const Profile = () => {
           </button>
         </div>
         <div className="grid grid:cols-none md:grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-20">
-          <List image="images/image2.png" />
-          <List image="images/image4.png" />
-          <List image="images/image3.png" />
-          <List image="images/image2.png" />
+          <List image="/images/image2.png" />
+          <List image="/images/image4.png" />
+          <List image="/images/image3.png" />
+          <List image="/images/image2.png" />
         </div>
       </div>
     </div>

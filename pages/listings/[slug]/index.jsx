@@ -96,7 +96,7 @@ const ListingPage = () => {
             </div>
 
             <div className="s__booking">
-              {/* <button className="s__booking--button">
+              <button className="s__booking--button">
                 <div className="flex flex-row">
                   <SVG
                     className="m-3"
@@ -139,9 +139,9 @@ const ListingPage = () => {
                   width="10px"
                   height="10px"
                 ></SVG>
-              </button> */}
+              </button>
 
-              <div className="s__booking__container">
+              {/* <div className="s__booking__container">
                 <button className="s__booking--button">
                   <SVG src="/svg/calendar.svg"></SVG>
                   <span> 01-12-2021</span>
@@ -161,7 +161,7 @@ const ListingPage = () => {
                   <span>Children</span>
                   <SVG src="/svg/caret-down.svg"></SVG>
                 </button>
-              </div>
+              </div> */}
 
               <button className="bg-green-600 text-white p-3 px-12  my-5">
                 Pay For Property
