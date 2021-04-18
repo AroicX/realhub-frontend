@@ -5,7 +5,7 @@ import SVG from "react-inlinesvg";
 const Inbox = () => {
   const [noMessage, setMessage] = useState(false);
   return (
-    <div className=" font-inter inbox_cont">
+    <div className=" font-inter h-screen">
       <Nav custom={true} />
       <div className="w-full flex flex-row pt-12 h-full">
         <div className="w-2/5 border-r-2 border-light-gray">
