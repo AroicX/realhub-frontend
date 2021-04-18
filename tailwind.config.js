@@ -32,13 +32,15 @@ module.exports = {
         "modal-white": "#FFFFFF",
         "light-gray": "#DDDDDD",
         "sent": "#353535",
-        "light": "#f5f5f5"
+        "light": "#f5f5f5",
+        "light-green": "#DDEEDF"
       },
       textColor: theme => theme('colors'),
       textColor: {
         "dark-gray": "#282828",
         "light-gray":"#434343",
-        "lighter-gray": "#8F8F8F"
+        "lighter-gray": "#8F8F8F",
+        "primary": "#1B1A1A"
       },
       screens: {
         md: "800px",

@@ -1,17 +1,18 @@
-import Nav from "@/components/nav/nav";
 import React, { useState } from "react";
+import Nav from "@/components/nav/nav";
+import SVG from "react-inlinesvg";
 
 const Inbox = () => {
   const [noMessage, setMessage] = useState(false);
   return (
-    <div className="h-screen font-inter">
-      <Nav inbox={true} />
+    <div className=" font-inter inbox_cont">
+      <Nav custom={true} />
       <div className="w-full flex flex-row pt-12 h-full">
         <div className="w-2/5 border-r-2 border-light-gray">
           <div className="px-8 py-4 font-unna text-dark-gray text-4xl flex flex-row items-center justify-between mb-10">
             <div>Conversations</div>
             <div>
-              <img src="/svg/search.svg" alt="*" />
+              <SVG src="/svg/search.svg"></SVG>
             </div>
           </div>
           <div>
@@ -30,7 +31,7 @@ const Inbox = () => {
                 </div>
               </div>
               <div>
-                <img src="/svg/inbox.svg" alt="*" />
+                <SVG src="/svg/inbox.svg"></SVG>
               </div>
             </div>
             <div className="flex px-8 py-4 flex-row items-center mb-6 bg-light">
@@ -48,7 +49,7 @@ const Inbox = () => {
                 </div>
               </div>
               <div>
-                <img src="/svg/seen.svg" alt="*" />
+                <SVG src="/svg/seen.svg"></SVG>
               </div>
             </div>
             <div className="flex px-8 py-4 flex-row items-center mb-6">
@@ -66,19 +67,19 @@ const Inbox = () => {
                 </div>
               </div>
               <div>
-                <img src="/svg/seen.svg" alt="*" />
+                <SVG src="/svg/seen.svg"></SVG>
               </div>
             </div>
           </div>
         </div>
-        <div className="w-3/5 inbox_bg flex flex-col h-full justify-end pb-10 px-10">
+        <div className="w-3/5 inbox_bg flex flex-col h-full justify-end">
           {noMessage && (
-            <div className="w-full h-full flex items-center justify-center font-unna text-4xl leading-10 px-24 text-center">
+            <div className="w-full h-full flex items-center justify-center pb-10 px-10 font-unna text-4xl leading-10 px-24 text-center">
               Connect and share experiences with other Hubspot users
             </div>
           )}
           {!noMessage && (
-            <div>
+            <div className="overflow-y-scroll h-full">
               <div className="flex flex-row justify-end">
                 <div className="text-white bg-sent px-4 pt-8 pb-2 max-2/4">
                   <div>
@@ -104,7 +105,7 @@ const Inbox = () => {
               className="bg-white w-full py-4 pl-4"
               placeholder="Type your message"
             />
-            <img src="/svg/send-icon.svg" />
+            <SVG src="/svg/send-icon.svg"></SVG>
           </div>
         </div>
       </div>

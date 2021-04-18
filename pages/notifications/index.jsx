@@ -4,11 +4,11 @@ import React from "react";
 const Notifications = () => {
   return (
     <div>
-      <Nav inbox={true} />
-      <div className="flex justify-center items-center font-inter">
-        <div className="w-2/4">
+      <Nav custom={true} />
+      <div className="flex justify-center items-center font-inter md:px-0 px-4">
+        <div className="w-full md:w-2/4">
           <div className="flex flex-row h-20 items-center">
-            <div className="font-unna text-4xl mt-10 h-full">Notifications</div>
+            <div className="font-unna text-2xl md:text-4xl mt-10 h-full">Notifications</div>
             <div className="flex flex-row items-center h-full ml-8 flex-1">
               <button className="bg-black text-white px-2">3 new</button>
             </div>

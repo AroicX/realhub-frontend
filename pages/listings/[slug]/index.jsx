@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react'
-import SVG from 'react-inlinesvg'
-import useWheel from '@/hooks/useWheel'
-import { useRouter } from 'next/router'
-import Layout from '@/components/layout/layout'
-import Modal from '@/components/global/modal'
-import BookingModal from '@/components/booking/bookingModal'
-import { MapComponent } from '@/components/global/MapComponent'
+import { useEffect, useState } from "react";
+import SVG from "react-inlinesvg";
+import useWheel from "@/hooks/useWheel";
+import { useRouter } from "next/router";
+import Layout from "@/components/layout/layout";
+import Modal from "@/components/global/modal";
+import BookingModal from "@/components/booking/bookingModal";
+import { MapComponent } from "@/components/global/MapComponent";
 
 const ListingPage = () => {
-  const { isCollapse } = useWheel()
+  const { isCollapse } = useWheel();
 
-  const router = useRouter()
-  const slug = router.query.slug
+  const router = useRouter();
+  const slug = router.query.slug;
   useEffect(() => {
-    console.log(slug)
-  }, [router])
+    console.log(slug);
+  }, [router]);
 
-  const [bookingModal, setBookingModal] = useState(false)
+  const [bookingModal, setBookingModal] = useState(false);
 
   const toggleBookingModal = () => {
-    setBookingModal(!bookingModal)
-    document.querySelector('body').classList.toggle('no-scroll')
-  }
+    setBookingModal(!bookingModal);
+    document.querySelector("body").classList.toggle("no-scroll");
+  };
 
   return (
     <div>
@@ -45,7 +45,7 @@ const ListingPage = () => {
                 </span>
               </div>
               <div className="s__listing--carousel">
-                <img src={'/images/big_house.png'} alt="*" />
+                <img src={"/images/big_house.png"} alt="*" />
               </div>
 
               <div className="s__listing--price">
@@ -96,7 +96,7 @@ const ListingPage = () => {
             </div>
 
             <div className="s__booking">
-              <button className="s__booking--button">
+              {/* <button className="s__booking--button">
                 <div className="flex flex-row">
                   <SVG
                     className="m-3"
@@ -139,7 +139,29 @@ const ListingPage = () => {
                   width="10px"
                   height="10px"
                 ></SVG>
-              </button>
+              </button> */}
+
+              <div className="s__booking__container">
+                <button className="s__booking--button">
+                  <SVG src="/svg/calendar.svg"></SVG>
+                  <span> 01-12-2021</span>
+                  <SVG src="/svg/caret-down.svg"></SVG>
+                </button>
+                <button className="s__booking--button">
+                  <span>Adults</span>
+                  <SVG src="/svg/caret-down.svg"></SVG>
+                </button>
+
+                <button className="s__booking--button">
+                  <SVG src="/svg/calendar.svg"></SVG>
+                  <span> 20-12-2021</span>
+                  <SVG src="/svg/caret-down.svg"></SVG>
+                </button>
+                <button className="s__booking--button">
+                  <span>Children</span>
+                  <SVG src="/svg/caret-down.svg"></SVG>
+                </button>
+              </div>
 
               <button className="bg-green-600 text-white p-3 px-12  my-5">
                 Pay For Property
@@ -166,12 +188,12 @@ const ListingPage = () => {
                   isMarkerShown
                   googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`}
                   loadingElement={
-                    <div style={{ width: '100%', height: `100%` }} />
+                    <div style={{ width: "100%", height: `100%` }} />
                   }
                   containerElement={
-                    <div style={{ width: '100%', height: `100%` }} />
+                    <div style={{ width: "100%", height: `100%` }} />
                   }
-                  mapElement={<div style={{ width: '100%', height: `100%` }} />}
+                  mapElement={<div style={{ width: "100%", height: `100%` }} />}
                 />
               </div>
             </div>
@@ -216,7 +238,7 @@ const ListingPage = () => {
         </div>
       </Layout>
     </div>
-  )
-}
+  );
+};
 
-export default ListingPage
+export default ListingPage;

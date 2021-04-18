@@ -5,7 +5,7 @@ import AuthModal from "../auth/AuthModal";
 import useScroll from "@/hooks/useScroll";
 import { useUser } from "@/hooks/useUser";
 
-export default function Nav({ inbox }) {
+export default function Nav({ custom }) {
   const { user, logout } = useUser();
 
   // console.log(user)
@@ -62,13 +62,13 @@ export default function Nav({ inbox }) {
           <Link
             to="/"
             className={`font-inter--light ${
-              !inbox ? "text-blue-md" : ""
+              !custom ? "text-blue-md" : ""
             }font-13 mx-5 flex flex-col justify-between`}
           >
             Make a choice
-            {!inbox && <SVG className="my-1 mx-7" src={`/svg/span.svg`}></SVG>}
+            {!custom && <SVG className="my-1 mx-7" src={`/svg/span.svg`}></SVG>}
           </Link>
-          {!inbox &&<Link to="/listings" className="font-inter--light font-13 mx-5">
+          {!custom &&<Link to="/listings" className="font-inter--light font-13 mx-5">
             View all listings
           </Link>}
           <Link to="/app/listings" className="font-inter--light font-13 mx-5">

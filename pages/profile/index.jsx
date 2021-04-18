@@ -1,13 +1,13 @@
+import React from "react";
 import List from "@/components/listings/list";
 import Nav from "@/components/nav/nav";
-import React from "react";
 
 const Profile = () => {
   return (
     <div className="pb-20">
-      <Nav inbox={true} />
+      <Nav custom={true} />
       <div className="md:px-6 px-4">
-        <div className="font-unna text-4xl mt-10">My Profile</div>
+        <div className="font-unna text-2xl md:text-4xl mt-10">My Profile</div>
         <div className="mt-8 flex flex-row font-inter mt-10">
           <img src="/images/joy.png" className="w-24 h-24 rounded-full" />
           <div className="ml-4">
