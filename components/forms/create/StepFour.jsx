@@ -52,7 +52,7 @@ export default function StepFour({
             placeholder={
               data.bedrooms ? data.bedrooms : 'Select Number of Bedrooms'
             }
-            options={['1 Bedroom', '2 Bedrooms', '3 Bedrooms']}
+            options={['1', '2', '3']}
             value={(e) => handleSelected(e, 'bedrooms')}
           />
         </div>
@@ -64,7 +64,7 @@ export default function StepFour({
             placeholder={
               data.bathrooms ? data.bathrooms : 'Select Number of Bathrooms'
             }
-            options={['1 Bathroom', '2 Bathrooms', '3 Bathrooms']}
+            options={['1 ', '2 ', '3']}
             value={(e) => handleSelected(e, 'bathrooms')}
           />
           <div className="mb-3 font-medium text-sm uppercase">
