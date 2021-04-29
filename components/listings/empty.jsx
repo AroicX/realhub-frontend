@@ -2,7 +2,7 @@ import React from 'react'
 import SVG from 'react-inlinesvg'
 import Link from '../link'
 
-export default function PropertyList({}) {
+export default function Empty({}) {
   return (
     <div className="flex flex-col items-center">
       <SVG

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import Search from "@/components/global/search";
 import Layout from "@/components/layout/layout";
 import Link from "@/components/link";

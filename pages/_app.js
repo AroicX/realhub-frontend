@@ -1,11 +1,14 @@
 import "../styles/index.css";
 import "../styles/app.scss";
 import { AuthProvider } from "@/hooks/useUser";
+import ListingProvider from "@/hooks/listing";
 
 function MyApp({ Component, pageProps }) {
   return (
     <AuthProvider>
-      <Component {...pageProps} />
+      <ListingProvider>
+        <Component {...pageProps} />
+      </ListingProvider>
     </AuthProvider>
   );
 }

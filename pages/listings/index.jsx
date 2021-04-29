@@ -1,72 +1,78 @@
-import { useEffect, useState } from 'react'
-import Layout from '@/components/layout/layout'
-import DropDownMenu from '@/components/global/DropDownMenu'
-import { MapComponent } from '@/components/global/MapComponent'
-import Link from '@/components/link'
-import SVG from 'react-inlinesvg'
+import { useContext, useEffect, useState } from "react";
+import Layout from "@/components/layout/layout";
+import DropDownMenu from "@/components/global/DropDownMenu";
+import { MapComponent } from "@/components/global/MapComponent";
+import Link from "@/components/link";
+import SVG from "react-inlinesvg";
+import { ListingContext } from "@/hooks/listing";
 
-const previewCategories = [
-  {
-    name: 'Eco-Friendly Food Packs',
-    desc: '(Food packs and packaging)',
-    btn: 'Eco-Friendly',
-    src:
-      'https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220919/printivo/Rectangle_6-4_pp5pv4.png',
-    cost: '7,999',
-    url: '',
-  },
-  {
-    name: 'Wedding Package',
-    desc: '(We handle all wedding prints)',
-    btn: 'Wedding Package',
-    src:
-      'https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220920/printivo/Rectangle_6-5_noumgr.png',
-    cost: '7,999',
-    url: '',
-  },
+// const previewCategories = [
+//   {
+//     name: "Eco-Friendly Food Packs",
+//     desc: "(Food packs and packaging)",
+//     btn: "Eco-Friendly",
+//     src:
+//       "https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220919/printivo/Rectangle_6-4_pp5pv4.png",
+//     cost: "7,999",
+//     url: "",
+//   },
+//   {
+//     name: "Wedding Package",
+//     desc: "(We handle all wedding prints)",
+//     btn: "Wedding Package",
+//     src:
+//       "https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220920/printivo/Rectangle_6-5_noumgr.png",
+//     cost: "7,999",
+//     url: "",
+//   },
 
-  {
-    name: 'Wedding Package',
-    desc: '(We handle all wedding prints)',
-    btn: 'Wedding Package',
-    src:
-      'https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220920/printivo/Rectangle_6-5_noumgr.png',
-    cost: '7,999',
-    url: '',
-  },
-  {
-    name: 'Corporate Products',
-    desc: '(Office and business prints)',
-    btn: 'Corporate Products',
-    src:
-      'https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220920/printivo/Rectangle_6-6_xldjwk.png',
-    cost: '7,999',
-    url: '',
-  },
-  {
-    name: 'Art Station',
-    desc: '(Print posters and get frames)',
-    btn: 'Art Station',
-    src:
-      'https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220919/printivo/Rectangle_6-7_snwek3.png',
-    cost: '7,999',
-    url: '',
-  },
-]
+//   {
+//     name: "Wedding Package",
+//     desc: "(We handle all wedding prints)",
+//     btn: "Wedding Package",
+//     src:
+//       "https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220920/printivo/Rectangle_6-5_noumgr.png",
+//     cost: "7,999",
+//     url: "",
+//   },
+//   {
+//     name: "Corporate Products",
+//     desc: "(Office and business prints)",
+//     btn: "Corporate Products",
+//     src:
+//       "https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220920/printivo/Rectangle_6-6_xldjwk.png",
+//     cost: "7,999",
+//     url: "",
+//   },
+//   {
+//     name: "Art Station",
+//     desc: "(Print posters and get frames)",
+//     btn: "Art Station",
+//     src:
+//       "https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220919/printivo/Rectangle_6-7_snwek3.png",
+//     cost: "7,999",
+//     url: "",
+//   },
+// ];
 
 export default function Listing() {
-  const [grid, setGrid] = useState(4)
-  const [showMap, setShowMap] = useState(false)
+  const [grid, setGrid] = useState(4);
+  const [showMap, setShowMap] = useState(false);
+  const { listings } = useContext(ListingContext);
 
   const handleMap = () => {
     if (grid === 4) {
-      setGrid(2)
-      setShowMap(!showMap)
+      setGrid(2);
+      setShowMap(!showMap);
     } else {
-      setGrid(4)
-      setShowMap(!showMap)
+      setGrid(4);
+      setShowMap(!showMap);
     }
-  }
+  };
+
+  useEffect(() => {
+    console.log(listings);
+  },[listings])
 
   return (
     <Layout type="navigation" title="Listing">
@@ -92,34 +98,34 @@ export default function Listing() {
       <div className="w-full flex flex-col lg:flex-row p-5">
         <div className={`grid grid-cols-1 lg:grid-cols-${grid} gap-8`}>
           {/* grid */}
-          {previewCategories.map((house, key) => (
+          {listings && listings.map((listing, key) => (
             <div className="r-listings" key={key}>
               <div className="img-container">
-                <img src={'./images/image1.png'} alt="*" />
+                <img src={"./images/image1.png"} alt="*" />
                 <div className="price">
                   <span className="uppercase font-inter--light font-10">
                     Starting from
                   </span>
                   <br />
-                  <b># 7000,000</b>
+                  <b># {listing.price}</b>
                 </div>
               </div>
 
               <div className="description p-2 mx-3">
                 <p className="font-inter font-15">
-                  Chill Marble Home - Kaduna Nigeria
+                  {listing.property_name}
                 </p>
                 <span className="font-inter--light font-13">
-                  5 Bedroom 3 Bathrooms Kitchen Swimming Pool
+                  {listing.bathrooms} Bedroom {listing.bedrooms} Bathrooms Kitchen Swimming Pool
                 </span>
                 <span className="font-inter--light font-13 block">
-                  Barnawa Kaduna
+                  {listing.address}
                 </span>
               </div>
 
               <br />
               <Link
-                to="/listings/two-bedroom-duplex"
+                to={"/listings/" + listing.id}
                 className="w-50 p-3 px-5 mx-5 my-5 bg-black text-white"
               >
                 View Listing
@@ -144,5 +150,5 @@ export default function Listing() {
 
       {/*  */}
     </Layout>
-  )
+  );
 }

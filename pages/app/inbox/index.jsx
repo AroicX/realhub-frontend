@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SVG from "react-inlinesvg";
 import Nav from "@/components/nav/nav";
+import useAuth from "@/hooks/useAuth";
 
 const Inbox = () => {
   const [noMessage, setMessage] = useState(false);
@@ -113,4 +114,4 @@ const Inbox = () => {
   );
 };
 
-export default Inbox;
+export default useAuth(Inbox);

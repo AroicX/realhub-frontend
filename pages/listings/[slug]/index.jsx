@@ -6,15 +6,25 @@ import Layout from "@/components/layout/layout";
 import Modal from "@/components/global/modal";
 import BookingModal from "@/components/booking/bookingModal";
 import { MapComponent } from "@/components/global/MapComponent";
+import api from "@/services/api";
 
 const ListingPage = () => {
   const { isCollapse } = useWheel();
-
+  const [listing, setListing] = useState({});
   const router = useRouter();
   const slug = router.query.slug;
+
+  const getListing = async () => {
+    const { data } = await api.get("/listings?status=OPEN&id=" + slug);
+    const details = data.data[0];
+    details.images = JSON.parse(details.images);
+    details.amenities = JSON.parse(details.amenities);
+
+    setListing(details);
+  };
   useEffect(() => {
-    console.log(slug);
-  }, [router]);
+    if (slug) getListing(slug);
+  }, [slug]);
 
   const [bookingModal, setBookingModal] = useState(false);
 
@@ -23,6 +33,15 @@ const ListingPage = () => {
     document.querySelector("body").classList.toggle("no-scroll");
   };
 
+  // const {
+  //   property_desc,
+  //   bathrooms,
+  //   bedrooms,
+  //   address,
+  //   property_name,
+  //   price,
+  //   images,
+  // } = listing;
   return (
     <div>
       <Layout type="navigation">
@@ -38,28 +57,32 @@ const ListingPage = () => {
             <div className="s__listing">
               <div className="s__listing--header">
                 <h2 className="font-unna font-40 text-black text-3xl">
-                  Grey Berry Estate
+                  {listing && listing.property_name}
                 </h2>
                 <span className="font-inter--light text-gray-700 font-18">
-                  Barnawa, Kaduna
+                  {listing && listing.address}
                 </span>
               </div>
               <div className="s__listing--carousel">
-                <img src={"/images/big_house.png"} alt="*" />
+                {/* <img src={"/images/big_house.png"} alt="*" /> */}
+                <img
+                  src={listing && listing.images && listing.images[0].image}
+                  alt="*"
+                />
               </div>
 
               <div className="s__listing--price">
                 <h3 className="font-inter--bold text-black font-28 my-2">
-                  ₦700,000.00
+                  ₦{listing && listing.price}
                 </h3>
 
                 <div className="flex flex-row">
                   <span className="font-inter--light text-black font-12 mx-0">
-                    3 Bedrooms
+                    {listing && listing.bedrooms} Bedrooms
                   </span>
 
                   <span className="font-inter--light text-black font-12 mx-3">
-                    3 Bathrooms
+                    {listing && listing.bathrooms} Bathrooms
                   </span>
                   <span className="font-inter--light text-black font-12 mx-3">
                     3,212 Sqmt
@@ -76,19 +99,7 @@ const ListingPage = () => {
                 </p>
 
                 <p className="font-inter--light text-black-700 font-18 ">
-                  Southern Charmer available for sale in HOT EAST COBB area,
-                  located right off Alabama rd near Fulton/Cobb border.
-                  Shopping, dining, and easy access to 400 or 575! TOP LASSITER
-                  High School District! 4 bedrooms, 2 1/2 ba, family room,
-                  spacious kitchen with gorgeous granite, office OR Flex room,
-                  formal dining AND partial basement. 2 car garage + extra
-                  parking on driveway. Brand new paint, new hardwood floors &
-                  new carpet!! Relax on your rocking chair front porch, or in
-                  your private back yard. Peaceful culdesac in a friendly
-                  neighborhood! The house currently has a renter in it. Their
-                  lease does not expire till May 1. They are looking to renew
-                  and work with the new owners. They are amazing renters and
-                  have been there for 2 years
+                  {listing && listing.property_desc}
                 </p>
               </div>
 
@@ -105,7 +116,7 @@ const ListingPage = () => {
                     height="50px"
                   ></SVG>
                   <span>
-                    {' '}
+                    {" "}
                     Take a 3D tour <br /> of the apartment.
                   </span>
                 </div>
@@ -128,7 +139,7 @@ const ListingPage = () => {
                     height="50px"
                   ></SVG>
                   <span>
-                    {' '}
+                    {" "}
                     Book a physical <br />
                     tour of the house.
                   </span>
