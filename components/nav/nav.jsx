@@ -101,7 +101,10 @@ export default function Nav({ custom }) {
                       {" "}
                       <p
                         className="font-sm my-2 cursor-pointer"
-                        onClick={() => logout()}
+                        onClick={() => {
+                          logout();
+                          window.location.href = "/";
+                        }}
                       >
                         LogOut
                       </p>
@@ -193,7 +196,10 @@ export default function Nav({ custom }) {
                           {" "}
                           <p
                             className="font-sm my-2 cursor-pointer"
-                            onClick={() => logout()}
+                            onClick={() => {
+                              logout();
+                              window.location.href = "/";
+                            }}
                           >
                             LogOut
                           </p>

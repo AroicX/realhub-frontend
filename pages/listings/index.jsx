@@ -107,7 +107,7 @@ export default function Listing() {
                     Starting from
                   </span>
                   <br />
-                  <b># {listing.price}</b>
+                  <b>₦ {listing.price}</b>
                 </div>
               </div>
 

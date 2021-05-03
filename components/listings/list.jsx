@@ -1,16 +1,16 @@
 import React from "react";
 
-const List = ({ image }) => {
+const List = ({ image,address, name }) => {
   return (
     <div className="font-inter">
       <div className="w-full h-80">
         <img className="w-full h-full" src={image} />
         <div className="flex flex-row mt-2 items-start">
           <div className="flex-1">
-            <div>Chill Marble Home</div>
+            <div>{name}</div>
             <div className="flex flex-row mt-2">
               <img src="/svg/location.svg" alt="*" />
-              <div className="ml-2">Barnawa, Kaduna</div>
+              <div className="ml-2">{address}</div>
             </div>
           </div>
           <div className="flex flex-row items-center">
