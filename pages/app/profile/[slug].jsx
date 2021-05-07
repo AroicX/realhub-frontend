@@ -7,12 +7,21 @@ import api from "@/services/api";
 const Profile = () => {
   const router = useRouter();
   const slug = router.query.slug;
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
   const getUserData = async (slug) => {
     const { data } = await api.get(`/users/${slug}/profile`);
     setUser(data.user);
-  }
+  };
 
+  const startChat = () => {
+    if (user) {
+      localStorage.setItem(
+        "start-chat",
+        JSON.stringify({ id: user.id, name: user.name })
+      );
+      router.push("/app/inbox")
+    }
+  };
   useEffect(() => {
     if (slug) getUserData(slug);
   }, [slug]);
@@ -31,7 +40,10 @@ const Profile = () => {
             <div className="text-dark-gray text-xs mt-1">
               Tel: {user && user.phone}
             </div>
-            <button className="bg-black text-white text-sm px-2 py-2 mt-3">
+            <button
+              onClick={startChat}
+              className="bg-black text-white text-sm px-2 py-2 mt-3"
+            >
               Send a Message
             </button>
           </div>
@@ -43,9 +55,19 @@ const Profile = () => {
           </button>
         </div>
         <div className="grid grid:cols-none md:grid-cols-2 xl:grid-cols-4 gap-x-8 gap-y-20">
-          {user && user.listings && user.listings.map((listing, id) => {
-            return <List key={id} images={listing.images} name={listing.property_name} address={listing.address} image="/images/image2.png" />
-          })}
+          {user &&
+            user.listings &&
+            user.listings.map((listing, id) => {
+              return (
+                <List
+                  key={id}
+                  images={listing.images}
+                  name={listing.property_name}
+                  address={listing.address}
+                  image="/images/image2.png"
+                />
+              );
+            })}
         </div>
       </div>
     </div>

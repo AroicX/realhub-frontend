@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Pusher from "pusher-js";
 import SVG from "react-inlinesvg";
 import Nav from "@/components/nav/nav";
@@ -26,9 +26,29 @@ const Inbox = () => {
   const token = localStorage.getItem("user-data");
   const parsedToken = JSON.parse(token);
 
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
+  };
+  useEffect(scrollToBottom, [state.messages]);
+
   const sendMessage = async () => {
-    setState({ ...state, message: "" });
-    const { data } = await api.post("/messaging/send", {
+    const date = new Date();
+    const currentMessage = state.message;
+
+    setState({
+      ...state,
+      message: "",
+      messages: [
+        ...state.messages,
+        {
+          message: currentMessage,
+          created_at: JSON.stringify(date),
+          sender_id: parsedToken.user.id,
+        },
+      ],
+    });
+    await api.post("/messaging/send", {
       sender_id: parsedToken.user.id,
       receiver_id: state.currentUser,
       message: state.message,
@@ -36,9 +56,16 @@ const Inbox = () => {
   };
 
   const getUsers = async () => {
+    const startChat = localStorage.getItem("start-chat");
+    const user = JSON.parse(startChat);
+
     try {
       const { data } = await api.get("/messaging/get-user-list");
-      setState({ ...state, users: [...state.users, ...data.data] });
+      if (user)
+        setState({ ...state, users: [user, ...state.users, ...data.data] });
+      else setState({ ...state, users: [...state.users, ...data.data] });
+
+      localStorage.removeItem("start-chat");
     } catch (error) {}
   };
 
@@ -112,12 +139,15 @@ const Inbox = () => {
           ) : (
             <>
               {state.messages && (
-                <div className="overflow-y-auto h-full px-10 flex flex-col justify-end">
-                  {state.messages.map((message,id) => {
+                <div className="overflow-y-auto h-full px-10 flex-col justify-end">
+                  {state.messages.map((message, id) => {
                     return (
                       <>
                         {message.sender_id === parsedToken.user.id ? (
-                          <div key={id} className="flex flex-row justify-end mb-10">
+                          <div
+                            key={id}
+                            className="flex flex-row justify-end mb-10"
+                          >
                             <div className="text-white bg-sent px-4 pt-8 pb-2 max-2/4">
                               <div>{message.message}</div>
                               <div className="text-right mt-4 text-xs">
@@ -126,7 +156,10 @@ const Inbox = () => {
                             </div>
                           </div>
                         ) : (
-                          <div key={id} className="flex flex-row justify-start mt-10">
+                          <div
+                            key={id}
+                            className="flex flex-row justify-start mt-10"
+                          >
                             <div className="text-dark-gray bg-white px-4 pt-8 pb-2 max-2/4">
                               <div>{message.message}</div>
                               <div className="text-right mt-4 text-xs">
@@ -138,6 +171,7 @@ const Inbox = () => {
                       </>
                     );
                   })}
+                  <div ref={messagesEndRef}></div>
                 </div>
               )}
               <div className="mt-10 bg-white flex flex-row border pr-8 items-center mx-10">
