@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from "react";
 import Pusher from "pusher-js";
 import SVG from "react-inlinesvg";
@@ -6,16 +5,7 @@ import Nav from "@/components/nav/nav";
 import useAuth from "@/hooks/useAuth";
 import api from "@/services/api";
 import { formatDate } from "@/utils/helpers";
-=======
-import React, { useEffect, useState } from 'react'
-import Pusher from 'pusher-js'
-import SVG from 'react-inlinesvg'
-import Nav from '@/components/nav/nav'
-import useAuth from '@/hooks/useAuth'
-import api from '@/services/api'
-import { formatDate } from '@/utils/helpers'
-import { useUser } from '@/hooks/useUser'
->>>>>>> 5f6ccc65685e7eae022a830a4135b264517ef731
+import { useUser } from "@/hooks/useUser";
 
 // const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_API_KEY, {
 //   cluster: process.env.NEXT_PUBLIC_CLUSTER,
@@ -27,34 +17,34 @@ const Inbox = () => {
     users: [],
     currentUser: null,
     messages: [],
-    message: '',
-  })
+    message: "",
+  });
 
-  const { user } = useUser()
+  const { user } = useUser();
 
   useEffect(() => {
-    Pusher.logToConsole = true
+    Pusher.logToConsole = true;
 
-    var pusher = new Pusher('13be1b4e7af014f7e297', {
-      cluster: 'eu',
-    })
+    var pusher = new Pusher("13be1b4e7af014f7e297", {
+      cluster: "eu",
+    });
 
-    var channel = pusher.subscribe('messages')
+    var channel = pusher.subscribe("messages");
     channel.bind(`chat-${user.user?.id}`, function (data) {
-      console.clear()
-      console.log(JSON.stringify(data))
-    })
-    getUsers()
-  }, [])
+      console.clear();
+      console.log(JSON.stringify(data));
+    });
+    getUsers();
+  }, []);
 
   useEffect(() => {
     if (state.currentUser) {
-      getMessages()
+      getMessages();
     }
-  }, [state.currentUser])
+  }, [state.currentUser]);
 
-  const token = localStorage.getItem('user-data')
-  const parsedToken = JSON.parse(token)
+  const token = localStorage.getItem("user-data");
+  const parsedToken = JSON.parse(token);
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
@@ -63,9 +53,9 @@ const Inbox = () => {
   useEffect(scrollToBottom, [state.messages]);
 
   const sendMessage = async () => {
-<<<<<<< HEAD
     const date = new Date();
     const currentMessage = state.message;
+    setState({ ...state, message: "" });
 
     setState({
       ...state,
@@ -74,48 +64,39 @@ const Inbox = () => {
         ...state.messages,
         {
           message: currentMessage,
-          created_at: JSON.stringify(date),
+          created_at: date,
           sender_id: parsedToken.user.id,
         },
       ],
     });
     await api.post("/messaging/send", {
-=======
-    setState({ ...state, message: '' })
-    const { data } = await api.post('/messaging/send', {
->>>>>>> 5f6ccc65685e7eae022a830a4135b264517ef731
       sender_id: parsedToken.user.id,
       receiver_id: state.currentUser,
       message: state.message,
-    })
-  }
+    });
+  };
 
   const getUsers = async () => {
     const startChat = localStorage.getItem("start-chat");
     const user = JSON.parse(startChat);
 
     try {
-<<<<<<< HEAD
       const { data } = await api.get("/messaging/get-user-list");
       if (user)
         setState({ ...state, users: [user, ...state.users, ...data.data] });
       else setState({ ...state, users: [...state.users, ...data.data] });
 
       localStorage.removeItem("start-chat");
-=======
-      const { data } = await api.get('/messaging/get-user-list')
-      setState({ ...state, users: [...state.users, ...data.data] })
->>>>>>> 5f6ccc65685e7eae022a830a4135b264517ef731
     } catch (error) {}
-  }
+  };
 
   const getMessages = async () => {
-    const { data } = await api.post('/messaging/get-message', {
+    const { data } = await api.post("/messaging/get-message", {
       sender_id: parsedToken.user.id,
       receiver_id: state.currentUser,
-    })
-    setState({ ...state, messages: data.data })
-  }
+    });
+    setState({ ...state, messages: data.data });
+  };
 
   return (
     <div className=" font-inter h-screen">
@@ -136,7 +117,7 @@ const Inbox = () => {
                     onClick={() => setState({ ...state, currentUser: user.id })}
                     key={id}
                     className={`cursor-pointer flex px-8 py-4 flex-row items-center mb-6 ${
-                      user.id === state.currentUser ? 'bg-light' : ''
+                      user.id === state.currentUser ? "bg-light" : ""
                     }`}
                   >
                     <div>
@@ -158,7 +139,7 @@ const Inbox = () => {
                       <SVG src="/svg/inbox.svg"></SVG>
                     </div>
                   </div>
-                )
+                );
               })}
           </div>
         </div>
@@ -170,21 +151,13 @@ const Inbox = () => {
           ) : (
             <>
               {state.messages && (
-<<<<<<< HEAD
                 <div className="overflow-y-auto h-full px-10 flex-col justify-end">
-=======
-                <div className="overflow-y-auto h-full px-10 flex flex-col justify-end">
->>>>>>> 5f6ccc65685e7eae022a830a4135b264517ef731
                   {state.messages.map((message, id) => {
                     return (
                       <>
                         {message.sender_id === parsedToken.user.id ? (
                           <div
-<<<<<<< HEAD
                             key={id}
-=======
-                            key={id + 1}
->>>>>>> 5f6ccc65685e7eae022a830a4135b264517ef731
                             className="flex flex-row justify-end mb-10"
                           >
                             <div className="text-white bg-sent px-4 pt-8 pb-2 max-2/4">
@@ -196,11 +169,7 @@ const Inbox = () => {
                           </div>
                         ) : (
                           <div
-<<<<<<< HEAD
                             key={id}
-=======
-                            key={id + 1}
->>>>>>> 5f6ccc65685e7eae022a830a4135b264517ef731
                             className="flex flex-row justify-start mt-10"
                           >
                             <div className="text-dark-gray bg-white px-4 pt-8 pb-2 max-2/4">
@@ -212,7 +181,7 @@ const Inbox = () => {
                           </div>
                         )}
                       </>
-                    )
+                    );
                   })}
                   <div ref={messagesEndRef}></div>
                 </div>
@@ -220,8 +189,8 @@ const Inbox = () => {
               <div className="mt-10 bg-white flex flex-row border pr-8 items-center mx-10">
                 <form
                   onSubmit={(e) => {
-                    e.preventDefault()
-                    sendMessage()
+                    e.preventDefault();
+                    sendMessage();
                   }}
                   className="w-full"
                 >
@@ -244,10 +213,10 @@ const Inbox = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default useAuth(Inbox)
+export default useAuth(Inbox);
 
 {
   /* <div className="flex px-8 py-4 flex-row items-center mb-6">
