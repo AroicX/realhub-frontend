@@ -1,31 +1,36 @@
-import { useState, useRef, useEffect } from 'react'
-import SVG from 'react-inlinesvg'
-import { useUser } from '@/hooks/useUser'
+import { useState, useRef, useEffect } from "react";
+import SVG from "react-inlinesvg";
+import { useUser } from "@/hooks/useUser";
+import { useRouter } from "next/router";
 
 export default function Login({ modalHandler }) {
-  const [togglePassword, setTogglePassword] = useState(false)
+  const router = useRouter();
+  const [togglePassword, setTogglePassword] = useState(false);
   // get user hook
-  const { login, errorMessage, setErrorMessage, loading } = useUser()
+  const { login, errorMessage, setErrorMessage, loading } = useUser();
 
   // useEffect(() => {
   //   setErrorMessage(null)
   // }, [loading])
   // use ref to get form data
-  const formRef = useRef(null)
+  const formRef = useRef(null);
   // handle form submit
   const loginHandler = async (e) => {
-    e.preventDefault()
-    console.log('done')
-    const formData = new FormData(e.target)
-    const { signEmail, signPassword } = Object.fromEntries(formData)
+    e.preventDefault();
+    console.log("done");
+    const formData = new FormData(e.target);
+    const { signEmail, signPassword } = Object.fromEntries(formData);
 
     const resetForm = () => {
-      modalHandler()
-      formRef.current.reset()
-    }
-    await login({ email: signEmail, password: signPassword }, resetForm)
-  }
-  !loading && errorMessage && console.log(errorMessage)
+      modalHandler();
+      formRef.current.reset();
+    };
+    await login({ email: signEmail, password: signPassword }, resetForm);
+    const link = localStorage.getItem("be-authorized");
+    localStorage.removeItem("be-authorized");
+    router.push(link);
+  };
+  !loading && errorMessage && console.log(errorMessage);
 
   return (
     <>
@@ -40,7 +45,7 @@ export default function Login({ modalHandler }) {
         </button>
       </div>
 
-      <hr className="my-10 mx-5" style={{ width: '90%' }} />
+      <hr className="my-10 mx-5" style={{ width: "90%" }} />
 
       {errorMessage && (
         <div
@@ -76,7 +81,7 @@ export default function Login({ modalHandler }) {
               id="signPassword"
               name="signPassword"
               className="form-control"
-              type={`${togglePassword ? 'text' : 'password'}`}
+              type={`${togglePassword ? "text" : "password"}`}
               placeholder="Enter Your Password"
             />
 
@@ -85,7 +90,7 @@ export default function Login({ modalHandler }) {
               type="button"
               onClick={() => setTogglePassword(!togglePassword)}
             >
-              {`${togglePassword ? 'Hide' : 'Show'}`}
+              {`${togglePassword ? "Hide" : "Show"}`}
             </button>
           </div>
         </div>
@@ -101,5 +106,5 @@ export default function Login({ modalHandler }) {
         </div>
       </form>
     </>
-  )
+  );
 }

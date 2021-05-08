@@ -7,6 +7,7 @@ import Modal from "@/components/global/modal";
 import BookingModal from "@/components/booking/bookingModal";
 import { MapComponent } from "@/components/global/MapComponent";
 import api from "@/services/api";
+import Link from "@/components/link";
 
 const ListingPage = () => {
   const { isCollapse } = useWheel();
@@ -19,7 +20,6 @@ const ListingPage = () => {
     const details = data.data[0];
     details.images = JSON.parse(details.images);
     details.amenities = JSON.parse(details.amenities);
-
     setListing(details);
   };
   useEffect(() => {
@@ -44,7 +44,7 @@ const ListingPage = () => {
   // } = listing;
   return (
     <div>
-      <Layout type="navigation">
+      <Layout type="nav">
         <Modal
           title="Book a Physical Tour"
           showmodal={bookingModal}
@@ -222,24 +222,45 @@ const ListingPage = () => {
                   </p>
                   <hr className="my-3" />
                 </div>
-                <div className="my-">
-                  <p className="font-inter--bold text-black font-14 my-2">
-                    Amenities
-                  </p>
-                  <p className="font-inter--light text-gray-700 font-13">
-                    Pool, Gym, Basketball Court
-                  </p>
-                  <hr className="my-3" />
+                <div className="my- w-screen amenities">
+                  <div className="mr-10">
+                    <p className="font-inter--bold text-black font-14 my-2">
+                      Amenities
+                    </p>
+                    <p className="font-inter--light text-gray-700 font-13">
+                      Pool, Gym, Basketball Court
+                    </p>
+                    <hr className="my-3" />
+                  </div>
+                  <div className="border-b mt-0 mb-3 w-3/4 ml-4"></div>
                 </div>
-                <div className="my-5">
-                  <p className="font-inter--bold text-black font-14 my-2">
-                    Apartment Services
-                  </p>
-                  <p className="font-inter--light text-gray-700 font-13">
-                    Water, Cabel TV, 24hrs Light, Fiber Internet, Security,
-                    Smoke Alarms, Air Conditioners, Water Heaters
-                  </p>
-                  <hr className="my-3" />
+
+                <div className="my-5 w-screen pr-20 custom_style">
+                  <div className="">
+                    <p className="font-inter--bold text-black font-14 my-2">
+                      Apartment Services
+                    </p>
+                    <p className="font-inter--light text-gray-700 font-13">
+                      Water, Cabel TV, 24hrs Light, Fiber Internet, Security,
+                      Smoke Alarms, Air Conditioners, Water Heaters
+                    </p>
+                    <hr className="my-3" />
+                  </div>
+                  <Link
+                    className="flex cursor-pointer"
+                    to={"/app/profile/" + listing.userId}
+                  >
+                    <img
+                      className="w-20 h-20 rounded-full mr-4"
+                      src="/png/person.png"
+                    />
+                    <div>
+                      <div className="font-semibold mt-2 text-xl">
+                        Apartment Owner
+                      </div>
+                      <div className="">Osamudiamen Imasuen</div>
+                    </div>
+                  </Link>
                 </div>
               </div>
 

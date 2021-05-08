@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "../link";
 import SVG from "react-inlinesvg";
 import AuthModal from "../auth/AuthModal";
@@ -28,12 +28,19 @@ export default function Nav({ custom }) {
     document.querySelector("body").classList.toggle("no-scroll");
   };
 
+  useEffect(() => {
+    const authRequired = localStorage.getItem("be-authorized");
+    if (authRequired) {
+      setIsAuthModal(true);
+    }
+  }, []);
+
   return (
     <nav
       ref={element}
-      className={`w-full p-1 ${
-        isSticky ? "nav-sticky" : ""
-      } border-b border-gray-md`}
+      className={`${
+        custom && custom.inbox && custom.message ? "hidden md:block" : ""
+      } w-full p-1 ${isSticky ? "nav-sticky" : ""} border-b border-gray-md`}
     >
       <AuthModal
         showmodal={isAuthModal}
@@ -173,6 +180,15 @@ export default function Nav({ custom }) {
             </Link>
             <Link to="/app/listings" className="font-inter--light font-13 mx-5">
               Become a host
+            </Link>
+            <Link to="/app/inbox" className="font-inter--light font-13 mx-5">
+              Inbox
+            </Link>
+            <Link
+              to="/app/notifications"
+              className="font-inter--light font-13 mx-5"
+            >
+              Notifications
             </Link>
 
             <div className="flex flex-col lg:flex-row my-5 ml-5">

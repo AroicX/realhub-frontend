@@ -1,31 +1,36 @@
-import { useState, useEffect } from 'react'
-import SVG from 'react-inlinesvg'
-import CreateAccount from './create'
-import Login from './login'
+import { useState, useEffect } from "react";
+import SVG from "react-inlinesvg";
+import CreateAccount from "./create";
+import Login from "./login";
 
 export default function AuthModal({ showmodal, modalHandler, type }) {
-  const [view, setView] = useState(type)
-  const [step, setStep] = useState(true)
+  const [view, setView] = useState(type);
+  const [step, setStep] = useState(true);
 
   useEffect(() => {
-    setView(type)
-  }, [type])
+    setView(type);
+  }, [type]);
+
+  const handleModal = () => {
+    localStorage.removeItem("be-authorized");
+    modalHandler();
+  };
 
   const changeStep = (data) => {
-    setStep(data)
-  }
+    setStep(data);
+  };
 
   return (
-    <div className={`modal  ${showmodal ? 'modal--active ' : ''}`}>
+    <div className={`modal  ${showmodal ? "modal--active " : ""}`}>
       <div className="modal--content">
         {/*  */}
         {/* <h2 className="m-5 ">Create Account</h2> */}
-        <button className="modal--close m-5 mb-0 p-2" onClick={modalHandler}>
+        <button className="modal--close m-5 mb-0 p-2" onClick={handleModal}>
           <span className="mx-2">Close</span>
           <SVG src="/svg/close.svg"></SVG>
         </button>
 
-        {view === 'login' && (
+        {view === "login" && (
           <>
             <div className="w-full p-5 flex flex-col lg:flex-row justify-between">
               <h4 className="font-unna text-2xl">
@@ -38,20 +43,20 @@ export default function AuthModal({ showmodal, modalHandler, type }) {
                 </span>
                 <span
                   className="font-sm font-inner-bold underline cursor-pointer text-right"
-                  onClick={() => setView('create')}
+                  onClick={() => setView("create")}
                 >
                   Create Account
                 </span>
               </div>
             </div>
-            <Login modalHandler={modalHandler} />
+            <Login modalHandler={handleModal} />
           </>
         )}
-        {view === 'create' && (
+        {view === "create" && (
           <>
             <CreateAccount
               view={(data) => setView(data)}
-              modalHandler={modalHandler}
+              modalHandler={handleModal}
             />
           </>
         )}
@@ -59,5 +64,5 @@ export default function AuthModal({ showmodal, modalHandler, type }) {
         {/*  */}
       </div>
     </div>
-  )
+  );
 }
