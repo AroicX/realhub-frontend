@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import Layout from "@/components/layout/layout";
-import DropDownMenu from "@/components/global/DropDownMenu";
-import { MapComponent } from "@/components/global/MapComponent";
-import Link from "@/components/link";
-import SVG from "react-inlinesvg";
-import { ListingContext } from "@/hooks/listing";
+import { useContext, useEffect, useState } from 'react'
+import Layout from '@/components/layout/layout'
+import DropDownMenu from '@/components/global/DropDownMenu'
+import { MapComponent } from '@/components/global/MapComponent'
+import Link from '@/components/link'
+import SVG from 'react-inlinesvg'
+import { ListingContext } from '@/hooks/listing'
 
 // const previewCategories = [
 //   {
@@ -56,23 +56,23 @@ import { ListingContext } from "@/hooks/listing";
 // ];
 
 export default function Listing() {
-  const [grid, setGrid] = useState(4);
-  const [showMap, setShowMap] = useState(false);
-  const { listings } = useContext(ListingContext);
+  const [grid, setGrid] = useState(4)
+  const [showMap, setShowMap] = useState(false)
+  const { listings } = useContext(ListingContext)
 
   const handleMap = () => {
     if (grid === 4) {
-      setGrid(2);
-      setShowMap(!showMap);
+      setGrid(2)
+      setShowMap(!showMap)
     } else {
-      setGrid(4);
-      setShowMap(!showMap);
+      setGrid(4)
+      setShowMap(!showMap)
     }
-  };
+  }
 
   useEffect(() => {
-    console.log(listings);
-  },[listings])
+    console.log(listings)
+  }, [listings])
 
   return (
     <Layout type="navigation" title="Listing">
@@ -98,40 +98,43 @@ export default function Listing() {
       <div className="w-full flex flex-col lg:flex-row p-5">
         <div className={`grid grid-cols-1 lg:grid-cols-${grid} gap-8`}>
           {/* grid */}
-          {listings && listings.map((listing, key) => (
-            <div className="r-listings" key={key}>
-              <div className="img-container">
-                <img src={"./images/image1.png"} alt="*" />
-                <div className="price">
-                  <span className="uppercase font-inter--light font-10">
-                    Starting from
-                  </span>
-                  <br />
-                  <b>₦ {listing.price}</b>
+          {listings &&
+            listings.map((listing, key) => (
+              <div className="r-listings" key={key}>
+                <div className="img-container">
+                  <img
+                    src={JSON.parse(listing.images)?.[0].image}
+                    alt={listing.property_name}
+                  />
+                  <div className="price">
+                    <span className="uppercase font-inter--light font-10">
+                      Starting from
+                    </span>
+                    <br />
+                    <b>₦ {listing.price}</b>
+                  </div>
                 </div>
-              </div>
 
-              <div className="description p-2 mx-3">
-                <p className="font-inter font-15">
-                  {listing.property_name}
-                </p>
-                <span className="font-inter--light font-13">
-                  {listing.bathrooms} Bedroom {listing.bedrooms} Bathrooms Kitchen Swimming Pool
-                </span>
-                <span className="font-inter--light font-13 block">
-                  {listing.address}
-                </span>
-              </div>
+                <div className="description p-2 mx-3">
+                  <p className="font-inter font-15">{listing.property_name}</p>
+                  <span className="font-inter--light font-13">
+                    {listing.bathrooms} Bedroom {listing.bedrooms} Bathrooms
+                    Kitchen Swimming Pool
+                  </span>
+                  <span className="font-inter--light font-13 block">
+                    {listing.address}
+                  </span>
+                </div>
 
-              <br />
-              <Link
-                to={"/listings/" + listing.id}
-                className="w-50 p-3 px-5 mx-5 my-5 bg-black text-white"
-              >
-                View Listing
-              </Link>
-            </div>
-          ))}
+                <br />
+                <Link
+                  to={'/listings/' + listing.id}
+                  className="w-50 p-3 px-5 mx-5 my-5 bg-black text-white"
+                >
+                  View Listing
+                </Link>
+              </div>
+            ))}
           {/* grid */}
         </div>
 
@@ -150,5 +153,5 @@ export default function Listing() {
 
       {/*  */}
     </Layout>
-  );
+  )
 }
