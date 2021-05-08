@@ -1,37 +1,37 @@
-import { useEffect, useState } from "react";
-import SVG from "react-inlinesvg";
-import useWheel from "@/hooks/useWheel";
-import { useRouter } from "next/router";
-import Layout from "@/components/layout/layout";
-import Modal from "@/components/global/modal";
-import BookingModal from "@/components/booking/bookingModal";
-import { MapComponent } from "@/components/global/MapComponent";
-import api from "@/services/api";
-import Link from "@/components/link";
+import { useEffect, useState } from 'react'
+import SVG from 'react-inlinesvg'
+import useWheel from '@/hooks/useWheel'
+import { useRouter } from 'next/router'
+import Layout from '@/components/layout/layout'
+import Modal from '@/components/global/modal'
+import BookingModal from '@/components/booking/bookingModal'
+import { MapComponent } from '@/components/global/MapComponent'
+import api from '@/services/api'
+import Link from '@/components/link'
 
 const ListingPage = () => {
-  const { isCollapse } = useWheel();
-  const [listing, setListing] = useState({});
-  const router = useRouter();
-  const slug = router.query.slug;
+  const { isCollapse } = useWheel()
+  const [listing, setListing] = useState({})
+  const router = useRouter()
+  const slug = router.query.slug
 
   const getListing = async () => {
-    const { data } = await api.get("/listings?status=OPEN&id=" + slug);
-    const details = data.data[0];
-    details.images = JSON.parse(details.images);
-    details.amenities = JSON.parse(details.amenities);
-    setListing(details);
-  };
+    const { data } = await api.get('/listings?status=OPEN&id=' + slug)
+    const details = data.data[0]
+    details.images = JSON.parse(details.images)
+    details.amenities = JSON.parse(details.amenities)
+    setListing(details)
+  }
   useEffect(() => {
-    if (slug) getListing(slug);
-  }, [slug]);
+    if (slug) getListing(slug)
+  }, [slug])
 
-  const [bookingModal, setBookingModal] = useState(false);
+  const [bookingModal, setBookingModal] = useState(false)
 
   const toggleBookingModal = () => {
-    setBookingModal(!bookingModal);
-    document.querySelector("body").classList.toggle("no-scroll");
-  };
+    setBookingModal(!bookingModal)
+    document.querySelector('body').classList.toggle('no-scroll')
+  }
 
   // const {
   //   property_desc,
@@ -116,7 +116,7 @@ const ListingPage = () => {
                     height="50px"
                   ></SVG>
                   <span>
-                    {" "}
+                    {' '}
                     Take a 3D tour <br /> of the apartment.
                   </span>
                 </div>
@@ -139,7 +139,7 @@ const ListingPage = () => {
                     height="50px"
                   ></SVG>
                   <span>
-                    {" "}
+                    {' '}
                     Book a physical <br />
                     tour of the house.
                   </span>
@@ -199,12 +199,12 @@ const ListingPage = () => {
                   isMarkerShown
                   googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`}
                   loadingElement={
-                    <div style={{ width: "100%", height: `100%` }} />
+                    <div style={{ width: '100%', height: `100%` }} />
                   }
                   containerElement={
-                    <div style={{ width: "100%", height: `100%` }} />
+                    <div style={{ width: '100%', height: `100%` }} />
                   }
-                  mapElement={<div style={{ width: "100%", height: `100%` }} />}
+                  mapElement={<div style={{ width: '100%', height: `100%` }} />}
                 />
               </div>
             </div>
@@ -248,7 +248,7 @@ const ListingPage = () => {
                   </div>
                   <Link
                     className="flex cursor-pointer"
-                    to={"/app/profile/" + listing.userId}
+                    to={'/app/profile/' + listing?.userId?.id}
                   >
                     <img
                       className="w-20 h-20 rounded-full mr-4"
@@ -258,7 +258,7 @@ const ListingPage = () => {
                       <div className="font-semibold mt-2 text-xl">
                         Apartment Owner
                       </div>
-                      <div className="">Osamudiamen Imasuen</div>
+                      <div className="">{listing?.userId?.name}</div>
                     </div>
                   </Link>
                 </div>
@@ -270,7 +270,7 @@ const ListingPage = () => {
         </div>
       </Layout>
     </div>
-  );
-};
+  )
+}
 
-export default ListingPage;
+export default ListingPage
