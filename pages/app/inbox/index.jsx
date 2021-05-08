@@ -78,11 +78,23 @@ const Inbox = () => {
         },
       ],
     })
-    await api.post('/messaging/send', {
-      sender_id: parsedToken.user.id,
-      receiver_id: state.currentUser,
-      message: state.message,
-    })
+
+    let data
+    if (chatId) {
+      data = {
+        chat_id: chatId,
+        sender_id: parsedToken.user.id,
+        receiver_id: state.currentUser,
+        message: state.message,
+      }
+    } else {
+      data = {
+        sender_id: parsedToken.user.id,
+        receiver_id: state.currentUser,
+        message: state.message,
+      }
+    }
+    await api.post('/messaging/send', data)
   }
 
   const checkIfUserExist = (id, users) => {
