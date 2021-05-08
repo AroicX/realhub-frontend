@@ -19,7 +19,7 @@ const Inbox = () => {
 
   const [chatId, setChatId] = useState(null)
 
-  const [pusherData, setPusher] = useState({})
+  const [pusherData, setPusher] = useState(null)
 
   // const { user } = useUser();
 
@@ -29,15 +29,17 @@ const Inbox = () => {
 
     setToken(parsedToken)
 
+    Pusher.logToConsole = true
+
     var pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_API_KEY, {
       cluster: 'eu',
     })
 
     var channel = pusher.subscribe('messages')
-    channel.bind(`chat-${parsedToken.user?.id}`, function (data) {
-      if (parsedToken.user.id !== data.sender_id) {
-        setPusher(data)
-      }
+    channel.bind(`chat`, function (data) {
+      alert(JSON.stringify(data))
+      console.log(data)
+      // setPusher(data)
     })
     getUsers()
   }, [])
@@ -49,8 +51,10 @@ const Inbox = () => {
   }, [state.currentUser])
 
   useEffect(() => {
-    if (pusherData)
+    if (pusherData) {
+      console.log('called')
       setState({ ...state, messages: [...state.messages, pusherData] })
+    }
   }, [pusherData])
 
   const messagesEndRef = useRef(null)
