@@ -38,9 +38,9 @@ export default function Nav({ custom }) {
   return (
     <nav
       ref={element}
-      className={`${custom.inbox && custom.message ? "hidden md:block" : ""} w-full p-1 ${
-        isSticky ? "nav-sticky" : ""
-      } border-b border-gray-md`}
+      className={`${
+        custom && custom.inbox && custom.message ? "hidden md:block" : ""
+      } w-full p-1 ${isSticky ? "nav-sticky" : ""} border-b border-gray-md`}
     >
       <AuthModal
         showmodal={isAuthModal}
