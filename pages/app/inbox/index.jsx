@@ -39,7 +39,6 @@ const Inbox = () => {
     channel.bind(`chat`, function (data) {
       // if (data.chat_id === chatId) {
       setPusher(data)
-      console.log(data)
       // }
     })
     getUsers()
@@ -53,7 +52,6 @@ const Inbox = () => {
 
   useEffect(() => {
     if (pusherData) {
-      console.log('called')
       setState({ ...state, messages: [...state.messages, pusherData] })
     }
   }, [pusherData])
