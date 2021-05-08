@@ -37,9 +37,10 @@ const Inbox = () => {
 
     var channel = pusher.subscribe('messages')
     channel.bind(`chat`, function (data) {
-      alert(JSON.stringify(data))
+      // if (data.chat_id === chatId) {
+      setPusher(data)
       console.log(data)
-      // setPusher(data)
+      // }
     })
     getUsers()
   }, [])
