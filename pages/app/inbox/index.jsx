@@ -7,11 +7,6 @@ import api from "@/services/api";
 import { formatDate } from "@/utils/helpers";
 import { useUser } from "@/hooks/useUser";
 
-// const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_API_KEY, {
-//   cluster: process.env.NEXT_PUBLIC_CLUSTER,
-//   encrypted: true,
-// })
-
 const Inbox = () => {
   const [state, setState] = useState({
     users: [],
@@ -20,19 +15,23 @@ const Inbox = () => {
     message: "",
   });
 
+  const [pusherData, setPusher] = useState({});
+
+  const token = localStorage.getItem("user-data");
+  const parsedToken = JSON.parse(token);
+
   const { user } = useUser();
 
   useEffect(() => {
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher("13be1b4e7af014f7e297", {
+    var pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_API_KEY, {
       cluster: "eu",
     });
 
     var channel = pusher.subscribe("messages");
-    channel.bind(`chat-${user.user?.id}`, function (data) {
-      console.clear();
-      console.log(JSON.stringify(data));
+    channel.bind(`chat-${parsedToken.user?.id}`, function (data) {
+      if (parsedToken.user.id !== data.sender_id) {
+        setPusher(data);
+      }
     });
     getUsers();
   }, []);
@@ -43,8 +42,10 @@ const Inbox = () => {
     }
   }, [state.currentUser]);
 
-  const token = localStorage.getItem("user-data");
-  const parsedToken = JSON.parse(token);
+  useEffect(() => {
+    if (pusherData)
+      setState({ ...state, messages: [...state.messages, pusherData] });
+  }, [pusherData]);
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
@@ -82,6 +83,7 @@ const Inbox = () => {
 
     try {
       const { data } = await api.get("/messaging/get-user-list");
+      console.log(data);
       if (user)
         setState({ ...state, users: [user, ...state.users, ...data.data] });
       else setState({ ...state, users: [...state.users, ...data.data] });
@@ -100,9 +102,21 @@ const Inbox = () => {
 
   return (
     <div className=" font-inter h-screen">
-      <Nav custom={true} />
+      {state.currentUser && (
+        <div className="block md:hidden mt-4 ml-4">
+          <SVG className="m-1" src="/svg/back.svg"></SVG>
+          <span className="my-0 font-12" onClick={goBack}>
+            Back
+          </span>
+        </div>
+      )}
+      <Nav custom={{ inbox: true, message: state.currentUser }} />
       <div className="w-full flex flex-row pt-12 inbox_container">
-        <div className="w-2/5 border-r-2 border-light-gray">
+        <div
+          className={`w-full md:w-2/5 border-r-2 border-light-gray ${
+            state.currentUser ? "hidden md:block" : ""
+          }`}
+        >
           <div className="px-8 py-4 font-unna text-dark-gray text-4xl flex flex-row items-center justify-between mb-10">
             <div>Conversations</div>
             <div>
@@ -143,9 +157,13 @@ const Inbox = () => {
               })}
           </div>
         </div>
-        <div className="w-3/5 inbox_bg flex flex-col h-full justify-end pb-20">
+        <div
+          className={`w-full md:w-3/5 inbox_bg flex-col h-full justify-end pb-10 ${
+            state.currentUser ? "flex" : "hidden"
+          }`}
+        >
           {!state.currentUser ? (
-            <div className="w-full h-full flex items-center justify-center pb-10 px-10 font-unna text-4xl leading-10 px-24 text-center">
+            <div className="w-full h-full flex items-center justify-center pb-10 font-unna text-4xl leading-10 px-24 text-center">
               Connect and share experiences with other Hubspot users
             </div>
           ) : (
@@ -154,12 +172,9 @@ const Inbox = () => {
                 <div className="overflow-y-auto h-full px-10 flex-col justify-end">
                   {state.messages.map((message, id) => {
                     return (
-                      <>
+                      <div key={id}>
                         {message.sender_id === parsedToken.user.id ? (
-                          <div
-                            key={id}
-                            className="flex flex-row justify-end mb-10"
-                          >
+                          <div className="flex flex-row justify-end mb-10">
                             <div className="text-white bg-sent px-4 pt-8 pb-2 max-2/4">
                               <div>{message.message}</div>
                               <div className="text-right mt-4 text-xs">
@@ -168,10 +183,7 @@ const Inbox = () => {
                             </div>
                           </div>
                         ) : (
-                          <div
-                            key={id}
-                            className="flex flex-row justify-start mt-10"
-                          >
+                          <div className="flex flex-row justify-start mt-10">
                             <div className="text-dark-gray bg-white px-4 pt-8 pb-2 max-2/4">
                               <div>{message.message}</div>
                               <div className="text-right mt-4 text-xs">
@@ -180,7 +192,7 @@ const Inbox = () => {
                             </div>
                           </div>
                         )}
-                      </>
+                      </div>
                     );
                   })}
                   <div ref={messagesEndRef}></div>
