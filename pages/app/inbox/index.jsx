@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import Pusher from "pusher-js";
-import SVG from "react-inlinesvg";
-import Nav from "@/components/nav/nav";
-import useAuth from "@/hooks/useAuth";
-import api from "@/services/api";
-import { formatDate } from "@/utils/helpers";
+import React, { useEffect, useRef, useState } from 'react'
+import Pusher from 'pusher-js'
+import SVG from 'react-inlinesvg'
+import Nav from '@/components/nav/nav'
+import useAuth from '@/hooks/useAuth'
+import api from '@/services/api'
+import { formatDate } from '@/utils/helpers'
 // import { useUser } from "@/hooks/useUser";
 
 const Inbox = () => {
@@ -12,63 +12,63 @@ const Inbox = () => {
     users: [],
     currentUser: null,
     messages: [],
-    message: "",
-  });
+    message: '',
+  })
 
-  const [parsedToken, setToken] = useState({});
+  const [parsedToken, setToken] = useState({})
 
-  const [chatId, setChatId] = useState(null);
+  const [chatId, setChatId] = useState(null)
 
-  const [pusherData, setPusher] = useState({});
+  const [pusherData, setPusher] = useState({})
 
   // const { user } = useUser();
 
   useEffect(() => {
-    const token = localStorage?.getItem("user-data");
-    const parsedToken = JSON.parse(token);
+    const token = localStorage?.getItem('user-data')
+    const parsedToken = JSON.parse(token)
 
-    setToken(parsedToken);
+    setToken(parsedToken)
 
     var pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_API_KEY, {
-      cluster: "eu",
-    });
+      cluster: 'eu',
+    })
 
-    var channel = pusher.subscribe("messages");
+    var channel = pusher.subscribe('messages')
     channel.bind(`chat-${parsedToken.user?.id}`, function (data) {
       if (parsedToken.user.id !== data.sender_id) {
-        setPusher(data);
+        setPusher(data)
       }
-    });
-    getUsers();
-  }, []);
+    })
+    getUsers()
+  }, [])
 
   useEffect(() => {
     if (state.currentUser) {
-      getMessages();
+      getMessages()
     }
-  }, [state.currentUser]);
+  }, [state.currentUser])
 
   useEffect(() => {
     if (pusherData)
-      setState({ ...state, messages: [...state.messages, pusherData] });
-  }, [pusherData]);
+      setState({ ...state, messages: [...state.messages, pusherData] })
+  }, [pusherData])
 
-  const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef(null)
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
-  };
-  useEffect(scrollToBottom, [state.messages]);
+    messagesEndRef.current?.scrollIntoView({ behavior: 'auto' })
+  }
+  useEffect(scrollToBottom, [state.messages])
 
   const sendMessage = async () => {
-    const token = localStorage?.getItem("user-data");
-    const parsedToken = JSON.parse(token);
-    const date = new Date();
-    const currentMessage = state.message;
-    setState({ ...state, message: "" });
+    const token = localStorage?.getItem('user-data')
+    const parsedToken = JSON.parse(token)
+    const date = new Date()
+    const currentMessage = state.message
+    setState({ ...state, message: '' })
 
     setState({
       ...state,
-      message: "",
+      message: '',
       messages: [
         ...state.messages,
         {
@@ -77,45 +77,45 @@ const Inbox = () => {
           sender_id: parsedToken.user.id,
         },
       ],
-    });
-    await api.post("/messaging/send", {
+    })
+    await api.post('/messaging/send', {
       sender_id: parsedToken.user.id,
       receiver_id: state.currentUser,
       message: state.message,
-    });
-  };
+    })
+  }
 
   const checkIfUserExist = (id, users) => {
     if (users)
       for (let i = 0; i < users.length; i++) {
         if (users[i].id === id) {
-          return users[i];
+          return users[i]
         }
       }
-  };
+  }
 
   const getUsers = async () => {
-    const user = JSON.parse(localStorage.getItem("start-chat"));
-    console.log(!checkIfUserExist(user.id));
+    const user = JSON.parse(localStorage.getItem('start-chat'))
+    // console.log(!checkIfUserExist(user.id));
     try {
-      const { data } = await api.get("/messaging/get-user-list");
+      const { data } = await api.get('/messaging/get-user-list')
       if (user && !checkIfUserExist(user.id, data.data))
-        setState({ ...state, users: [user, ...state.users, ...data.data] });
-      else setState({ ...state, users: [...state.users, ...data.data] });
+        setState({ ...state, users: [user, ...state.users, ...data.data] })
+      else setState({ ...state, users: [...state.users, ...data.data] })
 
-      localStorage.removeItem("start-chat");
+      localStorage.removeItem('start-chat')
     } catch (error) {}
-  };
+  }
 
   const getMessages = async () => {
     if (chatId) {
-      const { data } = await api.post("/messaging/get-message", {
+      const { data } = await api.post('/messaging/get-message', {
         chat_id: chatId,
-      });
-      setState({ ...state, messages: data.data });
+      })
+      setState({ ...state, messages: data.data })
     }
-  };
-  const goBack = () => {};
+  }
+  const goBack = () => {}
   return (
     <div className=" font-inter h-screen">
       {state.currentUser && (
@@ -130,7 +130,7 @@ const Inbox = () => {
       <div className="w-full flex flex-row pt-12 inbox_container">
         <div
           className={`w-full md:w-2/5 border-r-2 border-light-gray ${
-            state.currentUser ? "hidden md:block" : ""
+            state.currentUser ? 'hidden md:block' : ''
           }`}
         >
           <div className="px-8 py-4 font-unna text-dark-gray text-4xl flex flex-row items-center justify-between mb-10">
@@ -145,14 +145,14 @@ const Inbox = () => {
                 return (
                   <div
                     onClick={() => {
-                      setState({ ...state, currentUser: user.id });
+                      setState({ ...state, currentUser: user.id })
                       if (user.chat_id) {
-                        setChatId(user.chat_id);
+                        setChatId(user.chat_id)
                       }
                     }}
                     key={id}
                     className={`cursor-pointer flex px-8 py-4 flex-row items-center mb-6 ${
-                      user.id === state.currentUser ? "bg-light" : ""
+                      user.id === state.currentUser ? 'bg-light' : ''
                     }`}
                   >
                     <div>
@@ -174,13 +174,13 @@ const Inbox = () => {
                       <SVG src="/svg/inbox.svg"></SVG>
                     </div>
                   </div>
-                );
+                )
               })}
           </div>
         </div>
         <div
           className={`w-full md:w-3/5 inbox_bg flex-col h-full justify-end pb-10 ${
-            state.currentUser ? "flex" : "hidden"
+            state.currentUser ? 'flex' : 'hidden'
           }`}
         >
           {!state.currentUser ? (
@@ -214,7 +214,7 @@ const Inbox = () => {
                           </div>
                         )}
                       </div>
-                    );
+                    )
                   })}
                   <div ref={messagesEndRef}></div>
                 </div>
@@ -222,8 +222,8 @@ const Inbox = () => {
               <div className="mt-10 bg-white flex flex-row border pr-8 items-center mx-10">
                 <form
                   onSubmit={(e) => {
-                    e.preventDefault();
-                    sendMessage();
+                    e.preventDefault()
+                    sendMessage()
                   }}
                   className="w-full"
                 >
@@ -246,10 +246,10 @@ const Inbox = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default useAuth(Inbox);
+export default useAuth(Inbox)
 
 {
   /* <div className="flex px-8 py-4 flex-row items-center mb-6">
