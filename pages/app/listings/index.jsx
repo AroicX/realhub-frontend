@@ -5,8 +5,9 @@ import Tours from "@/components/listings/Tours";
 import ListingPayment from "@/components/listings/ListingPayment";
 import PropertyList from "@/components/dashboard/propertylist";
 import api from "@/services/api";
+import useAuth from "@/hooks/useAuth";
 
-export default function AppListing({}) {
+function AppListing({}) {
   const [tab, setTab] = useState("property-list");
   const [list, setList] = useState([]);
   const getListings = async () => {
@@ -26,3 +27,4 @@ export default function AppListing({}) {
     </Layout>
   );
 }
+export default useAuth(AppListing);

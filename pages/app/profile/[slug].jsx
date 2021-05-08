@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import List from "@/components/listings/list";
 import Nav from "@/components/nav/nav";
 import api from "@/services/api";
+import useAuth from "@/hooks/useAuth";
 
 const Profile = () => {
   const router = useRouter();
@@ -74,4 +75,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default useAuth(Profile);

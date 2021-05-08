@@ -5,7 +5,7 @@ import Nav from "@/components/nav/nav";
 import useAuth from "@/hooks/useAuth";
 import api from "@/services/api";
 import { formatDate } from "@/utils/helpers";
-import { useUser } from "@/hooks/useUser";
+// import { useUser } from "@/hooks/useUser";
 
 const Inbox = () => {
   const [state, setState] = useState({
@@ -15,14 +15,20 @@ const Inbox = () => {
     message: "",
   });
 
+  const [parsedToken, setToken] = useState({});
+
+  const [chatId, setChatId] = useState(null);
+
   const [pusherData, setPusher] = useState({});
 
-  const token = localStorage.getItem("user-data");
-  const parsedToken = JSON.parse(token);
-
-  const { user } = useUser();
+  // const { user } = useUser();
 
   useEffect(() => {
+    const token = localStorage?.getItem("user-data");
+    const parsedToken = JSON.parse(token);
+
+    setToken(parsedToken);
+
     var pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_API_KEY, {
       cluster: "eu",
     });
@@ -54,6 +60,8 @@ const Inbox = () => {
   useEffect(scrollToBottom, [state.messages]);
 
   const sendMessage = async () => {
+    const token = localStorage?.getItem("user-data");
+    const parsedToken = JSON.parse(token);
     const date = new Date();
     const currentMessage = state.message;
     setState({ ...state, message: "" });
@@ -77,14 +85,21 @@ const Inbox = () => {
     });
   };
 
-  const getUsers = async () => {
-    const startChat = localStorage.getItem("start-chat");
-    const user = JSON.parse(startChat);
+  const checkIfUserExist = (id, users) => {
+    if (users)
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].id === id) {
+          return users[i];
+        }
+      }
+  };
 
+  const getUsers = async () => {
+    const user = JSON.parse(localStorage.getItem("start-chat"));
+    console.log(!checkIfUserExist(user.id));
     try {
       const { data } = await api.get("/messaging/get-user-list");
-      console.log(data);
-      if (user)
+      if (user && !checkIfUserExist(user.id, data.data))
         setState({ ...state, users: [user, ...state.users, ...data.data] });
       else setState({ ...state, users: [...state.users, ...data.data] });
 
@@ -93,13 +108,14 @@ const Inbox = () => {
   };
 
   const getMessages = async () => {
-    const { data } = await api.post("/messaging/get-message", {
-      sender_id: parsedToken.user.id,
-      receiver_id: state.currentUser,
-    });
-    setState({ ...state, messages: data.data });
+    if (chatId) {
+      const { data } = await api.post("/messaging/get-message", {
+        chat_id: chatId,
+      });
+      setState({ ...state, messages: data.data });
+    }
   };
-
+  const goBack = () => {};
   return (
     <div className=" font-inter h-screen">
       {state.currentUser && (
@@ -128,7 +144,12 @@ const Inbox = () => {
               state.users.map((user, id) => {
                 return (
                   <div
-                    onClick={() => setState({ ...state, currentUser: user.id })}
+                    onClick={() => {
+                      setState({ ...state, currentUser: user.id });
+                      if (user.chat_id) {
+                        setChatId(user.chat_id);
+                      }
+                    }}
                     key={id}
                     className={`cursor-pointer flex px-8 py-4 flex-row items-center mb-6 ${
                       user.id === state.currentUser ? "bg-light" : ""

@@ -10,8 +10,8 @@ const useAuth = (Component) => {
         Router.replace("/");
         return null;
       }
-      return <Component {...props} />;
     }
+    return <Component {...props} />;
 
     return null;
   };

@@ -1,8 +1,9 @@
 import Empty from "@/components/listings/ListingHeader";
 import Form from "@/components/listings/form";
 import Lists from "@/components/listings/lists";
+import useAuth from "@/hooks/useAuth";
 
-function App() {
+function Listing() {
   return (
     <div>
       {/* <Empty /> */}
@@ -12,4 +13,4 @@ function App() {
   );
 }
 
-export default App;
+export default useAuth(Listing);

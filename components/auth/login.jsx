@@ -17,7 +17,7 @@ export default function Login({ modalHandler }) {
   // handle form submit
   const loginHandler = async (e) => {
     e.preventDefault();
-    console.log("done");
+    const link = localStorage.getItem("be-authorized");
     const formData = new FormData(e.target);
     const { signEmail, signPassword } = Object.fromEntries(formData);
 
@@ -26,9 +26,8 @@ export default function Login({ modalHandler }) {
       formRef.current.reset();
     };
     await login({ email: signEmail, password: signPassword }, resetForm);
-    const link = localStorage.getItem("be-authorized");
     localStorage.removeItem("be-authorized");
-    router.push(link);
+    if (link) router.push(link);
   };
   !loading && errorMessage && console.log(errorMessage);
 

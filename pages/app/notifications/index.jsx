@@ -1,5 +1,6 @@
 import React from "react";
 import Nav from "@/components/nav/nav";
+import useAuth from "@/hooks/useAuth";
 
 const Notifications = () => {
   return (
@@ -56,4 +57,4 @@ const Notifications = () => {
   );
 };
 
-export default Notifications;
+export default useAuth(Notifications);
