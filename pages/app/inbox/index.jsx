@@ -5,7 +5,7 @@ import Nav from "@/components/nav/nav";
 import useAuth from "@/hooks/useAuth";
 import api from "@/services/api";
 import { formatDate } from "@/utils/helpers";
-// import { useUser } from "@/hooks/useUser";
+import { useUser } from "@/hooks/useUser";
 
 const Inbox = () => {
   const [state, setState] = useState({
@@ -21,11 +21,14 @@ const Inbox = () => {
 
   const [pusherData, setPusher] = useState({});
 
-  // const { user } = useUser();
+  const { user } = useUser();
 
   useEffect(() => {
     const token = localStorage?.getItem("user-data");
     const parsedToken = JSON.parse(token);
+
+    Pusher.logToConsole = true
+
 
     setToken(parsedToken);
 
@@ -34,7 +37,7 @@ const Inbox = () => {
     });
 
     var channel = pusher.subscribe("messages");
-    channel.bind(`chat-${parsedToken.user?.id}`, function (data) {
+    channel.bind(`chat-${chatId}`, function (data) {
       if (parsedToken.user.id !== data.sender_id) {
         setPusher(data);
       }
@@ -60,6 +63,7 @@ const Inbox = () => {
   useEffect(scrollToBottom, [state.messages]);
 
   const sendMessage = async () => {
+    console.log(chatId);
     const token = localStorage?.getItem("user-data");
     const parsedToken = JSON.parse(token);
     const date = new Date();
@@ -96,7 +100,6 @@ const Inbox = () => {
 
   const getUsers = async () => {
     const user = JSON.parse(localStorage.getItem("start-chat"));
-    console.log(!checkIfUserExist(user.id));
     try {
       const { data } = await api.get("/messaging/get-user-list");
       if (user && !checkIfUserExist(user.id, data.data))
