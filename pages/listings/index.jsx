@@ -96,9 +96,11 @@ export default function Listing() {
       </div>
 
       <div
-        className={`w-full relative grid ${showMap ? 'grid-cols-2' : ''}   p-5`}
+        className={`w-full relative grid grid-cols-1 ${
+          showMap ? 'lg:grid-cols-2' : ''
+        }   p-5`}
       >
-        <div className={`grid grid-cols-2 lg:grid-cols-${grid} gap-8`}>
+        <div className={`grid grid-cols-1 lg:grid-cols-${grid} gap-8`}>
           {/* grid */}
           {listings &&
             listings.map((listing, key) => (
