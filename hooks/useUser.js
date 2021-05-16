@@ -102,20 +102,21 @@ const useUserAuth = () => {
     // const newUser =
   };
 
-  const createAccount = (userData, callback) => {
+  const createAccount = async (userData, callback, onError) => {
     setLoading(true);
     try {
-      const { data } = api.post("/auth/register", userData);
+      const response = await api.post("/auth/register", userData);
+
+      const { data } = response;
 
       if (data.status === 200) {
         callback(data);
       }
-
-      console.log(data);
     } catch (error) {
       const { response } = error;
       if (response) {
-        setErrorMessage(response.data.message);
+        onError(response.data.message?.[0]);
+        setErrorMessage(response.data.message?.[0]);
       } else {
         setErrorMessage("A network error occured");
       }

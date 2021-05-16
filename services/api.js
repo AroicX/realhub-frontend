@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL || "https://realhub-api.herokuapp.com/api",
+  baseURL:
+    process.env.NEXT_PUBLIC_BASE_URL || "https://realhub-api.herokuapp.com/api",
   // timeout: 5000,
   transformResponse: axios.defaults.transformResponse.concat((data) => {
     return data;
