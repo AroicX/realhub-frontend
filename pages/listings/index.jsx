@@ -95,7 +95,9 @@ export default function Listing() {
         </button>
       </div>
 
-      <div className="w-full flex flex-col lg:flex-row p-5">
+      <div
+        className={`w-full relative grid ${showMap ? 'grid-cols-2' : ''}   p-5`}
+      >
         <div className={`grid grid-cols-1 lg:grid-cols-${grid} gap-8`}>
           {/* grid */}
           {listings &&
@@ -139,7 +141,7 @@ export default function Listing() {
         </div>
 
         {showMap && (
-          <div className={`w-full p-2 m-2 transition-all ease-in-out`}>
+          <div className={`w-full  p-2 m-2 transition-all ease-in-out`}>
             <MapComponent
               isMarkerShown
               googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`}
