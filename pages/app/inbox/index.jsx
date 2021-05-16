@@ -5,12 +5,14 @@ import Nav from '@/components/nav/nav'
 import useAuth from '@/hooks/useAuth'
 import api from '@/services/api'
 import { formatDate } from '@/utils/helpers'
+import Covid from '@/components/layout/covid'
 // import { useUser } from "@/hooks/useUser";
 
 const Inbox = () => {
   const [state, setState] = useState({
     users: [],
     currentUser: null,
+    activeUser: null,
     messages: [],
     message: '',
   })
@@ -37,9 +39,7 @@ const Inbox = () => {
 
     var channel = pusher.subscribe('messages')
     channel.bind(`chat`, function (data) {
-      // if (data.chat_id === chatId) {
       setPusher(data)
-      // }
     })
     getUsers()
   }, [])
@@ -111,7 +111,6 @@ const Inbox = () => {
 
   const getUsers = async () => {
     const user = JSON.parse(localStorage.getItem('start-chat'))
-    // console.log(!checkIfUserExist(user.id));
     try {
       const { data } = await api.get('/messaging/get-user-list')
       if (user && !checkIfUserExist(user.id, data.data))
@@ -130,17 +129,21 @@ const Inbox = () => {
       setState({ ...state, messages: data.data })
     }
   }
-  const goBack = () => {}
+  const goBack = () => {
+    setState({ ...state, currentUser: null, activeUser: null })
+  }
   return (
     <div className=" font-inter h-screen">
       {state.currentUser && (
-        <div className="block md:hidden mt-4 ml-4">
-          <SVG className="m-1" src="/svg/back.svg"></SVG>
-          <span className="my-0 font-12" onClick={goBack}>
-            Back
-          </span>
+        <div className="w-full fixed top-10 flex justify-between md:hidden mt-2 ml-4 p-2 pb-4 ">
+          {' '}
+          <b className="mx-3">{state.activeUser.name}</b>
+          <button className="flex bg-red mr-10" onClick={goBack}>
+            <SVG className="m-2 " src="/svg/back.svg"></SVG>
+          </button>
         </div>
       )}
+      <Covid />
       <Nav custom={{ inbox: true, message: state.currentUser }} />
       <div className="w-full flex flex-row pt-12 inbox_container">
         <div
@@ -160,7 +163,11 @@ const Inbox = () => {
                 return (
                   <div
                     onClick={() => {
-                      setState({ ...state, currentUser: user.id })
+                      setState({
+                        ...state,
+                        currentUser: user.id,
+                        activeUser: user,
+                      })
                       if (user.chat_id) {
                         setChatId(user.chat_id)
                       }
@@ -172,17 +179,17 @@ const Inbox = () => {
                   >
                     <div>
                       <img
-                        className="w-16 h-16 rounded-2xl"
-                        src="/images/person.png"
+                        className="w-16 h-16 border-50p"
+                        src="https://picsum.photos/200"
                         alt="*"
                       />
                     </div>
                     <div className="ml-6 font-inter flex-1">
-                      <div className="text-dark-gray mb-2 text-sm">
+                      <div className="text-dark-gray font-inter--bold text-xl mb-2 text-sm">
                         {user.name}
                       </div>
-                      <div className="font-medium text-lg">
-                        Hey mudia, how was your experience with realhub?
+                      <div className="font-medium text-sm font-inter--light">
+                        ......
                       </div>
                     </div>
                     <div>
@@ -194,7 +201,7 @@ const Inbox = () => {
           </div>
         </div>
         <div
-          className={`w-full md:w-3/5 inbox_bg flex-col h-full justify-end pb-10 ${
+          className={`w-full relative md:w-3/5 inbox_bg flex-col h-full justify-end pb-10 ${
             state.currentUser ? 'flex' : 'hidden'
           }`}
         >
@@ -205,7 +212,10 @@ const Inbox = () => {
           ) : (
             <>
               {state.messages && (
-                <div className="overflow-y-auto h-full px-10 flex-col justify-end">
+                <div
+                  className="overflow-y-auto  h-full px-10 flex-col justify-end"
+                  ref={messagesEndRef}
+                >
                   {state.messages.map((message, id) => {
                     return (
                       <div key={id}>
@@ -231,10 +241,9 @@ const Inbox = () => {
                       </div>
                     )
                   })}
-                  <div ref={messagesEndRef}></div>
                 </div>
               )}
-              <div className="mt-10 bg-white flex flex-row border pr-8 items-center mx-10">
+              <div className=" mt-10 bg-white flex flex-row border pr-8 items-center mx-10">
                 <form
                   onSubmit={(e) => {
                     e.preventDefault()
@@ -265,64 +274,3 @@ const Inbox = () => {
 }
 
 export default useAuth(Inbox)
-
-{
-  /* <div className="flex px-8 py-4 flex-row items-center mb-6">
-              <div>
-                <img
-                  className="w-16 h-16 rounded-2xl"
-                  src="/images/person.png"
-                  alt="*"
-                />
-              </div>
-              <div className="ml-6 font-inter flex-1">
-                <div className="text-dark-gray mb-2 text-sm">Afolabi Tobi</div>
-                <div className="font-medium text-lg">
-                  Hey mudia, how was your experience with realhub?
-                </div>
-              </div>
-              <div>
-                <SVG src="/svg/inbox.svg"></SVG>
-              </div>
-            </div> */
-}
-
-{
-  /* <div className="flex px-8 py-4 flex-row items-center mb-6 bg-light">
-              <div>
-                <img
-                  className="w-16 h-16 rounded-2xl"
-                  src="/images/person.png"
-                  alt="*"
-                />
-              </div>
-              <div className="ml-6 font-inter flex-1">
-                <div className="text-dark-gray mb-2 text-sm">Joy kenneth</div>
-                <div className="text-dark-gray text-sm">
-                  I’ll meet you at the house then.
-                </div>
-              </div>
-              <div>
-                <SVG src="/svg/seen.svg"></SVG>
-              </div>
-            </div>
-            <div className="flex px-8 py-4 flex-row items-center mb-6">
-              <div>
-                <img
-                  className="w-16 h-16 rounded-2xl"
-                  src="/images/person.png"
-                  alt="*"
-                />
-              </div>
-              <div className="ml-6 font-inter flex-1">
-                <div className="text-dark-gray mb-2 text-sm">Joy kenneth</div>
-                <div className="text-dark-gray text-sm">
-                  I’ll meet you at the house then.
-                </div>
-              </div>
-              <div>
-                <SVG src="/svg/seen.svg"></SVG>
-              </div>
-            </div>
-         */
-}

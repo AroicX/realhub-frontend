@@ -31,13 +31,7 @@ export default function Search({ css }) {
                 <>
                   {property_name.includes(search) && (
                     <Link key={id} to="" className="card flex flex-row">
-                      {/* <SVG
-                        className="m-3"
-                         src={JSON.parse(images)?.[0].image}
 
-                        width="50px"
-                        height="50px"
-                      ></SVG> */}
                       <img
                         className="m-3"
                         src={JSON.parse(images)?.[0].image}

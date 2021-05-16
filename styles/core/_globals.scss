@@ -25,6 +25,11 @@ button {
   outline: none !important;
 }
 
+.border-50p {
+  border: 2px solid #242424 !important;
+  border-radius: 50% !important;
+}
+
 .nav-sticky {
   position: fixed;
   top: 0;
