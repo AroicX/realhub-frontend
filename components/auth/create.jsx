@@ -20,12 +20,12 @@ export default function CreateAccount({ view, modalHandler }) {
   const [togglePassword, setTogglePassword] = useState(false)
 
   const [user, setUser] = useState({
-    email: 'g.okunola@printivo.com',
-    name: 'AroicX ',
-    lastname: 'Ghebrel',
-    password: 'password',
-    dob: '17/09/19999',
-    phone: '818530380',
+    email: '',
+    name: ' ',
+    lastname: '',
+    password: '',
+    dob: '',
+    phone: '',
   })
   const formRef = useRef(null)
 
