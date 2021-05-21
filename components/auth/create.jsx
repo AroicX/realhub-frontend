@@ -20,12 +20,12 @@ export default function CreateAccount({ view, modalHandler }) {
   const [togglePassword, setTogglePassword] = useState(false)
 
   const [user, setUser] = useState({
-    email: 'Arowosegbe67@gmail.com',
-    name: 'Gabriel',
-    lastname: 'Okunola',
-    password: '_Arowosegbe1',
-    dob: '17/09/1999',
-    phone: '7016762847',
+    email: '',
+    name: ' ',
+    lastname: '',
+    password: '',
+    dob: '',
+    phone: '',
   })
   const formRef = useRef(null)
 
@@ -72,6 +72,7 @@ export default function CreateAccount({ view, modalHandler }) {
     await validateUser(query, callback)
   }
   const register = async (userdata) => {
+    setErrorMessage(null)
     let data = {
       name: userdata.name + ' ' + userdata.lastname,
       phone: `0${userdata.phone}`,
@@ -83,11 +84,17 @@ export default function CreateAccount({ view, modalHandler }) {
       Toastr.success(
         `Please check your mail ${user.email} for verfication code.`,
       )
+      setErrorMessage(null)
     }
-    await createAccount(data, callback)
+    const onError = (data) => {
+      // console.log(data)
+    }
+
+    createAccount(data, callback, onError)
   }
 
-  // !loading && errorMessage && Toastr.error(errorMessage)
+  !loading && errorMessage && Toastr.error(errorMessage)
+
   return (
     <>
       {/* <form ref={formRef}> */}

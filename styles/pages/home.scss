@@ -94,7 +94,15 @@
 
 .dropdown {
 
+  .dropdown-menu.custom {
+    width: 400px;
+    border: 3px solid;
 
+    &::after {
+      border-top: 3px solid;
+      border-left: 3px solid;
+    }
+  }
   .dropdown-menu {
     display: block;
     position: absolute;

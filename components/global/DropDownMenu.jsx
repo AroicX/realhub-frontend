@@ -1,7 +1,13 @@
-import React from 'react'
-import SVG from 'react-inlinesvg'
-export default function DropDownMenu({ menuname, list, cssClass }) {
-  const [isActive, setIsActive] = React.useState()
+import React from "react";
+import SVG from "react-inlinesvg";
+export default function DropDownMenu({
+  menuname,
+  list,
+  cssClass,
+  type,
+  children,
+}) {
+  const [isActive, setIsActive] = React.useState();
   return (
     <div
       className={` dropdown ${cssClass}`}
@@ -12,17 +18,23 @@ export default function DropDownMenu({ menuname, list, cssClass }) {
         <SVG className="mx-3" src="/svg/caret-down.svg" />
       </div>
 
-      {isActive && (
-        <div className={`dropdown-menu  ${isActive ? 'slide-down' : ''}`}>
-          <ul className="flex flex-col">
-            <>
-              {list?.map((item) => (
-                <p className="font-sm my-2 cursor-pointer">{item}</p>
-              ))}
-            </>
-          </ul>
+      {type && isActive ? (
+        <div className={`dropdown-menu ${type} ${isActive ? "slide-down" : ""}`}>
+          {children}
         </div>
+      ) : (
+        isActive && (
+          <div className={`dropdown-menu  ${isActive ? "slide-down" : ""}`}>
+            <ul className="flex flex-col">
+              <>
+                {list?.map((item) => (
+                  <p className="font-sm my-2 cursor-pointer">{item}</p>
+                ))}
+              </>
+            </ul>
+          </div>
+        )
       )}
     </div>
-  )
+  );
 }
