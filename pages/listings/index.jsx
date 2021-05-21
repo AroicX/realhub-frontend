@@ -199,7 +199,7 @@ export default function Listing() {
 
       <div
         className={`w-full relative grid grid-cols-1 ${
-          showMap ? "lg:grid-cols-2" : ""
+          showMap ? 'lg:grid-cols-2' : ''
         }   p-5`}
       >
         <div className={`grid grid-cols-1 lg:grid-cols-${grid} gap-8`}>
