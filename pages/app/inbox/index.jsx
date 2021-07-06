@@ -5,7 +5,15 @@ import Nav from '@/components/nav/nav'
 import useAuth from '@/hooks/useAuth'
 import api from '@/services/api'
 import { formatDate } from '@/utils/helpers'
+<<<<<<< HEAD
+<<<<<<< HEAD
+import { useUser } from '@/hooks/useUser'
+=======
 import Covid from '@/components/layout/covid'
+>>>>>>> 6ee62854390979304f193a0edacb56999684d8b2
+=======
+import Covid from '@/components/layout/covid'
+>>>>>>> 6ee62854390979304f193a0edacb56999684d8b2
 // import { useUser } from "@/hooks/useUser";
 
 const Inbox = () => {
@@ -23,7 +31,7 @@ const Inbox = () => {
 
   const [pusherData, setPusher] = useState(null)
 
-  // const { user } = useUser();
+  const { user } = useUser();
 
   useEffect(() => {
     const token = localStorage?.getItem('user-data')

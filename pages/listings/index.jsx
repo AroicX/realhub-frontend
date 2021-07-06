@@ -5,6 +5,7 @@ import { MapComponent } from '@/components/global/MapComponent'
 import Link from '@/components/link'
 import SVG from 'react-inlinesvg'
 import { ListingContext } from '@/hooks/listing'
+import { useRouter } from 'next/router'
 
 export default function Listing() {
   const [grid, setGrid] = useState(4)
@@ -218,7 +219,13 @@ export default function Listing() {
           {/* grid */}
           {listings &&
             listings.map((listing, key) => (
-              <div className="r-listings" key={key}>
+              <div
+                onClick={() => {
+                  router.push('/listings/' + listing.id)
+                }}
+                className="r-listings"
+                key={key}
+              >
                 <div className="img-container">
                   <img
                     src={JSON.parse(listing.images)?.[0].image}

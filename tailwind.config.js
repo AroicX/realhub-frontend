@@ -33,7 +33,8 @@ module.exports = {
         "light-gray": "#DDDDDD",
         "sent": "#353535",
         "light": "#f5f5f5",
-        "light-green": "#DDEEDF"
+        "light-green": "#DDEEDF",
+        "dark-green": "#219653"
       },
       textColor: theme => theme('colors'),
       textColor: {
