@@ -6,59 +6,12 @@ import Link from '@/components/link'
 import SVG from 'react-inlinesvg'
 import { ListingContext } from '@/hooks/listing'
 
-// const previewCategories = [
-//   {
-//     name: "Eco-Friendly Food Packs",
-//     desc: "(Food packs and packaging)",
-//     btn: "Eco-Friendly",
-//     src:
-//       "https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220919/printivo/Rectangle_6-4_pp5pv4.png",
-//     cost: "7,999",
-//     url: "",
-//   },
-//   {
-//     name: "Wedding Package",
-//     desc: "(We handle all wedding prints)",
-//     btn: "Wedding Package",
-//     src:
-//       "https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220920/printivo/Rectangle_6-5_noumgr.png",
-//     cost: "7,999",
-//     url: "",
-//   },
-
-//   {
-//     name: "Wedding Package",
-//     desc: "(We handle all wedding prints)",
-//     btn: "Wedding Package",
-//     src:
-//       "https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220920/printivo/Rectangle_6-5_noumgr.png",
-//     cost: "7,999",
-//     url: "",
-//   },
-//   {
-//     name: "Corporate Products",
-//     desc: "(Office and business prints)",
-//     btn: "Corporate Products",
-//     src:
-//       "https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220920/printivo/Rectangle_6-6_xldjwk.png",
-//     cost: "7,999",
-//     url: "",
-//   },
-//   {
-//     name: "Art Station",
-//     desc: "(Print posters and get frames)",
-//     btn: "Art Station",
-//     src:
-//       "https://res.cloudinary.com/dmwfd0zhh/image/upload/v1610220919/printivo/Rectangle_6-7_snwek3.png",
-//     cost: "7,999",
-//     url: "",
-//   },
-// ];
-
 export default function Listing() {
   const [grid, setGrid] = useState(4)
   const [showMap, setShowMap] = useState(false)
   const { listings } = useContext(ListingContext)
+  const [priceMenu, setPriceMenu] = useState(false)
+  const [propertyMenu, setPropertyMenu] = useState(false)
 
   const handleMap = () => {
     if (grid === 4) {
@@ -70,9 +23,9 @@ export default function Listing() {
     }
   }
 
-  useEffect(() => {
-    console.log(listings)
-  }, [listings])
+  // useEffect(() => {
+  //   console.log(listings)
+  // }, [listings])
 
   return (
     <Layout type="navigation" title="Listing">
@@ -81,9 +34,170 @@ export default function Listing() {
           Properties to rent near you.
         </h4>
 
-        <div className="flex">
-          <DropDownMenu menuname="Price" cssClass="my-10 relative" />
-          <DropDownMenu menuname="Property Type" cssClass="my-10 relative" />
+        <div className="flex flex-col lg:flex-row ">
+          {/* price dropdown menu*/}
+          <div
+            className="dropdown  relative w-72  m-auto"
+            onClick={() => setPriceMenu(!priceMenu)}
+          >
+            <div className="flex font-inter--light font-15 mx-5 cursor-pointer justify-center">
+              <span>Price</span>
+              <SVG className="mx-3" src="/svg/caret-down.svg" />
+            </div>
+
+            {priceMenu && (
+              <div
+                className={`dropdown-menu dropdown-listing ${
+                  priceMenu ? 'slide-down' : ''
+                }`}
+                // style={{ width: '350px auto !important' }}
+              >
+                <p className="m-auto p-2 text-md font-inter">
+                  Input a price range
+                </p>
+                <div className="flex flex-col lg:flex-row justify-between ">
+                  <div className="flex flex-col p-2 m-auto">
+                    <span className="my-2">Minimum Price</span>
+                    <input
+                      className="p-2 border border-black rounded-sm text-xs font-inter"
+                      type="number"
+                      placeholder="#7,000,000"
+                      autoFocus={true}
+                    />
+                  </div>
+                  <div className="flex flex-col p-2 m-auto">
+                    <span className="my-2">Maximum Price </span>
+                    <input
+                      className="p-2 border border-black rounded-sm text-xs font-inter"
+                      type="number"
+                      placeholder="#7,000,000"
+                    />
+                  </div>
+                </div>
+
+                <hr />
+                <div className="flex justify-between mt-2">
+                  <button>Clear</button>
+                  <button className="bg-green-700 p-2 text-white font-inter rounded-sm">
+                    Update
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+          {/* price dropdown menu*/}
+
+          {/* property dropdown menu*/}
+          <div
+            className="dropdown relative w-72  m-auto"
+            onClick={() => setPropertyMenu(!propertyMenu)}
+          >
+            <div className="flex font-inter--light font-15 mx-5 cursor-pointer justify-center">
+              <span>Property Type</span>
+              <SVG className="mx-3" src="/svg/caret-down.svg" />
+            </div>
+
+            {propertyMenu && (
+              <div
+                className={`dropdown-menu dropdown-listing ${
+                  propertyMenu ? 'slide-down' : ''
+                }`}
+                style={{ width: '450px auto !important' }}
+              >
+                <p className="m-auto p-2 text-md font-inter--bold">
+                  What type of property are you interested in?
+                </p>
+                <div className="flex flex-col my-5 p-1 ">
+                  <span className="font-inter  m-0.5 mx-0  font-12 uppercase">
+                    Apartment Type
+                  </span>
+
+                  <div className="flex flex-col">
+                    <div className="flex my-1">
+                      <input className="my-0.5" type="radio" name="apartment" />
+                      <label className="mx-1 font-12" htmlFor="apartment">
+                        Serviced
+                      </label>
+                    </div>
+                    <div className="flex my-1">
+                      <input className="my-0.5" type="radio" name="apartment" />
+                      <label className="mx-1 font-12" htmlFor="apartment">
+                        Unserviced
+                      </label>
+                    </div>
+                  </div>
+                  <hr className="m-1" />
+
+                  <div className="flex my-2">
+                    <div className="flex flex-col">
+                      <span className="font-inter m-0.5 mx-0 font-12 uppercase">
+                        House Type
+                      </span>
+                      <div className="flex flex-col">
+                        <div className="flex my-1">
+                          <input className="my-0.5" type="radio" name="house" />
+                          <label className="mx-1 font-12" htmlFor="house">
+                            Duplex
+                          </label>
+                        </div>
+                        <div className="flex my-1">
+                          <input className="my-0.5" type="radio" name="house" />
+                          <label className="mx-1 font-12" htmlFor="house">
+                            Bungalow
+                          </label>
+                        </div>
+                        <div className="flex my-1">
+                          <input className="my-0.5" type="radio" name="house" />
+                          <label className="mx-1 font-12" htmlFor="house">
+                            TownHouse
+                          </label>
+                        </div>
+                        <div className="flex my-1">
+                          <input className="my-0.5" type="radio" name="house" />
+                          <label className="mx-1 font-12" htmlFor="house">
+                            Container
+                          </label>
+                        </div>
+                        <div className="flex my-1">
+                          <input className="my-0.5" type="radio" name="house" />
+                          <label className="mx-1 font-12" htmlFor="house">
+                            Mansion
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr className="m-1" />
+                  <span className="font-inter  m-0.5 mx-0  font-12 uppercase">
+                    Workspace Type
+                  </span>
+                  <div className="flex flex-col">
+                    <div className="flex my-1">
+                      <input className="my-0.5" type="radio" name="work-type" />
+                      <label className="mx-1 font-12" htmlFor="work-type">
+                        Co-working
+                      </label>
+                    </div>
+                    <div className="flex my-1">
+                      <input className="my-0.5" type="radio" name="work-type" />
+                      <label className="mx-1 font-12" htmlFor="work-type">
+                        Private Office
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <hr />
+                <div className="flex justify-between mt-2">
+                  <button>Clear</button>
+                  <button className="bg-green-700 p-2 text-white font-inter rounded-sm">
+                    Update
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+          {/* property dropdown menu*/}
         </div>
 
         <button

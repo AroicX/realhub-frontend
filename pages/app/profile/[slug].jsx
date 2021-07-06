@@ -30,17 +30,17 @@ const Profile = () => {
     <div className="h-screen overflow-auto">
       <Nav custom={true} />
       <div className="md:px-6 px-4 pb-20">
-        <div className="font-unna text-2xl md:text-4xl mt-10">My Profile</div>
+        <div className="font-inter--reg text-2xl md:text-4xl mt-10">My Profile</div>
         <div className="mt-8 flex flex-row font-inter mt-10">
           <img src="/images/joy.png" className="w-24 h-24 rounded-full" />
           <div className="ml-4">
             <div className="text-lg font-bold">{user && user.name}</div>
-            <div className="text-dark-gray text-xs mt-1">
+            {/* <div className="text-dark-gray text-xs mt-1">
               Email: {user && user.email}
             </div>
             <div className="text-dark-gray text-xs mt-1">
               Tel: {user && user.phone}
-            </div>
+            </div> */}
             <button
               onClick={startChat}
               className="bg-black text-white text-sm px-2 py-2 mt-3"

@@ -8,6 +8,13 @@ body {
     left: 0;
     width: 100%;
   }
+  &.active-scroll {
+    position: relative !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: scroll !important;
+  }
 }
 
 #page {
@@ -113,6 +120,29 @@ button {
   }
 }
 
+.dropdown-listing {
+  width: 350px !important;
+
+  &::after {
+    content: "";
+    height: 23.73px;
+    width: 23.73px;
+    position: absolute;
+    background-color: #fff;
+    top: -14px;
+    right: (350px / 2 - 20) !important;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    transform: rotate(45deg) !important;
+  }
+
+  @include media("<=phone") {
+    width: 300px !important;
+
+    position: absolute !important;
+  }
+}
+
 .mobile-header {
   display: none;
   visibility: hidden;
@@ -141,7 +171,7 @@ button {
       }
 
       .dropdown-menu {
-        width: 90% !important;
+        width: 100% !important;
         margin: 1rem 0 !important;
       }
 

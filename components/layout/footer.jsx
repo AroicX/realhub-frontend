@@ -8,39 +8,39 @@ const Footer = () => {
         <div className="flex flex-col jub">
           <div className="flex">
             <SVG className="mx-3 my-0" src="/svg/logo.svg"></SVG>
-            <h4 className="font-inter--bold mb-1">RealHubAfrica</h4>
+            <h4 className="font-inter--reg m-auto mx-0 text-2xl">10ANCY</h4>
           </div>
-          <span className="font-sm mx-3">
+          <span className="font-sm m-3">
             © 2021 RealHubAfrica. All rights reserved.
           </span>
         </div>
 
         <div className="flex flex-col lg:flex-row">
           <div className="flex flex-col p-5 lg:p-0 my-5 lg:my-0">
-            <span className="font-inter--light font-sm">Host</span>
+            <span className="font-inter--light text-md">Host</span>
 
-            <Link to="/" className="font-inter font-13 my-3">
-              Host your home
-            </Link>
-            <Link to="/" className="font-inter font-13 my-3">
+            <Link to="/" className="font-inter--reg text-sm my-3">
               Read our guidelines
             </Link>
-            <Link to="/" className="font-inter font-13 my-3">
+            <Link to="/" className="font-inter--reg text-sm my-3">
               Locations we cover
             </Link>
-            <Link to="/" className="font-inter font-13 my-3">
+            <Link to="/" className="font-inter--reg text-sm my-3">
               Support
             </Link>
           </div>
 
           <div className="flex flex-col  p-5 lg:p-0 lg:mx-20 ">
-            <span className="font-inter--light font-sm">Company</span>
+            <span className="font-inter--light text-md ">Company</span>
 
-            <Link to="/" className="font-inter font-13 my-3">
+            <Link to="/" className="font-inter--reg text-sm my-3">
               Privacy Policy
             </Link>
-            <Link to="/" className="font-inter font-13 my-3">
+            <Link to="/" className="font-inter--reg text-sm my-3">
               Terms of Service
+            </Link>
+            <Link to="/" className="font-inter--reg text-sm my-3">
+              About Us
             </Link>
           </div>
         </div>
