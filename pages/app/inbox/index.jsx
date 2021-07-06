@@ -7,7 +7,7 @@ import api from '@/services/api'
 import { formatDate } from '@/utils/helpers'
 import Covid from '@/components/layout/covid'
 
-// import { useUser } from "@/hooks/useUser";
+import { useUser } from "@/hooks/useUser";
 
 const Inbox = () => {
   const [state, setState] = useState({
