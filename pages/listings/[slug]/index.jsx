@@ -8,8 +8,11 @@ import BookingModal from '@/components/booking/bookingModal'
 import { MapComponent } from '@/components/global/MapComponent'
 import api from '@/services/api'
 import Link from '@/components/link'
+import Carousel from '@/components/global/Carousel'
+import { useUser } from '@/hooks/useUser'
 
 const ListingPage = () => {
+  const currentUser = useUser()
   const { isCollapse } = useWheel()
   const [listing, setListing] = useState({})
   const router = useRouter()
@@ -64,10 +67,7 @@ const ListingPage = () => {
             </div>
             <div className="s__listing--carousel">
               {/* <img src={"/images/big_house.png"} alt="*" /> */}
-              <img
-                src={listing && listing.images && listing.images[0].image}
-                alt="*"
-              />
+              <Carousel images={listing.images} height="800px" />
             </div>
 
             <div className="s__listing--price">
@@ -186,22 +186,21 @@ const ListingPage = () => {
             <br />
             <br />
             <div className="mt-10">
-              <h2 className="font-inter--bold text-black font-14 my-2 mx-5">
+              <h2 className="font-inter--bold text-black font-14 my-2">
                 Location
               </h2>
-              <span className="font-inter--light text-black font-12 mx-5">
-                Kaduna
-              </span>
+              <hr />
+              <span className="font-inter--normal text-black my-2 text-sm py-2">
+                {listing.address}
+              </span>{' '}
+              <br />
               <MapComponent
+                className="w-full my-5"
                 isMarkerShown
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`}
-                loadingElement={
-                  <div style={{ width: '100%', height: `100%` }} />
-                }
-                containerElement={
-                  <div style={{ width: '100%', height: `100%` }} />
-                }
-                mapElement={<div style={{ width: '100%', height: `100%` }} />}
+                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCuptTb-p50eqTGVfgD8jQDjPr5fBI-m0"
+                loadingElement={<div style={{ height: `100%` }} />}
+                containerElement={<div style={{ height: `200px` }} />}
+                mapElement={<div style={{ height: `100%` }} />}
               />
             </div>
           </div>
@@ -220,7 +219,7 @@ const ListingPage = () => {
         <div className="w-full ">
           <p className="font-inter--bold text-black font-14 my-2">Amenities</p>
           <p className="font-inter--light text-gray-700 font-13">
-            Pool, Gym, Basketball Court
+            {listing?.amenities?.map((ele) => `${ele.label}, `)}
           </p>
           <hr className="my-3" />
         </div>
@@ -237,19 +236,23 @@ const ListingPage = () => {
             <hr className="my-3" />
           </div>
 
-          <Link
-            className="flex w-full m-auto lg:ml-20 cursor-pointer"
-            to={'/app/profile/' + listing?.userId?.id}
-          >
-            <img
-              className="w-20 h-20 rounded-full mr-4"
-              src="/png/person.png"
-            />
-            <div>
-              <div className="font-semibold mt-2 text-xl">Apartment Owner</div>
-              <div className="">{listing?.userId?.name}</div>
-            </div>
-          </Link>
+          {currentUser.user.user.id != listing?.userId?.id && (
+            <Link
+              className="flex w-full m-auto lg:ml-20 cursor-pointer"
+              to={'/app/profile/' + listing?.userId?.id}
+            >
+              <img
+                className="w-20 h-20 rounded-full mr-4"
+                src="/png/person.png"
+              />
+              <div>
+                <div className="font-semibold mt-2 text-xl">
+                  Apartment Owner
+                </div>
+                <div className="">{listing?.userId?.name}</div>
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </Layout>

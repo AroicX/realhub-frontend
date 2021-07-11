@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from '@/components/link'
 import { useRouter } from 'next/router'
+import Carousel from '@/components/global/Carousel'
 
 export default function List({ list }) {
   const router = useRouter()
@@ -9,13 +10,10 @@ export default function List({ list }) {
       onClick={() => {
         router.push('/listings/' + list.id)
       }}
-      className="r-listings border border-black pb-auto "
+      className="r-listings pb-auto "
     >
       <div className="img-container">
-        <img
-          src={JSON.parse(list.images)?.[0].image}
-          alt={list.property_name}
-        />
+        <Carousel images={JSON.parse(list.images)} height="300px" />
         <div className="price">
           <span className="uppercase font-inter--light font-10">
             Starting from

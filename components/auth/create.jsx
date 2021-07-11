@@ -18,6 +18,7 @@ export default function CreateAccount({ view, modalHandler }) {
     setErrorMessage(null)
   }, [loading])
   const [togglePassword, setTogglePassword] = useState(false)
+  const [passwordValidator, setPasswordValidator] = useState(null)
 
   const [user, setUser] = useState({
     email: '',
@@ -70,6 +71,47 @@ export default function CreateAccount({ view, modalHandler }) {
       register(user)
     }
     await validateUser(query, callback)
+  }
+  const validatePassword = (e) => {
+    let value = e.target.value
+    setUser({ ...user, password: value })
+
+    var lowerCaseLetters = /[a-z]/g
+    if (value.match(lowerCaseLetters)) {
+      setPasswordValidator(null)
+    } else {
+      return setPasswordValidator('Password must contain a lowercase letter')
+    }
+
+    // Validate capital letters
+    var upperCaseLetters = /[A-Z]/g
+    if (value.match(upperCaseLetters)) {
+      setPasswordValidator(null)
+    } else {
+      return setPasswordValidator('Password must contain an uppercase letter')
+    }
+
+    // // Validate numbers
+    var numbers = /[0-9]/g
+    if (value.match(numbers)) {
+      setPasswordValidator(null)
+    } else {
+      return setPasswordValidator('Password must contain a number ')
+    }
+
+    // // Validate length
+    if (value.length >= 8) {
+      setPasswordValidator(null)
+    } else {
+      return setPasswordValidator('Password must be up to 8 character ')
+    }
+    // // Validate symbol
+    var symbol = /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/
+    if (value.match(symbol)) {
+      setPasswordValidator(null)
+    } else {
+      return setPasswordValidator('Password contain a symbol')
+    }
   }
   const register = async (userdata) => {
     setErrorMessage(null)
@@ -231,6 +273,17 @@ export default function CreateAccount({ view, modalHandler }) {
           </div>
           <div className="form-group">
             <label htmlFor="password">CREATE PASSWORD</label>
+            {passwordValidator && (
+              <div
+                className="p-3 my-0.5  bg-red-md text-white cursor-pointer"
+                onClick={() => setPasswordValidator(null)}
+              >
+                <div className="flex">
+                  <SVG src="/svg/close.svg" className="mr-3 svg-white"></SVG>
+                  <span> {passwordValidator}</span>
+                </div>
+              </div>
+            )}
 
             <div className="with-password my-2">
               <input
@@ -238,7 +291,9 @@ export default function CreateAccount({ view, modalHandler }) {
                 type={`${togglePassword ? 'text' : 'password'}`}
                 placeholder="Create Your Password"
                 value={user.password}
-                onChange={(e) => setUser({ ...user, password: e.target.value })}
+                onChange={(e) => validatePassword(e)}
+                autoComplet="off"
+                name="word"
               />
 
               <button
@@ -249,6 +304,10 @@ export default function CreateAccount({ view, modalHandler }) {
                 {`${togglePassword ? 'Hide' : 'Show'}`}
               </button>
             </div>
+            <span className="font-inter--light text-black font-11 my-1">
+              Password must contain at least 8 characters, uppercase and
+              lowercase letters, and a special character
+            </span>
           </div>
           <div className="flex-col px-5 center text-center">
             <span className="font-inter--light text-black text-center font-10 my-1">

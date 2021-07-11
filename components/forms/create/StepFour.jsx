@@ -4,9 +4,11 @@ import DropDown from '@/components/forms/dropdown'
 import Select from 'react-select'
 
 let colourOptions = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
+  { value: 'Gym', label: 'Gym' },
+  { value: 'Concierge', label: 'Concierge' },
+  { value: 'Pool', label: 'Pool' },
+  { value: 'Outdoor', label: 'Outdoor' },
+  { value: `CCTV Camera's`, label: `CCTV Camera's` },
 ]
 
 export default function StepFour({

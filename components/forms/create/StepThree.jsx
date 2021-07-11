@@ -3,7 +3,10 @@ import Formheader from '@/components/dashboard/formheader'
 import { useDropzone } from 'react-dropzone'
 import SVG from 'react-inlinesvg'
 import axios from 'axios'
+import Toastr from 'toastr'
 
+let counter = 0
+let links = []
 export default function StepThree({ currentStep, setStep, propagate }) {
   const [files, setFiles] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
@@ -25,30 +28,61 @@ export default function StepThree({ currentStep, setStep, propagate }) {
         parent.click()
       }, 100)
     })
-
-    // Do something with the files
   }, [])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
   const uploadFiles = () => {
-    console.log(files)
+    Toastr.info('Please wait while uploading...')
+    files.forEach((file) => {
+      upload(file)
+    })
+  }
+  const upload = (file) => {
     const formData = new FormData()
-    formData.append('file', files[0])
+    formData.append('file', file)
     formData.append('upload_preset', 'realhub_listing')
 
-    axios
-      .post('https://api.cloudinary.com/v1_1/aroicx/image/upload', formData)
-      .then((response) => {
-        propagate({ images: JSON.stringify([{ image: response.data.url }]) })
-        setStep(currentStep + 1)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    try {
+      axios
+        .post('https://api.cloudinary.com/v1_1/aroicx/image/upload', formData)
+        .then((response) => {
+          if (counter < files.length) {
+            counter++
+            links.push({
+              images: { image: response.data.url },
+            })
+          }
+          if (counter === files.length) {
+            propagate({ images: JSON.stringify(links) })
+            setStep(currentStep + 1)
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const remove = (data) => {
     console.log(data)
+
+    let arr = []
+    let arrPreview = []
+    files.filter((file) => {
+      if (file.name !== data.name) {
+        arr.push(file)
+      }
+    })
+    imagePreview.filter((file) => {
+      if (file.name !== data.name) {
+        arrPreview.push(file)
+      }
+    })
+
+    setFiles(arr)
+    setImagePreview(arrPreview)
   }
 
   return (

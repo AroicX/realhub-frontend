@@ -15,7 +15,7 @@ export default function BookingModal({ close }) {
     time: '11:00',
     name: 'Gabriel Okunola',
     email: 'Arowosegbe67@gmail.com',
-    phone: '7016762847',
+    phone: '+2347016762847',
   })
 
   const next = () => {
@@ -25,17 +25,14 @@ export default function BookingModal({ close }) {
   }
 
   const handleSumbit = () => {
-    // console.log(booking)
     const callback = (response) => {
       Toastr.success(response.message)
-
       setStep(1)
       close()
     }
     const onError = (error) => {
       console.log(error)
     }
-
     MAKE_BOOKING(booking, callback, onError)
   }
 
@@ -180,6 +177,7 @@ export default function BookingModal({ close }) {
               international
               countryCallingCodeEditable={false}
               defaultCountry="NG"
+              country="NG"
               value={booking.phone}
               onChange={(e) => setBooking({ ...booking, phone: e })}
             />

@@ -6,6 +6,7 @@ import Link from '@/components/link'
 import SVG from 'react-inlinesvg'
 import { ListingContext } from '@/hooks/listing'
 import { useRouter } from 'next/router'
+import Carousel from '@/components/global/Carousel'
 
 export default function Listing() {
   const router = useRouter()
@@ -235,10 +236,11 @@ export default function Listing() {
                 key={key}
               >
                 <div className="img-container">
-                  <img
-                    src={JSON.parse(listing.images)?.[0].image}
-                    alt={listing.property_name}
+                  <Carousel
+                    images={JSON.parse(listing.images)}
+                    height="300px"
                   />
+
                   <div className="price">
                     <span className="uppercase font-inter--light font-10">
                       Starting from
@@ -248,7 +250,7 @@ export default function Listing() {
                   </div>
                 </div>
 
-                <div className="description p-2 mx-3">
+                <div className="description p-2 mx-3 mt-5">
                   <p className="font-inter font-15">{listing.property_name}</p>
                   <span className="font-inter--light font-13">
                     {listing.bathrooms} Bedroom {listing.bedrooms} Bathrooms
