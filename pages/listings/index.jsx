@@ -263,7 +263,7 @@ export default function Listing() {
 
                 <br />
                 <Link
-                  to={'/listings/' + listing.id}
+                  to={'/listings/' + listing?.id}
                   className="w-50 p-3 px-5 mx-5 my-5 bg-black text-white"
                 >
                   View Listing

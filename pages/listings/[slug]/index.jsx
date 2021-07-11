@@ -236,7 +236,7 @@ const ListingPage = () => {
             <hr className="my-3" />
           </div>
 
-          {currentUser.user.user.id != listing?.userId?.id && (
+          {currentUser?.user?.user?.id != listing?.userId?.id && (
             <Link
               className="flex w-full m-auto lg:ml-20 cursor-pointer"
               to={'/app/profile/' + listing?.userId?.id}
