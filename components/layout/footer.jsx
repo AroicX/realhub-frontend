@@ -15,6 +15,27 @@ const Footer = () => {
           </span>
         </div>
 
+        <div className="flex flex-col lg:flex-row m-auto">
+          <Link to="/" className="m-auto mr-14 flex items-center">
+            <SVG src="/svg/icon_facebook.svg"></SVG>
+          </Link>
+          <Link to="/" className="m-auto mr-14 flex items-center">
+            <SVG src="/svg/icon_twitter.svg"></SVG>
+          </Link>
+          <Link to="/" className="m-auto mr-14 flex items-center">
+            <SVG src="/svg/icon_instagram.svg"></SVG>
+          </Link>
+          <Link to="/" className="m-auto mr-14 flex items-center">
+            <SVG src="/svg/icon_youtube.svg"></SVG>
+          </Link>
+          <Link
+            to="mailto:realhubafricaa@gmail.com"
+            className="m-auto mr-14 flex items-center"
+          >
+            <SVG src="/svg/icon_mail.svg"></SVG>
+          </Link>
+        </div>
+
         <div className="flex flex-col lg:flex-row">
           <div className="flex flex-col p-5 lg:p-0 my-5 lg:my-0">
             <span className="font-inter--light text-md">Host</span>

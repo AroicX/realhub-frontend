@@ -98,6 +98,12 @@ export default function Nav({ custom }) {
           >
             Become a host
           </Link>
+          <Link
+            to="/app/listings"
+            className="font-inter--light font-13 m-auto mx-5"
+          >
+            About Us
+          </Link>
         </div>
 
         <div className="flex flex-col lg:flex-row hide">
