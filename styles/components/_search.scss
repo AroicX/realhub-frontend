@@ -6,10 +6,9 @@
   flex-direction: row;
   justify-content: space-between;
 
-
   input {
     width: 90%;
-    padding: .8rem;
+    padding: 0.8rem;
     outline: none;
     transition: all 0.3s ease-in-out;
 
@@ -25,7 +24,7 @@
     width: 90%;
   }
 
-  &--result{
+  &--result {
     position: absolute;
     top: 50px;
     left: 0;
@@ -39,17 +38,28 @@
     z-index: 1;
     @include noscrollbar();
 
-    .card{
-      margin: .5rem 0;
+    .card {
+      margin: 0.5rem 0;
       border-bottom: 1px solid #999;
       @include shadow();
     }
 
-     @include media("<=tablet") {
-    max-height: 400px;
-
-      }
-    
+    @include media("<=tablet") {
+      max-height: 400px;
+    }
   }
+}
 
+.r_datepicker {
+  &--panel {
+    @apply bg-white flex flex-col justify-start  border border-black;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    // height: 500px;
+    padding: 1rem;
+    z-index: 10;
+    text-align: left !important;
+  }
 }

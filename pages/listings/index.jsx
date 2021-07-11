@@ -8,11 +8,21 @@ import { ListingContext } from '@/hooks/listing'
 import { useRouter } from 'next/router'
 
 export default function Listing() {
+  const router = useRouter()
+
   const [grid, setGrid] = useState(4)
   const [showMap, setShowMap] = useState(false)
   const { listings } = useContext(ListingContext)
   const [priceMenu, setPriceMenu] = useState(false)
   const [propertyMenu, setPropertyMenu] = useState(false)
+
+  // useEffect(() => {
+  //   setPropertyMenu(false)
+  // }, [priceMenu])
+
+  // useEffect(() => {
+  //   setPriceMenu(false)
+  // }, [propertyMenu])
 
   const handleMap = () => {
     if (grid === 4) {
@@ -23,10 +33,6 @@ export default function Listing() {
       setShowMap(!showMap)
     }
   }
-
-  // useEffect(() => {
-  //   console.log(listings)
-  // }, [listings])
 
   return (
     <Layout type="navigation" title="Listing">
@@ -39,7 +45,8 @@ export default function Listing() {
           {/* price dropdown menu*/}
           <div
             className="dropdown  relative w-72  m-auto"
-            onClick={() => setPriceMenu(!priceMenu)}
+            onClick={() => setPriceMenu(true)}
+            onDoubleClick={() => setPriceMenu(false)}
           >
             <div className="flex font-inter--light font-15 mx-5 cursor-pointer justify-center">
               <span>Price</span>
@@ -60,7 +67,7 @@ export default function Listing() {
                   <div className="flex flex-col p-2 m-auto">
                     <span className="my-2">Minimum Price</span>
                     <input
-                      className="p-2 border border-black rounded-sm text-xs font-inter"
+                      className="p-2 py-3 border border-black rounded-sm text-xs font-inter outline-none"
                       type="number"
                       placeholder="#7,000,000"
                       autoFocus={true}
@@ -69,7 +76,7 @@ export default function Listing() {
                   <div className="flex flex-col p-2 m-auto">
                     <span className="my-2">Maximum Price </span>
                     <input
-                      className="p-2 border border-black rounded-sm text-xs font-inter"
+                      className="p-2 py-3 border border-black rounded-sm text-xs font-inter outline-none"
                       type="number"
                       placeholder="#7,000,000"
                     />
@@ -91,7 +98,8 @@ export default function Listing() {
           {/* property dropdown menu*/}
           <div
             className="dropdown relative w-72  m-auto"
-            onClick={() => setPropertyMenu(!propertyMenu)}
+            onClick={() => setPropertyMenu(true)}
+            onDoubleClick={() => setPropertyMenu(false)}
           >
             <div className="flex font-inter--light font-15 mx-5 cursor-pointer justify-center">
               <span>Property Type</span>

@@ -1,25 +1,46 @@
-import React from "react";
+import React from 'react'
+import Link from '@/components/link'
+import { useRouter } from 'next/router'
 
 export default function List({ list }) {
+  const router = useRouter()
   return (
-    <div className="max-w-mdhidden 2xl:flex 2xl:flex-col">
-      <div className="relative">
-        <img src="/png/image10.png" alt="*" />
-        <div className="bg-white absolute bottom-0 right-0 pl-6 pr-11 pt-2 pb-2">
-          <div className="text-xs text-lightdark">STARTING FROM</div>
-          <div className="text-2xl font-semibold">₦{list.price}</div>
+    <div
+      onClick={() => {
+        router.push('/listings/' + list.id)
+      }}
+      className="r-listings border border-black pb-auto "
+    >
+      <div className="img-container">
+        <img
+          src={JSON.parse(list.images)?.[0].image}
+          alt={list.property_name}
+        />
+        <div className="price">
+          <span className="uppercase font-inter--light font-10">
+            Starting from
+          </span>
+          <br />
+          <b>₦ {list.price}</b>
         </div>
       </div>
-      <div className="font-semibold	text-lg mt-4">
-        {list.property_name}
+
+      <div className="description p-2 mx-3">
+        <p className="font-inter font-15">{list.property_name}</p>
+        <span className="font-inter--light font-13">
+          {list.bathrooms} Bedroom {list.bedrooms} Bathrooms Kitchen Swimming
+          Pool
+        </span>
+        <span className="font-inter--light font-13 block">{list.address}</span>
       </div>
-      <div className="text-sm text-lightdark">
-        {list.bedrooms} Bedrooms • {list.bathrooms} Bathrooms • Kitchen • Swimming Pool
-      </div>
-      <div className="flex flex-row mt-2">
-        <img src="/svg/location.svg" alt="*" />
-        <div className="ml-2 text-sm text-lightdark">{list.address}</div>
-      </div>
+
+      <br />
+      <Link
+        to={'/listings/' + list.id}
+        className="w-50 p-3 px-5 mx-5 my-5 bg-black text-white"
+      >
+        View Property
+      </Link>
     </div>
-  );
+  )
 }

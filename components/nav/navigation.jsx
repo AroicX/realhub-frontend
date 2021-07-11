@@ -141,16 +141,6 @@ export default function Navigation({}) {
                       {user ? (
                         <>
                           {' '}
-                          <p
-                            className="font-sm my-2 cursor-pointer"
-                            onClick={() => {
-                              logout()
-                              window.location.href = '/'
-                            }}
-                          >
-                            LogOut
-                          </p>
-                          <hr />
                           <Link
                             to="/app/listings/"
                             className="font-sm my-2 cursor-pointer"
@@ -160,6 +150,16 @@ export default function Navigation({}) {
                           <Link to="/" className="font-sm my-2 cursor-pointer">
                             Contact Support
                           </Link>
+                          <hr />
+                          <p
+                            className="font-sm my-2 cursor-pointer"
+                            onClick={() => {
+                              logout()
+                              window.location.href = '/'
+                            }}
+                          >
+                            Sign-Out
+                          </p>
                         </>
                       ) : (
                         <>

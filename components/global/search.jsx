@@ -2,9 +2,11 @@ import { useContext, useEffect, useState } from 'react'
 import SVG from 'react-inlinesvg'
 import Link from '@/components/link'
 import { ListingContext } from '@/hooks/listing'
+import DatePicker from './datePicker'
 
 export default function Search({ css }) {
   const [search, setSearch] = useState(null)
+  const [picker, setPicker] = useState(false)
   const { listings } = useContext(ListingContext)
 
   return (
@@ -23,15 +25,19 @@ export default function Search({ css }) {
       <button type="submit">
         <SVG className="m-3" src="/svg/search.svg"></SVG>
       </button>
+      <DatePicker handleDates={(dates) => console.log(dates)} />
       {search && (
         <div className="r-search--result border border-black">
           {listings &&
-            listings.map(({ property_name, address, images }, id) => {
+            listings.map(({ property_name, address, images, id }, _id) => {
               return (
                 <>
                   {property_name.includes(search) && (
-                    <Link key={id} to="" className="card flex flex-row">
-
+                    <Link
+                      key={_id}
+                      to={`/listings/${id}`}
+                      className="card flex flex-row"
+                    >
                       <img
                         className="m-3"
                         src={JSON.parse(images)?.[0].image}

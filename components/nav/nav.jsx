@@ -111,7 +111,6 @@ export default function Nav({ custom }) {
             <SVG src="/svg/message.svg"></SVG>
           </Link>
 
-          
           <div
             className="relative dropdown m-auto"
             onClick={() => setIsActive(!isActive)}
@@ -128,18 +127,8 @@ export default function Nav({ custom }) {
                   {user ? (
                     <>
                       {' '}
-                      <p
-                        className="font-sm my-2 cursor-pointer"
-                        onClick={() => {
-                          logout()
-                          window.location.href = '/'
-                        }}
-                      >
-                        LogOut
-                      </p>
-                      <hr />
                       <Link
-                        to="/app/listings"
+                        to="/app/listings/"
                         className="font-sm my-2 cursor-pointer"
                       >
                         List your home
@@ -147,6 +136,16 @@ export default function Nav({ custom }) {
                       <Link to="/" className="font-sm my-2 cursor-pointer">
                         Contact Support
                       </Link>
+                      <hr />
+                      <p
+                        className="font-sm my-2 cursor-pointer"
+                        onClick={() => {
+                          logout()
+                          window.location.href = '/'
+                        }}
+                      >
+                        Sign-Out
+                      </p>
                     </>
                   ) : (
                     <>
@@ -169,9 +168,6 @@ export default function Nav({ custom }) {
               </div>
             )}
           </div>
-     
-     
-     
         </div>
 
         {/* mobile header */}

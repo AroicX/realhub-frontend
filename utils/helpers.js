@@ -12,3 +12,7 @@ export const formatDate = (d) => {
   const strTime = hours + ":" + minutes + " " + ampm;
   return strTime;
 };
+
+export function isEmpty(val) {
+  return val.trim().length === 0;
+}
