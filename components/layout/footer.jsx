@@ -15,7 +15,7 @@ const Footer = () => {
           </span>
         </div>
 
-        <div className="flex flex-col lg:flex-row m-auto">
+        <div className="flex flex-row lg:flex-row m-auto">
           <Link to="/" className="m-auto mr-14 flex items-center">
             <SVG src="/svg/icon_facebook.svg"></SVG>
           </Link>
