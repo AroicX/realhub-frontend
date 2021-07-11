@@ -98,6 +98,10 @@
       }
     }
   }
+  @include media("<=phone") {
+    width: 100% !important;
+    margin: 0 !important;
+  }
 }
 
 // .s__booking__container {
@@ -238,13 +242,13 @@
   }
 }
 
-.custom_style {
-  display: grid;
-  grid-template-columns: 60% 40%;
-  column-gap: 5rem;
-}
+// .custom_style {
+//   display: grid;
+//   grid-template-columns: 60% 40%;
+//   column-gap: 5rem;
+// }
 
-.amenities {
-  display: grid;
-  grid-template-columns: 60% 40%;
-}
+// .amenities {
+//   display: grid;
+//   grid-template-columns: 60% 40%;
+// }

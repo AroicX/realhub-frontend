@@ -43,115 +43,114 @@ const ListingPage = () => {
   //   images,
   // } = listing;
   return (
-    <div>
-      <Layout type="nav">
-        <Modal
-          title="Book a Physical Tour"
-          showmodal={bookingModal}
-          modalHandler={toggleBookingModal}
-          children={<BookingModal close={toggleBookingModal} />}
-          width="400px"
-        />
-        <div className="w-full p-5 mt-14 lg:mt-0">
-          <div className="flex flex-col lg:flex-row">
-            <div className="s__listing">
-              <div className="s__listing--header">
-                <h2 className="font-unna font-40 text-black text-3xl">
-                  {listing && listing.property_name}
-                </h2>
-                <span className="font-inter--light text-gray-700 font-18">
-                  {listing && listing.address}
-                </span>
-              </div>
-              <div className="s__listing--carousel">
-                {/* <img src={"/images/big_house.png"} alt="*" /> */}
-                <img
-                  src={listing && listing.images && listing.images[0].image}
-                  alt="*"
-                />
-              </div>
-
-              <div className="s__listing--price">
-                <h3 className="font-inter--bold text-black font-28 my-2">
-                  ₦{listing && listing.price}
-                </h3>
-
-                <div className="flex flex-row">
-                  <span className="font-inter--light text-black font-12 mx-0">
-                    {listing && listing.bedrooms} Bedrooms
-                  </span>
-
-                  <span className="font-inter--light text-black font-12 mx-3">
-                    {listing && listing.bathrooms} Bathrooms
-                  </span>
-                  <span className="font-inter--light text-black font-12 mx-3">
-                    3,212 Sqmt
-                  </span>
-                  <span className="font-inter--light text-black font-12 mx-3">
-                    Swimming Pool
-                  </span>
-                </div>
-              </div>
-
-              <div className="s__listing--description ">
-                <p className="font-inter--bold text-black font-14 my-2">
-                  Property Description
-                </p>
-
-                <p className="font-inter--light text-black-700 font-18 ">
-                  {listing && listing.property_desc}
-                </p>
-              </div>
-
-              {/*  */}
+    <Layout type="nav">
+      <Modal
+        title="Book a Physical Tour"
+        showmodal={bookingModal}
+        modalHandler={toggleBookingModal}
+        children={<BookingModal close={toggleBookingModal} />}
+        width="400px"
+      />
+      <div className="w-full p-5 mt-14 lg:mt-0">
+        <div className="flex flex-col lg:flex-row">
+          <div className="s__listing">
+            <div className="s__listing--header">
+              <h2 className="font-unna font-40 text-black text-3xl">
+                {listing && listing.property_name}
+              </h2>
+              <span className="font-inter--light text-gray-700 font-18">
+                {listing && listing.address}
+              </span>
+            </div>
+            <div className="s__listing--carousel">
+              {/* <img src={"/images/big_house.png"} alt="*" /> */}
+              <img
+                src={listing && listing.images && listing.images[0].image}
+                alt="*"
+              />
             </div>
 
-            <div className="s__booking">
-              <button className="s__booking--button">
-                <div className="flex flex-row">
-                  <SVG
-                    className="m-3"
-                    src="/svg/cube.svg"
-                    width="50px"
-                    height="50px"
-                  ></SVG>
-                  <span>
-                    {' '}
-                    Take a 3D tour <br /> of the apartment.
-                  </span>
-                </div>
+            <div className="s__listing--price">
+              <h3 className="font-inter--bold text-black font-28 my-2">
+                ₦{listing && listing.price}
+              </h3>
+
+              <div className="flex flex-row">
+                <span className="font-inter--light text-black font-12 mx-0">
+                  {listing && listing.bedrooms} Bedrooms
+                </span>
+
+                <span className="font-inter--light text-black font-12 mx-3">
+                  {listing && listing.bathrooms} Bathrooms
+                </span>
+                <span className="font-inter--light text-black font-12 mx-3">
+                  3,212 Sqmt
+                </span>
+                <span className="font-inter--light text-black font-12 mx-3">
+                  Swimming Pool
+                </span>
+              </div>
+            </div>
+
+            <div className="s__listing--description ">
+              <p className="font-inter--bold text-black font-14 my-2">
+                Property Description
+              </p>
+
+              <p className="font-inter--light text-black-700 font-18 ">
+                {listing && listing.property_desc}
+              </p>
+            </div>
+
+            {/*  */}
+          </div>
+
+          <div className="s__booking">
+            <button className="s__booking--button">
+              <div className="flex flex-row">
                 <SVG
-                  className="my-7 mx-5"
-                  src="/svg/caret.svg"
-                  width="10px"
-                  height="10px"
+                  className="m-3"
+                  src="/svg/cube.svg"
+                  width="50px"
+                  height="50px"
                 ></SVG>
-              </button>
-              <button
-                className="s__booking--button"
-                onClick={() => toggleBookingModal()}
-              >
-                <div className="flex flex-row">
-                  <SVG
-                    className="m-3"
-                    src="/svg/calendar.svg"
-                    width="50px"
-                    height="50px"
-                  ></SVG>
-                  <span>
-                    {' '}
-                    Book a physical <br />
-                    tour of the house.
-                  </span>
-                </div>
+                <span>
+                  {' '}
+                  Take a 3D tour <br /> of the apartment.
+                </span>
+              </div>
+              <SVG
+                className="my-7 mx-5"
+                src="/svg/caret.svg"
+                width="10px"
+                height="10px"
+              ></SVG>
+            </button>
+            <button
+              className="s__booking--button"
+              onClick={() => toggleBookingModal()}
+            >
+              <div className="flex flex-row">
                 <SVG
-                  className="my-7 mx-5"
-                  src="/svg/caret.svg"
-                  width="10px"
-                  height="10px"
+                  className="m-3"
+                  src="/svg/calendar.svg"
+                  width="50px"
+                  height="50px"
                 ></SVG>
-              </button>
-              {/* <div className="s__booking__container">
+                <span>
+                  {' '}
+                  Book a physical <br />
+                  tour of the house.
+                </span>
+              </div>
+              <SVG
+                className="my-7 mx-5"
+                src="/svg/caret.svg"
+                width="10px"
+                height="10px"
+              ></SVG>
+            </button>
+            {/* <div className="s__booking__container">
                 <button className="s__booking--button">
                   <SVG src="/svg/calendar.svg"></SVG>
                   <span> 01-12-2021</span>
@@ -172,102 +171,88 @@ const ListingPage = () => {
                   <SVG src="/svg/caret-down.svg"></SVG>
                 </button>
               </div> */}
-              <button className="bg-green-600 text-white p-3 px-12  my-5">
-                Pay For Property
-              </button>
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <div className="mt-10">
-                <h2 className="font-inter--bold text-black font-14 my-2 mx-5">
-                  Location
-                </h2>
-                <span className="font-inter--light text-black font-12 mx-5">
-                  Kaduna
-                </span>
-                <MapComponent
-                  isMarkerShown
-                  googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`}
-                  loadingElement={
-                    <div style={{ width: '100%', height: `100%` }} />
-                  }
-                  containerElement={
-                    <div style={{ width: '100%', height: `100%` }} />
-                  }
-                  mapElement={<div style={{ width: '100%', height: `100%` }} />}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col lg:flex-row">
-            <div className="s__listing">
-              <div className="s__listing--description ">
-                <div className="my-5">
-                  <p className="font-inter--bold text-black font-14 my-2">
-                    Apartment Type
-                  </p>
-                  <p className="font-inter--light text-gray-700 font-13">
-                    Mansion
-                  </p>
-                  <hr className="my-3" />
-                </div>
-                <div className="my- w-screen amenities">
-                  <div className="mr-10">
-                    <p className="font-inter--bold text-black font-14 my-2">
-                      Amenities
-                    </p>
-                    <p className="font-inter--light text-gray-700 font-13">
-                      Pool, Gym, Basketball Court
-                    </p>
-                    <hr className="my-3" />
-                  </div>
-                  <div className="border-b mt-0 mb-3 w-3/4 ml-4"></div>
-                </div>
-
-                <div className="my-5 w-screen pr-20 custom_style">
-                  <div className="">
-                    <p className="font-inter--bold text-black font-14 my-2">
-                      Apartment Services
-                    </p>
-                    <p className="font-inter--light text-gray-700 font-13">
-                      Water, Cabel TV, 24hrs Light, Fiber Internet, Security,
-                      Smoke Alarms, Air Conditioners, Water Heaters
-                    </p>
-                    <hr className="my-3" />
-                  </div>
-                  <Link
-                    className="flex cursor-pointer"
-                    to={'/app/profile/' + listing?.userId?.id}
-                  >
-                    <img
-                      className="w-20 h-20 rounded-full mr-4"
-                      src="/png/person.png"
-                    />
-                    <div>
-                      <div className="font-semibold mt-2 text-xl">
-                        Apartment Owner
-                      </div>
-                      <div className="">{listing?.userId?.name}</div>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-
-              {/*  */}
+            <button className="bg-green-600 text-white p-3 px-12  my-5">
+              Pay For Property
+            </button>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className="mt-10">
+              <h2 className="font-inter--bold text-black font-14 my-2 mx-5">
+                Location
+              </h2>
+              <span className="font-inter--light text-black font-12 mx-5">
+                Kaduna
+              </span>
+              <MapComponent
+                isMarkerShown
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`}
+                loadingElement={
+                  <div style={{ width: '100%', height: `100%` }} />
+                }
+                containerElement={
+                  <div style={{ width: '100%', height: `100%` }} />
+                }
+                mapElement={<div style={{ width: '100%', height: `100%` }} />}
+              />
             </div>
           </div>
         </div>
-      </Layout>
-    </div>
+      </div>
+
+      <div className="w-screen relative flex flex-col lg:flex-col p-5 overflow-hidden">
+        <div className="w-full">
+          <p className="font-inter--bold text-black font-14 my-2">
+            Apartment Type
+          </p>
+          <p className="font-inter--light text-gray-700 font-13">Mansion</p>
+          <hr className="my-3" />
+        </div>
+
+        <div className="w-full ">
+          <p className="font-inter--bold text-black font-14 my-2">Amenities</p>
+          <p className="font-inter--light text-gray-700 font-13">
+            Pool, Gym, Basketball Court
+          </p>
+          <hr className="my-3" />
+        </div>
+
+        <div className="my-5 w-screen flex flex-col lg:flex-row justify-between ">
+          <div className="w-screen">
+            <p className="font-inter--bold text-black font-14 my-2">
+              Apartment Services
+            </p>
+            <p className="font-inter--light text-gray-700 font-13">
+              Water, Cabel TV, 24hrs Light, Fiber Internet, <br /> Security,
+              Smoke Alarms, Air Conditioners, Water Heaters
+            </p>
+            <hr className="my-3" />
+          </div>
+
+          <Link
+            className="flex w-full m-auto lg:ml-20 cursor-pointer"
+            to={'/app/profile/' + listing?.userId?.id}
+          >
+            <img
+              className="w-20 h-20 rounded-full mr-4"
+              src="/png/person.png"
+            />
+            <div>
+              <div className="font-semibold mt-2 text-xl">Apartment Owner</div>
+              <div className="">{listing?.userId?.name}</div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </Layout>
   )
 }
 
