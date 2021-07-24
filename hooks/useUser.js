@@ -135,6 +135,7 @@ const useUserAuth = () => {
   return {
     user,
     loading,
+    setLoading,
     login,
     validateUser,
     verifyAccount,
