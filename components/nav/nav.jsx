@@ -4,6 +4,7 @@ import SVG from 'react-inlinesvg'
 import AuthModal from '../auth/AuthModal'
 import useScroll from '@/hooks/useScroll'
 import { useUser } from '@/hooks/useUser'
+import { CssDropDown } from '../global/CssDropDown'
 
 export default function Nav({ custom }) {
   const { user, logout } = useUser()
@@ -107,6 +108,7 @@ export default function Nav({ custom }) {
         </div>
 
         <div className="flex flex-col lg:flex-row hide">
+
           <Link
             to="/app/notifications"
             className="m-auto mr-14 flex items-center"

@@ -34,66 +34,54 @@ export default function DatePicker({ handleDates }) {
   }
 
   return (
-    <div>
-      {/* picker menu*/}
-      <div
-        className="r_datepicker  m-auto"
-        onClick={() => setPicker(true)}
-        onDoubleClick={() => setPicker(false)}
-      >
-        <div className="flex font-inter--light font-15 mx-5 cursor-pointer justify-center">
+    <main>
+      <div class="search_css_drop">
+        <button class="search_css_drop-btn flex font-inter--light font-15 mx-5 cursor-pointer justify-center">
           <SVG className="m-2" src="/svg/search_calendar.svg"></SVG>
-        </div>
+        </button>
+        <div class="search_css_drop-content">
+          <p className="p-2 text-md font-inter--bold">Input a time range</p>
 
-        {picker && (
-          <div className="r_datepicker--panel">
-            <p className="m-auto p-2 text-md font-inter--bold">
-              Input a time range
-            </p>
-
-            <div className="flex m-auto pb-5">
-              <div className="flex flex-col justify-start">
-                <label className="my-1" htmlFor="date-in">
-                  Check In
-                </label>
-                <input
-                  className="p-1 border border-black"
-                  type="date"
-                  name="date-in"
-                  onChange={(e) =>
-                    setDates({ ...dates, date_in: e.target.value })
-                  }
-                />
-              </div>
-              <div className="flex flex-col justify-start">
-                <label className="my-1" htmlFor="date-in">
-                  Check Out
-                </label>
-                <input
-                  className="p-1 border border-black"
-                  type="date"
-                  name="date-in"
-                  onChange={(e) =>
-                    setDates({ ...dates, date_out: e.target.value })
-                  }
-                />
-              </div>
+          <div className="flex m-auto pb-5">
+            <div className="flex flex-col justify-start">
+              <label className="my-1" htmlFor="date-in">
+                Check In
+              </label>
+              <input
+                className="p-1 border border-black"
+                type="date"
+                name="date-in"
+                onChange={(e) =>
+                  setDates({ ...dates, date_in: e.target.value })
+                }
+              />
             </div>
-
-            <hr />
-            <div className="flex justify-end mt-2">
-              <button
-                className="bg-green-700 p-2 text-white font-inter rounded-sm"
-                onClick={handleSumbit}
-              >
-                Update
-              </button>
+            <div className="flex flex-col justify-start">
+              <label className="my-1" htmlFor="date-in">
+                Check Out
+              </label>
+              <input
+                className="p-1 border border-black"
+                type="date"
+                name="date-in"
+                onChange={(e) =>
+                  setDates({ ...dates, date_out: e.target.value })
+                }
+              />
             </div>
           </div>
-        )}
-      </div>
 
-      {/* picker menu*/}
-    </div>
+          <hr />
+          <div className="flex justify-end mt-2">
+            <button
+              className="bg-green-700 p-2 text-white font-inter rounded-sm"
+              onClick={handleSumbit}
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
   )
 }

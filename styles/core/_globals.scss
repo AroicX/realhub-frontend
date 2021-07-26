@@ -1,3 +1,4 @@
+@use "sass:math";
 body {
   overflow-x: hidden;
   background: #fff;
@@ -130,7 +131,7 @@ button {
     position: absolute;
     background-color: #fff;
     top: -14px;
-    right: (350px / 2 - 20) !important;
+    // right: 350px * 0.5 - 20 !important;
     border-top: 2px solid #000;
     border-left: 2px solid #000;
     transform: rotate(45deg) !important;

@@ -37,30 +37,21 @@ export default function Listing() {
 
   return (
     <Layout type="navigation" title="Listing">
-      <div className="w-full flex flex-col lg:flex-row h-auto ">
+      <div className="w-full flex flex-col lg:flex-row justify-between  h-auto ">
         <h4 className="font-unna font-32 text-gray p-5 mt-14 lg:mt-0 mx-2">
           Properties to rent near you.
         </h4>
 
         <div className="flex flex-col lg:flex-row ">
           {/* price dropdown menu*/}
-          <div
-            className="dropdown  relative w-72  m-auto"
-            onClick={() => setPriceMenu(true)}
-            onDoubleClick={() => setPriceMenu(false)}
-          >
-            <div className="flex font-inter--light font-15 mx-5 cursor-pointer justify-center">
-              <span>Price</span>
-              <SVG className="mx-3" src="/svg/caret-down.svg" />
-            </div>
 
-            {priceMenu && (
-              <div
-                className={`dropdown-menu dropdown-listing ${
-                  priceMenu ? 'slide-down' : ''
-                }`}
-                // style={{ width: '350px auto !important' }}
-              >
+          <main className="m-auto">
+            <div class="r_css_drop">
+              <button class="r_css_drop-btn flex font-inter--light font-15 text-black ">
+                Price
+                <SVG className="mx-3" src="/svg/caret-down.svg" />
+              </button>
+              <div class="r_css_drop-content">
                 <p className="m-auto p-2 text-md font-inter">
                   Input a price range
                 </p>
@@ -92,28 +83,21 @@ export default function Listing() {
                   </button>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          </main>
+
           {/* price dropdown menu*/}
 
           {/* property dropdown menu*/}
-          <div
-            className="dropdown relative w-72  m-auto"
-            onClick={() => setPropertyMenu(true)}
-            onDoubleClick={() => setPropertyMenu(false)}
-          >
-            <div className="flex font-inter--light font-15 mx-5 cursor-pointer justify-center">
-              <span>Property Type</span>
-              <SVG className="mx-3" src="/svg/caret-down.svg" />
-            </div>
 
-            {propertyMenu && (
-              <div
-                className={`dropdown-menu dropdown-listing ${
-                  propertyMenu ? 'slide-down' : ''
-                }`}
-                style={{ width: '450px auto !important' }}
-              >
+          <main className="m-auto">
+            <div class="r_css_drop">
+              <button class="r_css_drop-btn flex font-inter--light font-15 text-black ">
+                Property Type
+                <SVG className="mx-3" src="/svg/caret-down.svg" />
+              </button>
+              <div class="r_css_drop-content">
+                {/*  */}
                 <p className="m-auto p-2 text-md font-inter--bold">
                   What type of property are you interested in?
                 </p>
@@ -204,14 +188,16 @@ export default function Listing() {
                     Update
                   </button>
                 </div>
+                {/*  */}
               </div>
-            )}
-          </div>
+            </div>
+          </main>
+
           {/* property dropdown menu*/}
         </div>
 
         <button
-          className="absolute right-10 my-5 flex flex-row border border-black px-6 py-3 text-black"
+          className="my-5 flex flex-row border border-black px-6 py-3 text-black"
           onClick={() => handleMap()}
         >
           Open Map

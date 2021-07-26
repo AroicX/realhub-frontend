@@ -2743,6 +2743,11 @@ safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
+sass-migrator@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/sass-migrator/-/sass-migrator-1.5.1.tgz#cc4908d547bf43d9b62ca623923a410117be507d"
+  integrity sha512-kEEodbgVazNxHfPnEsgV2RT3xGWJK89k4SC4WMsBLz0ErjFpceCtqpSGzE9IOHNl3dgdTRp2nA5SfPiJ8ACB3g==
+
 sass@^1.32.7:
   version "1.35.2"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.35.2.tgz#b732314fcdaf7ef8d0f1698698adc378043cb821"
