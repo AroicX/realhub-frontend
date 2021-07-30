@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
 import Layout from '@/components/layout/layout'
-import DropDownMenu from '@/components/global/DropDownMenu'
 import { MapComponent } from '@/components/global/MapComponent'
 import Link from '@/components/link'
 import SVG from 'react-inlinesvg'
@@ -46,12 +45,12 @@ export default function Listing() {
           {/* price dropdown menu*/}
 
           <main className="m-auto">
-            <div class="r_css_drop">
-              <button class="r_css_drop-btn flex font-inter--light font-15 text-black ">
+            <div className="r_css_drop">
+              <button className="r_css_drop-btn flex font-inter--light font-15 text-black ">
                 Price
                 <SVG className="mx-3" src="/svg/caret-down.svg" />
               </button>
-              <div class="r_css_drop-content">
+              <div className="r_css_drop-content">
                 <p className="m-auto p-2 text-md font-inter">
                   Input a price range
                 </p>
@@ -91,12 +90,12 @@ export default function Listing() {
           {/* property dropdown menu*/}
 
           <main className="m-auto">
-            <div class="r_css_drop">
-              <button class="r_css_drop-btn flex font-inter--light font-15 text-black ">
+            <div className="r_css_drop">
+              <button className="r_css_drop-btn flex font-inter--light font-15 text-black ">
                 Property Type
                 <SVG className="mx-3" src="/svg/caret-down.svg" />
               </button>
-              <div class="r_css_drop-content">
+              <div className="r_css_drop-content">
                 {/*  */}
                 <p className="m-auto p-2 text-md font-inter--bold">
                   What type of property are you interested in?
@@ -205,6 +204,66 @@ export default function Listing() {
         </button>
       </div>
 
+      <div className="w-full flex justify-center p-3">
+        <div className="flex ">
+          {/*  */}
+          <div className="flex bg-white border border-black">
+            <span className="m-auto">
+              <SVG className="m-3" src="/svg/search.svg"></SVG>
+            </span>
+
+            <input
+              className="form-control px-2 pr-5 outline-none"
+              type="text"
+              name="city"
+              placeholder="Chose a city"
+            />
+          </div>
+
+          <div className="flex bg-white border border-black">
+            <span className="m-auto">
+              <SVG className="m-3" src="/svg/date-in.svg"></SVG>
+            </span>
+
+            <input
+              className="form-control px-2 outline-none text-gray-400"
+              type="date"
+              name="date-in"
+              placeholder="Check in"
+            />
+          </div>
+          <div className="flex bg-white border border-black">
+            <span className="m-auto">
+              <SVG className="m-3" src="/svg/date-out.svg"></SVG>
+            </span>
+
+            <input
+              className="form-control px-2 outline-none text-gray-400"
+              type="date"
+              name="date-out"
+              placeholder="Check in"
+            />
+          </div>
+          <div className="flex bg-white border border-black">
+            <span className="m-auto">
+              <SVG className="m-3" src="/svg/guest-number.svg"></SVG>
+            </span>
+
+            <input
+              className="form-control px-2 outline-none text-gray-400"
+              type="number"
+              name="date-out"
+              placeholder="Number of Guests"
+            />
+          </div>
+          <button type="submit" className="bg-black text-white p-3 w-48">
+            Search
+          </button>
+
+          {/*  */}
+        </div>
+      </div>
+
       <div
         className={`w-full relative grid grid-cols-1 ${
           showMap ? 'lg:grid-cols-2' : ''
@@ -219,10 +278,11 @@ export default function Listing() {
                   router.push('/listings/' + listing.id)
                 }}
                 className="r-listings"
-                key={key}
+                key={key + 1}
               >
-                <div className="img-container">
+                <div className="img-container" key={key + 1}>
                   <Carousel
+                    key={key + 1}
                     images={JSON.parse(listing.images)}
                     height="300px"
                   />

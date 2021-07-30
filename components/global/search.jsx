@@ -16,15 +16,16 @@ export default function Search({ css }) {
         css ? css : ' m-5 lg:m-10  '
       } border border-black `}
     >
+      <button type="submit">
+        <SVG className="m-3" src="/svg/search.svg"></SVG>
+      </button>
       <input
         className="form-control"
         type="text"
         placeholder="search for apartments by location"
         onChange={(e) => setSearch(e.target.value)}
       />
-      <button type="submit">
-        <SVG className="m-3" src="/svg/search.svg"></SVG>
-      </button>
+
       <DatePicker handleDates={(dates) => console.log(dates)} />
       {search && (
         <div className="r-search--result border border-black">

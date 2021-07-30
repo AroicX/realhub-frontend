@@ -20,6 +20,7 @@
     "pusher-js": "^7.0.3",
     "react": "17.0.1",
     "react-calendar": "^3.3.1",
+    "react-datepicker": "^4.1.1",
     "react-dom": "17.0.1",
     "react-dropzone": "^11.3.1",
     "react-google-maps": "^9.4.5",

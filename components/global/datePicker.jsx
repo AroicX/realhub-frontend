@@ -13,19 +13,6 @@ export default function DatePicker({ handleDates }) {
     setPicker(false)
   }, [])
 
-  // const togglePicker = () => {
-  //   if (!picker) {
-  //     setPicker(true)
-  //   }
-
-  //   if (picker) {
-  //     if (!isEmpty(dates.date_in) && !isEmpty(dates.date_out)) {
-  //       console.log('Check date in: ', isEmpty(dates.date_in))
-  //       setPicker(false)
-  //     }
-  //   }
-  // }
-
   const handleSumbit = () => {
     handleDates(dates)
     setTimeout(() => {
@@ -35,11 +22,11 @@ export default function DatePicker({ handleDates }) {
 
   return (
     <main>
-      <div class="search_css_drop">
-        <button class="search_css_drop-btn flex font-inter--light font-15 mx-5 cursor-pointer justify-center">
+      <div className="search_css_drop">
+        <button className="search_css_drop-btn flex font-inter--light font-15 mx-5 cursor-pointer justify-center">
           <SVG className="m-2" src="/svg/search_calendar.svg"></SVG>
         </button>
-        <div class="search_css_drop-content">
+        <div className="search_css_drop-content -mt-1">
           <p className="p-2 text-md font-inter--bold">Input a time range</p>
 
           <div className="flex m-auto pb-5">
@@ -70,6 +57,17 @@ export default function DatePicker({ handleDates }) {
               />
             </div>
           </div>
+
+          <div className="w-full  flex">
+            <input
+              className="w-screen text-black border px-2 pr-5 outline-none my-1 mx-2"
+              type="text"
+              name="city"
+              placeholder="Chose a city"
+            />
+          </div>
+
+          <br />
 
           <hr />
           <div className="flex justify-end mt-2">
