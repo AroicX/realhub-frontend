@@ -60,16 +60,19 @@ export default function Listing() {
                     <input
                       className="p-2 py-3 border border-black rounded-sm text-xs font-inter outline-none"
                       type="number"
-                      placeholder="#7,000,000"
+                      placeholder="$1,000,000"
                       autoFocus={true}
+                      min="20000"
+                      // onInput={validity.valid || (value = '')}
                     />
                   </div>
                   <div className="flex flex-col p-2 m-auto">
                     <span className="my-2">Maximum Price </span>
                     <input
                       className="p-2 py-3 border border-black rounded-sm text-xs font-inter outline-none"
+                      placeholder="$7,000,000"
                       type="number"
-                      placeholder="#7,000,000"
+                      min="0"
                     />
                   </div>
                 </div>

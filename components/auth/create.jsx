@@ -163,16 +163,22 @@ export default function CreateAccount({ view, modalHandler }) {
             </div>
           </div>
           <div className="px-2 flex flex-row ">
-            <button className="w-full flex bg-facebook p-2 align-middle mx-2">
+            <a
+              href={`${process.env.NEXT_PUBLIC_BASE_URL}/facebook`}
+              className="w-full flex bg-facebook p-2 align-middle mx-2"
+            >
               <SVG className="m-1" src="/svg/facebook.svg"></SVG>
               <span className="text-white font-sm m-2">
                 Login With Facebook
               </span>
-            </button>
-            <button className="w-full flex bg-google p-2 items-center mx-2">
+            </a>
+            <a
+              href={`${process.env.NEXT_PUBLIC_BASE_URL}/google`}
+              className="w-full flex bg-google p-2 items-center mx-2"
+            >
               <SVG className="m-1 my-2" src="/svg/google.svg"></SVG>
               <span className="text-white font-sm m-2">Login With Google</span>
-            </button>
+            </a>
           </div>
           <hr className="my-10 mx-5" style={{ width: '90%' }} />
           {/* <form className="my-10 relative"> */}
