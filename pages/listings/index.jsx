@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Carousel from "@/components/global/Carousel";
 import GuestDropDown from "@/components/dropdowns/guestdropdown/guestdropdown";
 import CityDropDown from "@/components/dropdowns/citydropdown/citydropdown";
+import ToggleCurrency from "@/components/toggleCurrency/toggleCurrency";
 
 export default function Listing() {
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function Listing() {
   const [guests, setGuest] = useState({ adult: 1, children: 1, infants: 1 });
   const [isCityDropActive, setIsCityDropActive] = useState(false);
   const [searchCity, setSearchCity] = useState("");
+  const [currency, setCurrency] = useState('dollar');
 
   // useEffect(() => {
   //   setPropertyMenu(false)
@@ -220,6 +222,7 @@ export default function Listing() {
       <div className="w-full flex justify-center p-3">
         <div className="flex ">
           {/*  */}
+          <ToggleCurrency currency={currency} setCurrency={setCurrency}/>
           <div className="flex bg-white border border-black relative">
             <span className="m-auto">
               <SVG className="m-3" src="/svg/search.svg"></SVG>
@@ -256,7 +259,7 @@ export default function Listing() {
               placeholder="Check in"
             />
           </div>
-          <div className="flex bg-white border border-black">
+          {/* <div className="flex bg-white border border-black">
             <span className="m-auto">
               <SVG className="m-3" src="/svg/date-out.svg"></SVG>
             </span>
@@ -267,7 +270,7 @@ export default function Listing() {
               name="date-out"
               placeholder="Check in"
             />
-          </div>
+          </div> */}
           {/* <div className="flex bg-white border border-black">
             <span className="m-auto">
               <SVG className="m-3" src="/svg/guest-number.svg"></SVG>
