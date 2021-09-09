@@ -2646,6 +2646,11 @@ react-transition-group@^4.3.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-two-thumb-input-range@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-two-thumb-input-range/-/react-two-thumb-input-range-1.0.7.tgz#0748a39ad19f875aafc97d68255c21284f0ae0fb"
+  integrity sha512-nqU3XXWPpMqz4zqOIlSZ2LJBj2lm9cas6O3ZytQucuVpOly5dkf5RgWT1dAeXIioXyz/stnMnLTYq4IZqQbR9A==
+
 react@17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"

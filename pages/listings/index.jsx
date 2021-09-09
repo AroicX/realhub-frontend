@@ -9,6 +9,7 @@ import Carousel from "@/components/global/Carousel";
 import GuestDropDown from "@/components/dropdowns/guestdropdown/guestdropdown";
 import CityDropDown from "@/components/dropdowns/citydropdown/citydropdown";
 import ToggleCurrency from "@/components/toggleCurrency/toggleCurrency";
+import PriceRange from "@/components/priceRange/priceRange";
 
 export default function Listing() {
   const router = useRouter();
@@ -21,7 +22,9 @@ export default function Listing() {
   const [guests, setGuest] = useState({ adult: 1, children: 1, infants: 1 });
   const [isCityDropActive, setIsCityDropActive] = useState(false);
   const [searchCity, setSearchCity] = useState("");
-  const [currency, setCurrency] = useState('dollar');
+  const [currency, setCurrency] = useState("dollar");
+  const [minPrice, setMinPrice] = useState("700000");
+  const [maxPrice, setMaxPrice] = useState("1700000");
 
   // useEffect(() => {
   //   setPropertyMenu(false)
@@ -46,6 +49,12 @@ export default function Listing() {
     setIsCityDropActive(true);
   };
 
+  const thumbStyle = {
+    height: "2em",
+    width: "2em",
+    background: "#3d3d3d",
+  };
+
   return (
     <Layout type="navigation" title="Listing">
       <div className="w-full flex flex-col lg:flex-row justify-between  h-auto ">
@@ -66,6 +75,12 @@ export default function Listing() {
                 <p className="m-auto p-2 text-md font-inter">
                   Input a price range
                 </p>
+                <PriceRange
+                  minPrice={minPrice}
+                  maxPrice={maxPrice}
+                  setMinPrice={setMinPrice}
+                  setMaxPrice={setMaxPrice}
+                />
                 <div className="flex flex-col lg:flex-row justify-between ">
                   <div className="flex flex-col p-2 m-auto">
                     <span className="my-2">Minimum Price</span>
@@ -74,7 +89,8 @@ export default function Listing() {
                       type="number"
                       placeholder="$1,000,000"
                       autoFocus={true}
-                      min="20000"
+                      value={minPrice}
+                      onChange={(e) => setMinPrice(e.target.value)}
                       // onInput={validity.valid || (value = '')}
                     />
                   </div>
@@ -84,7 +100,8 @@ export default function Listing() {
                       className="p-2 py-3 border border-black rounded-sm text-xs font-inter outline-none"
                       placeholder="$7,000,000"
                       type="number"
-                      min="0"
+                      value={maxPrice}
+                      onChange={(e) => setMaxPrice(e.target.value)}
                     />
                   </div>
                 </div>
@@ -222,7 +239,7 @@ export default function Listing() {
       <div className="w-full flex justify-center p-3">
         <div className="flex ">
           {/*  */}
-          <ToggleCurrency currency={currency} setCurrency={setCurrency}/>
+          <ToggleCurrency currency={currency} setCurrency={setCurrency} />
           <div className="flex bg-white border border-black relative">
             <span className="m-auto">
               <SVG className="m-3" src="/svg/search.svg"></SVG>
@@ -242,7 +259,7 @@ export default function Listing() {
               <CityDropDown
                 searchCity={searchCity}
                 setSearchCity={setSearchCity}
-                setIsCityDropActive = {setIsCityDropActive}
+                setIsCityDropActive={setIsCityDropActive}
               />
             )}
           </div>

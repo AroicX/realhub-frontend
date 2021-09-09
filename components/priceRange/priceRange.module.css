@@ -1,0 +1,211 @@
+.PriceRangeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 1.1em;
+  margin-bottom: 1.1em;
+  z-index: 1;
+}
+
+.RangeTrack {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #858585;
+}
+
+.MinPrice {
+  width: 100%;
+  position: absolute;
+  -webkit-appearance: none;
+  background: transparent;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.MaxPrice {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+  position: absolute;
+  grid-column: 1;
+  grid-row: 2;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.MaxPrice::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.MaxPrice:focus {
+  outline: none;
+}
+
+/* .MaxPrice::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+} */
+
+/* Special styling for WebKit/Blink */
+.MaxPrice::-webkit-slider-thumb {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  background: #3d3d3d;
+  pointer-events: auto;
+  cursor: pointer;
+  margin-top: 0px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for Firefox */
+.MaxPrice::-moz-range-thumb {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  background: #3d3d3d;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+.MaxPrice::-ms-thumb {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  background: #3d3d3d;
+  pointer-events: auto;
+  cursor: pointer;
+}
+/* 
+.MaxPrice::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #858585;
+}
+
+.MaxPrice:focus::-webkit-slider-runnable-track {
+  background: #858585;
+}
+
+.MaxPrice::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #858585;
+}
+
+.MaxPrice::-ms-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+.MaxPrice::-ms-fill-lower {
+  background: #858585;
+}
+.MaxPrice:focus::-ms-fill-lower {
+  background: #858585;
+}
+.MaxPrice::-ms-fill-upper {
+  background: #858585;
+}
+.MaxPrice:focus::-ms-fill-upper {
+  background: #858585;
+} */
+
+/* Min Price */
+.MinPrice::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.MinPrice:focus {
+  outline: none;
+}
+
+/* .MinPrice::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+} */
+
+/* Special styling for WebKit/Blink */
+.MinPrice::-webkit-slider-thumb {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  background: #3d3d3d;
+  pointer-events: auto;
+  margin-top: 0px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for Firefox */
+.MinPrice::-moz-range-thumb {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  background: #3d3d3d;
+  pointer-events: auto;
+}
+
+/* All the same stuff for IE */
+.MinPrice::-ms-thumb {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  background: #3d3d3d;
+  pointer-events: auto;
+}
+/* 
+.MinPrice::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #858585;
+}
+
+.MinPrice:focus::-webkit-slider-runnable-track {
+  background: #858585;
+}
+
+.MinPrice::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #858585;
+}
+
+.MinPrice::-ms-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+.MinPrice::-ms-fill-lower {
+  background: #858585;
+}
+.MinPrice:focus::-ms-fill-lower {
+  background: #858585;
+}
+.MinPrice::-ms-fill-upper {
+  background: #858585;
+}
+.MinPrice:focus::-ms-fill-upper {
+  background: #858585;
+} */
