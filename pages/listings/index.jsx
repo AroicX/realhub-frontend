@@ -1,22 +1,25 @@
-import { useContext, useEffect, useState } from 'react'
-import Layout from '@/components/layout/layout'
-import { MapComponent } from '@/components/global/MapComponent'
-import Link from '@/components/link'
-import SVG from 'react-inlinesvg'
-import { ListingContext } from '@/hooks/listing'
-import { useRouter } from 'next/router'
-import Carousel from '@/components/global/Carousel'
-import GuestDropDown from '@/components/dropdowns/guestdropdown/guestdropdown';
+import { useContext, useEffect, useState } from "react";
+import Layout from "@/components/layout/layout";
+import { MapComponent } from "@/components/global/MapComponent";
+import Link from "@/components/link";
+import SVG from "react-inlinesvg";
+import { ListingContext } from "@/hooks/listing";
+import { useRouter } from "next/router";
+import Carousel from "@/components/global/Carousel";
+import GuestDropDown from "@/components/dropdowns/guestdropdown/guestdropdown";
+import CityDropDown from "@/components/dropdowns/citydropdown/citydropdown";
 
 export default function Listing() {
-  const router = useRouter()
+  const router = useRouter();
 
-  const [grid, setGrid] = useState(4)
-  const [showMap, setShowMap] = useState(false)
-  const { listings } = useContext(ListingContext)
-  const [priceMenu, setPriceMenu] = useState(false)
-  const [propertyMenu, setPropertyMenu] = useState(false)
-  const [guests, setGuest] = useState({adult: 1, children: 1, infants: 1})
+  const [grid, setGrid] = useState(4);
+  const [showMap, setShowMap] = useState(false);
+  const { listings } = useContext(ListingContext);
+  const [priceMenu, setPriceMenu] = useState(false);
+  const [propertyMenu, setPropertyMenu] = useState(false);
+  const [guests, setGuest] = useState({ adult: 1, children: 1, infants: 1 });
+  const [isCityDropActive, setIsCityDropActive] = useState(false);
+  const [searchCity, setSearchCity] = useState("");
 
   // useEffect(() => {
   //   setPropertyMenu(false)
@@ -28,13 +31,18 @@ export default function Listing() {
 
   const handleMap = () => {
     if (grid === 4) {
-      setGrid(2)
-      setShowMap(!showMap)
+      setGrid(2);
+      setShowMap(!showMap);
     } else {
-      setGrid(4)
-      setShowMap(!showMap)
+      setGrid(4);
+      setShowMap(!showMap);
     }
-  }
+  };
+
+  const searchCityHandler = (e) => {
+    setSearchCity(e.target.value);
+    setIsCityDropActive(true);
+  };
 
   return (
     <Layout type="navigation" title="Listing">
@@ -212,7 +220,7 @@ export default function Listing() {
       <div className="w-full flex justify-center p-3">
         <div className="flex ">
           {/*  */}
-          <div className="flex bg-white border border-black">
+          <div className="flex bg-white border border-black relative">
             <span className="m-auto">
               <SVG className="m-3" src="/svg/search.svg"></SVG>
             </span>
@@ -222,7 +230,18 @@ export default function Listing() {
               type="text"
               name="city"
               placeholder="Choose a city"
+              onFocus={() => setIsCityDropActive(true)}
+              onChange={(e) => searchCityHandler(e)}
+              value={searchCity}
+              style={{ textTransform: "capitalize" }}
             />
+            {isCityDropActive && (
+              <CityDropDown
+                searchCity={searchCity}
+                setSearchCity={setSearchCity}
+                setIsCityDropActive = {setIsCityDropActive}
+              />
+            )}
           </div>
 
           <div className="flex bg-white border border-black">
@@ -261,7 +280,7 @@ export default function Listing() {
               placeholder="Number of Guests"
             />
           </div> */}
-          <GuestDropDown setGuest={setGuest} guests={guests}/>
+          <GuestDropDown setGuest={setGuest} guests={guests} />
           <button type="submit" className="bg-black text-white p-3 w-48">
             Search
           </button>
@@ -272,7 +291,7 @@ export default function Listing() {
 
       <div
         className={`w-full relative grid grid-cols-1 ${
-          showMap ? 'lg:grid-cols-2' : ''
+          showMap ? "lg:grid-cols-2" : ""
         }   p-5`}
       >
         <div className={`grid grid-cols-1 lg:grid-cols-${grid} gap-8`}>
@@ -281,7 +300,7 @@ export default function Listing() {
             listings.map((listing, key) => (
               <div
                 onClick={() => {
-                  router.push('/listings/' + listing.id)
+                  router.push("/listings/" + listing.id);
                 }}
                 className="r-listings"
                 key={key + 1}
@@ -315,7 +334,7 @@ export default function Listing() {
 
                 <br />
                 <Link
-                  to={'/listings/' + listing?.id}
+                  to={"/listings/" + listing?.id}
                   className="w-50 p-3 px-5 mx-5 my-5 bg-black text-white"
                 >
                   View Listing
@@ -340,5 +359,5 @@ export default function Listing() {
 
       {/*  */}
     </Layout>
-  )
+  );
 }
