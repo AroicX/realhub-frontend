@@ -6,6 +6,7 @@ import SVG from 'react-inlinesvg'
 import { ListingContext } from '@/hooks/listing'
 import { useRouter } from 'next/router'
 import Carousel from '@/components/global/Carousel'
+import GuestDropDown from '@/components/dropdowns/guestdropdown/guestdropdown';
 
 export default function Listing() {
   const router = useRouter()
@@ -15,6 +16,7 @@ export default function Listing() {
   const { listings } = useContext(ListingContext)
   const [priceMenu, setPriceMenu] = useState(false)
   const [propertyMenu, setPropertyMenu] = useState(false)
+  const [guests, setGuest] = useState({adult: 1, children: 1, infants: 1})
 
   // useEffect(() => {
   //   setPropertyMenu(false)
@@ -219,7 +221,7 @@ export default function Listing() {
               className="form-control px-2 pr-5 outline-none"
               type="text"
               name="city"
-              placeholder="Chose a city"
+              placeholder="Choose a city"
             />
           </div>
 
@@ -247,7 +249,7 @@ export default function Listing() {
               placeholder="Check in"
             />
           </div>
-          <div className="flex bg-white border border-black">
+          {/* <div className="flex bg-white border border-black">
             <span className="m-auto">
               <SVG className="m-3" src="/svg/guest-number.svg"></SVG>
             </span>
@@ -258,7 +260,8 @@ export default function Listing() {
               name="date-out"
               placeholder="Number of Guests"
             />
-          </div>
+          </div> */}
+          <GuestDropDown setGuest={setGuest} guests={guests}/>
           <button type="submit" className="bg-black text-white p-3 w-48">
             Search
           </button>

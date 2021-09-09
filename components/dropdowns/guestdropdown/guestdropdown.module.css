@@ -1,0 +1,37 @@
+.DropDownContainer {
+  display: flex;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.DropDownButton {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  height: 4em;
+  border: 1px solid #000000;
+  width: 18em;
+  padding-left: 1em;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.GuestNumber {
+  color: #978f8b;
+  font-size: 0.95rem;
+}
+
+.DropDownContentContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  border: 0.5px solid #282828;
+  padding: 1em;
+  background-color: #ffffff;
+  width: 100%;
+  top: 4em;
+}
