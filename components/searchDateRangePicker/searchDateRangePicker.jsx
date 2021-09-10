@@ -6,11 +6,11 @@ import SVG from "react-inlinesvg";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
 
-import classes from "./rangeDatePicker.module.css";
+import classes from "./searchDateRangePicker.module.css";
 
 import { formatDate, parseDate } from "react-day-picker/moment";
 
-export default class RangeDatePicker extends React.Component {
+export default class SearchDateRangePicker extends React.Component {
   constructor(props) {
     super(props);
     this.handleFromChange = this.handleFromChange.bind(this);
@@ -45,67 +45,73 @@ export default class RangeDatePicker extends React.Component {
     const modifiers = { start: from, end: to };
     return (
       <div
-        className={`${classes.DateRangeContainer} InputFromTo bg-white border border-black `}
+        className={`${classes.DateRangeContainer} InputFromTo flex m-auto pb-5 `}
       >
-        <div className={classes.MainDateContainer}>
-          <SVG className={classes.DateImage} src="/svg/date_check_in.svg"></SVG>
-          <DayPickerInput
-            value={from}
-            placeholder="Check in"
-            formatDate={formatDate}
-            parseDate={parseDate}
-            dayPickerProps={{
-              selectedDays: [from, { from, to }],
-              disabledDays: { after: to },
-              toMonth: to,
-              modifiers,
-              numberOfMonths: 2,
-              onDayClick: () => this.to.getInput().focus(),
-            }}
-            inputProps={{
-              style: {
-                outline: "none",
-                width: "100%",
-                boxSizing: "boder-box",
-                color: "#978f8b",
-              },
-            }}
-            onDayChange={this.handleFromChange}
-          />
-        </div>
-        <div className={classes.MainDateContainer}>
-          <SVG
-            className={classes.DateImage}
-            src="/svg/date_check_out.svg"
-          ></SVG>
-          <span className="InputFromTo-to">
+        <div className="flex flex-col justify-start">
+          <label className="my-1" htmlFor="date-in">
+            Check In
+          </label>
+          <div className="border border-black mr-3 flex items-center ">
             <DayPickerInput
-              ref={(el) => (this.to = el)}
-              value={to}
-              placeholder="Check out"
+              value={from}
+              placeholder="Check in"
               formatDate={formatDate}
               parseDate={parseDate}
               dayPickerProps={{
                 selectedDays: [from, { from, to }],
-                disabledDays: { before: from },
+                disabledDays: { after: to },
+                toMonth: to,
                 modifiers,
-                month: from,
-                fromMonth: from,
                 numberOfMonths: 2,
+                onDayClick: () => this.to.getInput().focus(),
               }}
               inputProps={{
                 style: {
                   outline: "none",
-                  with: "100%",
-                  boxSizing: "border-box",
+                  width: "100%",
+                  boxSizing: "boder-box",
                   color: "#978f8b",
                 },
               }}
-              onDayChange={this.handleToChange}
+              onDayChange={this.handleFromChange}
             />
-          </span>
+            <SVG className="mr-4" src="/svg/arrow_down.svg"></SVG>
+          </div>
         </div>
-
+        <div className="flex flex-col justify-start">
+          <label className="my-1" htmlFor="date-in">
+            Check Out
+          </label>
+          <div className="border border-black flex items-center">
+            <span className="InputFromTo-to">
+              <DayPickerInput
+                ref={(el) => (this.to = el)}
+                value={to}
+                placeholder="Check out"
+                formatDate={formatDate}
+                parseDate={parseDate}
+                dayPickerProps={{
+                  selectedDays: [from, { from, to }],
+                  disabledDays: { before: from },
+                  modifiers,
+                  month: from,
+                  fromMonth: from,
+                  numberOfMonths: 2,
+                }}
+                inputProps={{
+                  style: {
+                    outline: "none",
+                    with: "100%",
+                    boxSizing: "border-box",
+                    color: "#978f8b",
+                  },
+                }}
+                onDayChange={this.handleToChange}
+              />
+            </span>
+            <SVG className="mr-4" src="/svg/arrow_down.svg"></SVG>
+          </div>
+        </div>
         <Helmet>
           <style>{`
   .InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
