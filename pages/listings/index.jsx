@@ -254,7 +254,7 @@ export default function Listing() {
               onFocus={() => setIsCityDropActive(true)}
               onChange={(e) => searchCityHandler(e)}
               value={searchCity}
-              style={{ textTransform: "capitalize" }}
+              style={{ textTransform: "capitalize", color: "#978f8b"}}
             />
             {isCityDropActive && (
               <CityDropDown
