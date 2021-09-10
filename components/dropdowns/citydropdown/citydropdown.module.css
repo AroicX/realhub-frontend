@@ -1,0 +1,32 @@
+.CityDropDownContainer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  border: 1px solid #282828;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  top: 4em;
+  z-index: 1;
+}
+
+.CityDropItem {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    cursor: pointer;
+    padding: 0.5em 1.5em;
+    color: #525252;
+}
+
+.CityDropItem:hover {
+    background-color: #000000;
+    color: white;
+}
+
+.CityName {
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-transform: capitalize;
+}

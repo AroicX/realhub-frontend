@@ -1,40 +1,40 @@
-import { useEffect, useState } from 'react'
-import SVG from 'react-inlinesvg'
-import useWheel from '@/hooks/useWheel'
-import { useRouter } from 'next/router'
-import Layout from '@/components/layout/layout'
-import Modal from '@/components/global/modal'
-import BookingModal from '@/components/booking/bookingModal'
-import { MapComponent } from '@/components/global/MapComponent'
-import api from '@/services/api'
-import Link from '@/components/link'
-import Carousel from '@/components/global/Carousel'
-import { useUser } from '@/hooks/useUser'
+import { useEffect, useState } from "react";
+import SVG from "react-inlinesvg";
+import useWheel from "@/hooks/useWheel";
+import { useRouter } from "next/router";
+import Layout from "@/components/layout/layout";
+import Modal from "@/components/global/modal";
+import BookingModal from "@/components/booking/bookingModal";
+import { MapComponent } from "@/components/global/MapComponent";
+import api from "@/services/api";
+import Link from "@/components/link";
+import Carousel from "@/components/global/Carousel";
+import { useUser } from "@/hooks/useUser";
 
 const ListingPage = () => {
-  const currentUser = useUser()
-  const { isCollapse } = useWheel()
-  const [listing, setListing] = useState({})
-  const router = useRouter()
-  const slug = router.query.slug
+  const currentUser = useUser();
+  const { isCollapse } = useWheel();
+  const [listing, setListing] = useState({});
+  const router = useRouter();
+  const slug = router.query.slug;
 
   const getListing = async () => {
-    const { data } = await api.get('/listings?status=OPEN&id=' + slug)
-    const details = data.data[0]
-    details.images = JSON.parse(details.images)
-    details.amenities = JSON.parse(details.amenities)
-    setListing(details)
-  }
+    const { data } = await api.get("/listings?status=OPEN&id=" + slug);
+    const details = data.data[0];
+    details.images = JSON.parse(details.images);
+    details.amenities = JSON.parse(details.amenities);
+    setListing(details);
+  };
   useEffect(() => {
-    if (slug) getListing(slug)
-  }, [slug])
+    if (slug) getListing(slug);
+  }, [slug]);
 
-  const [bookingModal, setBookingModal] = useState(false)
+  const [bookingModal, setBookingModal] = useState(false);
 
   const toggleBookingModal = () => {
-    setBookingModal(!bookingModal)
-    document.querySelector('body').classList.toggle('no-scroll')
-  }
+    setBookingModal(!bookingModal);
+    document.querySelector("body").classList.toggle("no-scroll");
+  };
 
   // const {
   //   property_desc,
@@ -115,7 +115,7 @@ const ListingPage = () => {
                   height="50px"
                 ></SVG>
                 <span>
-                  {' '}
+                  {" "}
                   Take a 3D tour <br /> of the apartment.
                 </span>
               </div>
@@ -138,7 +138,7 @@ const ListingPage = () => {
                   height="50px"
                 ></SVG>
                 <span>
-                  {' '}
+                  {" "}
                   Book a physical <br />
                   tour of the house.
                 </span>
@@ -171,7 +171,10 @@ const ListingPage = () => {
                   <SVG src="/svg/caret-down.svg"></SVG>
                 </button>
               </div> */}
-            <button className="bg-green-600 text-white p-3 px-12  my-5">
+            <button
+              className="bg-green-600 text-white p-3 px-12  my-5"
+              onClick={() => router.push(`/listings/${slug}/pay`)}
+            >
               Pay For Property
             </button>
             <br />
@@ -192,7 +195,7 @@ const ListingPage = () => {
               <hr />
               <span className="font-inter--normal text-black my-2 text-sm py-2">
                 {listing.address}
-              </span>{' '}
+              </span>{" "}
               <br />
               <MapComponent
                 className="w-full my-5"
@@ -239,7 +242,7 @@ const ListingPage = () => {
           {currentUser?.user?.user?.id != listing?.userId?.id && (
             <Link
               className="flex w-full m-auto lg:ml-20 cursor-pointer"
-              to={'/app/profile/' + listing?.userId?.id}
+              to={"/app/profile/" + listing?.userId?.id}
             >
               <img
                 className="w-20 h-20 rounded-full mr-4"
@@ -256,7 +259,7 @@ const ListingPage = () => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default ListingPage
+export default ListingPage;

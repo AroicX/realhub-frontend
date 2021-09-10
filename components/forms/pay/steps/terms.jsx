@@ -2,12 +2,12 @@ import React from "react";
 import Button from "../button";
 import Header from "../header";
 
-export default function Terms() {
+export default function Terms(props) {
   return (
     <div className="flex justify-center font-inter overflow-y-hidden p-4 lg:p-0">
       <div className="lg:mx-0 w-full lg:w-2/4 pt-8 pb-4 border mt-4 mb-10">
         <div className="px-8 mb-5">
-          <Header text="Terms and conditions" />
+          <Header text="Terms and conditions" back={props.back}/>
           <hr />
           <div className="font-semibold mt-8 mb-4">
             Before proceeding with your payment, kindly read the terms and
@@ -74,7 +74,7 @@ export default function Terms() {
           <div>I agree</div>
         </div>
         <div className="px-8">
-          <Button text="Continue" />
+          <Button text="Continue" onClick={props.next}/>
         </div>
       </div>
     </div>

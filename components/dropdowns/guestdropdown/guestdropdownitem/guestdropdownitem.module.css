@@ -1,0 +1,50 @@
+.DropDownItemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.8em;
+  border-bottom: 1px solid #858585;
+  margin-bottom: 0.5em;
+}
+
+.ItemDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.ItemTitle {
+  color: #000000;
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: capitalize;
+  user-select: none;
+}
+
+.ItemDescription {
+  color: #978f8b;
+  font-size: 0.75rem;
+  user-select: none;
+}
+
+.ItemQuantity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ItemSize {
+  margin-right: 1em;
+  margin-left: 1em;
+  font-weight: 500;
+  color: #000000;
+  font-size: 0.875rem;
+  user-select: none;
+}
+
+.MinusSignImage {
+  cursor: pointer;
+}
+
+.PlusSignImage {
+  cursor: pointer;
+}

@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import SVG from "react-inlinesvg";
 import Button from "../button";
 import Header from "../header";
 import Layout from "../layout";
 
-export default function Card() {
+export default function Card(props) {
+  const [cardName, setCardName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardExp, setCardExp] = useState("");
+  const [cardCvv, setCardCvv] = useState("");
+
+  const paymentDetails = {
+    card_name: cardName,
+    card_number: cardNumber,
+    card_exp: cardExp,
+    card_cvv: cardCvv
+  }
+
   const back = () => {
-    // console.log("clicked");
+    props.back();
   };
-  const onClick = () => {};
+  const onClick = () => {
+    console.log(paymentDetails);
+    props.next();
+  };
+
+  const cardExpHandler = (cardExpValue) => {
+    return setCardExp(cardExpValue)
+  }
+
   return (
     <Layout>
       <Header text="Pay with card" back={back} />
@@ -19,6 +39,8 @@ export default function Card() {
           <input
             className="w-full md:px-5 md:py-6 px-3 py-4"
             placeholder="Osamudiamen Imasuen"
+            value={cardName}
+            onChange={(e) => setCardName(e.target.value)}
           />
         </div>
         <div className="mb-6">
@@ -26,6 +48,8 @@ export default function Card() {
           <input
             className="w-full md:px-5 md:py-6 px-3 py-4"
             placeholder="5399 4823 4299 9421 4992"
+            value={cardNumber}
+            onChange={(e) => setCardNumber(e.target.value)}
           />
         </div>
 
@@ -35,6 +59,8 @@ export default function Card() {
             <input
               className="w-full md:px-5 md:py-6 px-3 py-4"
               placeholder="MM/YY"
+              value={cardExp}
+              onChange={(e) => cardExpHandler(e.target.value)}
             />
           </div>
           <div>
@@ -42,6 +68,8 @@ export default function Card() {
             <input
               className="w-full md:px-5 md:py-6 px-3 py-4"
               placeholder="---"
+              value={cardCvv}
+              onChange={(e) => setCardCvv(e.target.value)}
             />
           </div>
         </div>

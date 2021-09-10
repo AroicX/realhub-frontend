@@ -1,0 +1,45 @@
+.ToggleCurencyContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 1.2em;
+}
+
+.DollarPlaceHolder {
+    color: #000000;
+    font-weight: 500;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.NairaPlaceHolder {
+    color: #000000;
+    font-weight: 500;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.MainToggleContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
+.ToggleLine {
+    width: 4.5rem;
+    height: 2px;
+    background-color: #858585;
+}
+
+.Toggle {
+    background-color: #3D3D3D;
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 50%;
+    position: absolute;
+    transition: left 0.1s linear;
+    transition: right 0.1s linear;
+}

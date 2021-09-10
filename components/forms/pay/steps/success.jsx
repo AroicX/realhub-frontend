@@ -1,10 +1,15 @@
 import React from "react";
+import { useRouter } from "next/router";
 import SVG from "react-inlinesvg";
 import Button from "../button";
 
 import Layout from "../layout";
 
-export default function Success() {
+export default function Success(props) {
+  const router = useRouter();
+  const returnHomeHandler = () => {
+    router.push('/');
+  }
   return (
     <Layout>
       <SVG src="/svg/badge.svg"></SVG>
@@ -12,7 +17,7 @@ export default function Success() {
         Your payment has been completed and it is being held in our secure
         escrow until all parties have been satisfied
       </div>
-      <Button text="Thank You! Return Home" />
+      <Button text="Thank You! Return Home" onClick={returnHomeHandler}/>
     </Layout>
   );
 }

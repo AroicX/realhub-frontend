@@ -3,11 +3,13 @@ import Button from "../button";
 import Header from "../header";
 import Layout from "../layout";
 
-export default function BreakDown() {
-  const onClick = () => {};
+export default function BreakDown(props) {
+  const onClick = () => {
+    props.next();
+  };
   return (
     <Layout>
-      <Header text="Price breakdown" />
+      <Header text="Price breakdown" back={props.back}/>
       <hr className="w-full" />
       <div className="font-medium mt-4 w-full">
         Here is a breakdown of what you’ll be paying for:
