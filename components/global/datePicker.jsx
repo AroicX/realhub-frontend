@@ -24,7 +24,7 @@ export default function DatePicker({ handleDates }) {
 
   return (
     <main>
-      <div className="search_css_drop">
+      <div className="search_css_drop z-12">
         <button className="search_css_drop-btn flex font-inter--light font-15 mx-5 cursor-pointer justify-center">
           <SVG className="m-2" src="/svg/search_calendar.svg"></SVG>
         </button>

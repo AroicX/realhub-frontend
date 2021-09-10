@@ -10,6 +10,7 @@ import GuestDropDown from "@/components/dropdowns/guestdropdown/guestdropdown";
 import CityDropDown from "@/components/dropdowns/citydropdown/citydropdown";
 import ToggleCurrency from "@/components/toggleCurrency/toggleCurrency";
 import PriceRange from "@/components/priceRange/priceRange";
+import DateRangePicker from "@/components/rangeDatePicker/rangeDatePicker";
 
 export default function Listing() {
   const router = useRouter();
@@ -66,12 +67,12 @@ export default function Listing() {
           {/* price dropdown menu*/}
 
           <main className="m-auto">
-            <div className="r_css_drop">
+            <div className="r_css_drop z-10">
               <button className="r_css_drop-btn flex font-inter--light font-15 text-black ">
                 Price
                 <SVG className="mx-3" src="/svg/caret-down.svg" />
               </button>
-              <div className="r_css_drop-content">
+              <div className="r_css_drop-content z-10">
                 <p className="m-auto p-2 text-md font-inter">
                   Input a price range
                 </p>
@@ -122,12 +123,12 @@ export default function Listing() {
           {/* property dropdown menu*/}
 
           <main className="m-auto">
-            <div className="r_css_drop">
+            <div className="r_css_drop z-10">
               <button className="r_css_drop-btn flex font-inter--light font-15 text-black ">
                 Property Type
                 <SVG className="mx-3" src="/svg/caret-down.svg" />
               </button>
-              <div className="r_css_drop-content">
+              <div className="r_css_drop-content z-10">
                 {/*  */}
                 <p className="m-auto p-2 text-md font-inter--bold">
                   What type of property are you interested in?
@@ -263,8 +264,9 @@ export default function Listing() {
               />
             )}
           </div>
+          <DateRangePicker />
 
-          <div className="flex bg-white border border-black">
+          {/* <div className="flex bg-white border border-black">
             <span className="m-auto">
               <SVG className="m-3" src="/svg/date-in.svg"></SVG>
             </span>
@@ -275,7 +277,7 @@ export default function Listing() {
               name="date-in"
               placeholder="Check in"
             />
-          </div>
+          </div> */}
           {/* <div className="flex bg-white border border-black">
             <span className="m-auto">
               <SVG className="m-3" src="/svg/date-out.svg"></SVG>
