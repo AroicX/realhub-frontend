@@ -1,60 +1,52 @@
-import { useContext, useEffect, useState } from "react";
-import Layout from "@/components/layout/layout";
-import { MapComponent } from "@/components/global/MapComponent";
-import Link from "@/components/link";
-import SVG from "react-inlinesvg";
-import { ListingContext } from "@/hooks/listing";
-import { useRouter } from "next/router";
-import Carousel from "@/components/global/Carousel";
-import GuestDropDown from "@/components/dropdowns/guestdropdown/guestdropdown";
-import CityDropDown from "@/components/dropdowns/citydropdown/citydropdown";
-import ToggleCurrency from "@/components/toggleCurrency/toggleCurrency";
-import PriceRange from "@/components/priceRange/priceRange";
-import DateRangePicker from "@/components/rangeDatePicker/rangeDatePicker";
+import { useContext, useEffect, useState } from 'react'
+import Layout from '@/components/layout/layout'
+import { MapComponent } from '@/components/global/MapComponent'
+import Link from '@/components/link'
+import SVG from 'react-inlinesvg'
+import { ListingContext } from '@/hooks/listing'
+import { useRouter } from 'next/router'
+import Carousel from '@/components/global/Carousel'
+import GuestDropDown from '@/components/dropdowns/guestdropdown/guestdropdown'
+import CityDropDown from '@/components/dropdowns/citydropdown/citydropdown'
+import ToggleCurrency from '@/components/toggleCurrency/toggleCurrency'
+import PriceRange from '@/components/priceRange/priceRange'
+import DateRangePicker from '@/components/rangeDatePicker/rangeDatePicker'
 
 export default function Listing() {
-  const router = useRouter();
+  const router = useRouter()
 
-  const [grid, setGrid] = useState(4);
-  const [showMap, setShowMap] = useState(false);
-  const { listings } = useContext(ListingContext);
-  const [priceMenu, setPriceMenu] = useState(false);
-  const [propertyMenu, setPropertyMenu] = useState(false);
-  const [guests, setGuest] = useState({ adult: 1, children: 1, infants: 1 });
-  const [isCityDropActive, setIsCityDropActive] = useState(false);
-  const [searchCity, setSearchCity] = useState("");
-  const [currency, setCurrency] = useState("dollar");
-  const [minPrice, setMinPrice] = useState("700000");
-  const [maxPrice, setMaxPrice] = useState("1700000");
-
-  // useEffect(() => {
-  //   setPropertyMenu(false)
-  // }, [priceMenu])
-
-  // useEffect(() => {
-  //   setPriceMenu(false)
-  // }, [propertyMenu])
+  const [grid, setGrid] = useState(4)
+  const [showMap, setShowMap] = useState(false)
+  const { listings } = useContext(ListingContext)
+  const [priceMenu, setPriceMenu] = useState(false)
+  const [propertyMenu, setPropertyMenu] = useState(false)
+  const [guests, setGuest] = useState({ adult: 1, children: 1, infants: 1 })
+  const [isCityDropActive, setIsCityDropActive] = useState(false)
+  const [searchCity, setSearchCity] = useState('')
+  const [currency, setCurrency] = useState('dollar')
+  const [minPrice, setMinPrice] = useState('700000')
+  const [maxPrice, setMaxPrice] = useState('1700000')
 
   const handleMap = () => {
     if (grid === 4) {
-      setGrid(2);
-      setShowMap(!showMap);
+      setGrid(2)
+      setShowMap(!showMap)
     } else {
-      setGrid(4);
-      setShowMap(!showMap);
+      setGrid(4)
+      setShowMap(!showMap)
     }
-  };
+  }
 
   const searchCityHandler = (e) => {
-    setSearchCity(e.target.value);
-    setIsCityDropActive(true);
-  };
+    setSearchCity(e.target.value)
+    setIsCityDropActive(true)
+  }
 
   const thumbStyle = {
-    height: "2em",
-    width: "2em",
-    background: "#3d3d3d",
-  };
+    height: '2em',
+    width: '2em',
+    background: '#3d3d3d',
+  }
 
   return (
     <Layout type="navigation" title="Listing">
@@ -252,9 +244,11 @@ export default function Listing() {
               name="city"
               placeholder="Choose a city"
               onFocus={() => setIsCityDropActive(true)}
+              autoComplete="false"
+              autoSave="false"
               onChange={(e) => searchCityHandler(e)}
               value={searchCity}
-              style={{ textTransform: "capitalize", color: "#978f8b"}}
+              style={{ textTransform: 'capitalize', color: '#978f8b' }}
             />
             {isCityDropActive && (
               <CityDropDown
@@ -313,7 +307,7 @@ export default function Listing() {
 
       <div
         className={`w-full relative grid grid-cols-1 ${
-          showMap ? "lg:grid-cols-2" : ""
+          showMap ? 'lg:grid-cols-2' : ''
         }   p-5`}
       >
         <div className={`grid grid-cols-1 lg:grid-cols-${grid} gap-8`}>
@@ -322,7 +316,7 @@ export default function Listing() {
             listings.map((listing, key) => (
               <div
                 onClick={() => {
-                  router.push("/listings/" + listing.id);
+                  router.push('/listings/' + listing.id)
                 }}
                 className="r-listings"
                 key={key + 1}
@@ -356,7 +350,7 @@ export default function Listing() {
 
                 <br />
                 <Link
-                  to={"/listings/" + listing?.id}
+                  to={'/listings/' + listing?.id}
                   className="w-50 p-3 px-5 mx-5 my-5 bg-black text-white"
                 >
                   View Listing
@@ -381,5 +375,5 @@ export default function Listing() {
 
       {/*  */}
     </Layout>
-  );
+  )
 }

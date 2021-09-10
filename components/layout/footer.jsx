@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row">
-          <div className="flex flex-col p-5 lg:p-0 my-5 lg:my-0">
+          {/* <div className="flex flex-col p-5 lg:p-0 my-5 lg:my-0">
             <span className="font-inter--light text-md">Host</span>
 
             <Link to="/" className="font-inter--reg text-sm my-3">
@@ -49,19 +49,26 @@ const Footer = () => {
             <Link to="/" className="font-inter--reg text-sm my-3">
               Support
             </Link>
-          </div>
+          </div> */}
 
           <div className="flex flex-col  p-5 lg:p-0 lg:mx-20 ">
             <span className="font-inter--light text-md ">Company</span>
 
             <Link to="/" className="font-inter--reg text-sm my-3">
-              Privacy Policy
-            </Link>
-            <Link to="/" className="font-inter--reg text-sm my-3">
-              Terms of Service
-            </Link>
-            <Link to="/" className="font-inter--reg text-sm my-3">
               About Us
+            </Link>
+            <Link to="/" className="font-inter--reg text-sm my-3">
+              Locations we cover
+            </Link>
+            <Link to="/" className="font-inter--reg text-sm my-3">
+              Read our Guidelines
+            </Link>
+          </div>
+          <div className="flex flex-col  p-5 lg:p-0 lg:mx-20 ">
+            <span className="font-inter--light text-md ">Support</span>
+
+            <Link to="/" className="font-inter--reg text-sm my-3">
+              Help Center
             </Link>
           </div>
         </div>
