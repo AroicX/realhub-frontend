@@ -1,24 +1,26 @@
-import { isEmpty } from '@/utils/helpers'
-import { useEffect, useState } from 'react'
-import SVG from 'react-inlinesvg'
+import { isEmpty } from "@/utils/helpers";
+import React, { useEffect, useState } from "react";
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import "react-day-picker/lib/style.css";
+import SVG from "react-inlinesvg";
 
 export default function DatePicker({ handleDates }) {
-  const [picker, setPicker] = useState(false)
+  const [picker, setPicker] = useState(false);
   const [dates, setDates] = useState({
-    date_in: '',
-    date_out: '',
-  })
+    date_in: "",
+    date_out: "",
+  });
 
   useEffect(() => {
-    setPicker(false)
-  }, [])
+    setPicker(false);
+  }, []);
 
   const handleSumbit = () => {
-    handleDates(dates)
+    handleDates(dates);
     setTimeout(() => {
-      setPicker(false)
-    }, 100)
-  }
+      setPicker(false);
+    }, 100);
+  };
 
   return (
     <main>
@@ -34,27 +36,25 @@ export default function DatePicker({ handleDates }) {
               <label className="my-1" htmlFor="date-in">
                 Check In
               </label>
-              <input
-                className="p-1 border border-black"
-                type="date"
-                name="date-in"
-                onChange={(e) =>
-                  setDates({ ...dates, date_in: e.target.value })
-                }
-              />
+              <div className="border border-black mr-3 flex items-center ">
+                <DayPickerInput
+                  onDayChange={(day) => setDates({...dates, date_in: day})}
+                  placeholder=""
+                />
+                <SVG className="mr-4" src="/svg/arrow_down.svg"></SVG>
+              </div>
             </div>
             <div className="flex flex-col justify-start">
               <label className="my-1" htmlFor="date-in">
                 Check Out
               </label>
-              <input
-                className="p-1 border border-black"
-                type="date"
-                name="date-in"
-                onChange={(e) =>
-                  setDates({ ...dates, date_out: e.target.value })
-                }
-              />
+              <div className="border border-black flex items-center">
+                <DayPickerInput
+                  onDayChange={(day) => setDates({ ...dates, date_out: day })}
+                  placeholder=""
+                />
+                <SVG className="mr-4" src="/svg/arrow_down.svg"></SVG>
+              </div>
             </div>
           </div>
 
@@ -81,5 +81,5 @@ export default function DatePicker({ handleDates }) {
         </div>
       </div>
     </main>
-  )
+  );
 }
