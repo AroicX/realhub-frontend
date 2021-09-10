@@ -59,12 +59,12 @@ export default function Listing() {
           {/* price dropdown menu*/}
 
           <main className="m-auto">
-            <div className="r_css_drop z-10">
+            <div className="r_css_drop " style={{ zIndex: 15 }}>
               <button className="r_css_drop-btn flex font-inter--light font-15 text-black ">
                 Price
                 <SVG className="mx-3" src="/svg/caret-down.svg" />
               </button>
-              <div className="r_css_drop-content z-10">
+              <div className="r_css_drop-content z-15">
                 <p className="m-auto p-2 text-md font-inter">
                   Input a price range
                 </p>
@@ -115,12 +115,12 @@ export default function Listing() {
           {/* property dropdown menu*/}
 
           <main className="m-auto">
-            <div className="r_css_drop z-10">
+            <div className="r_css_drop " style={{ zIndex: 10 }}>
               <button className="r_css_drop-btn flex font-inter--light font-15 text-black ">
                 Property Type
                 <SVG className="mx-3" src="/svg/caret-down.svg" />
               </button>
-              <div className="r_css_drop-content z-10">
+              <div className="r_css_drop-content z-7">
                 {/*  */}
                 <p className="m-auto p-2 text-md font-inter--bold">
                   What type of property are you interested in?
@@ -248,7 +248,7 @@ export default function Listing() {
               autoSave="false"
               onChange={(e) => searchCityHandler(e)}
               value={searchCity}
-              style={{ textTransform: 'capitalize', color: '#978f8b' }}
+              style={{ textTransform: "capitalize", color: "#978f8b" }}
             />
             {isCityDropActive && (
               <CityDropDown
