@@ -125,11 +125,14 @@ export default class RangeDatePicker extends React.Component {
     border-bottom-right-radius: 50% !important;
   }
   .InputFromTo .DayPickerInput-Overlay {
-    width: 550px;
+    display: flex;
+    flex-direction: column;
+    width: 34.375em;
     top: 1.2em;
+    flex-wrap: none !important;
   }
   .InputFromTo-to .DayPickerInput-Overlay {
-    margin-left: -198px;
+    margin-left: -12.375em;
     top: 1.2em;
   }
 `}</style>
