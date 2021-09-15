@@ -22,7 +22,7 @@ export default function Search({ css }) {
       <input
         className="form-control"
         type="text"
-        placeholder="search for apartments by location"
+        placeholder="Search for stay by location"
         onChange={(e) => setSearch(e.target.value)}
       />
 
