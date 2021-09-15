@@ -910,13 +910,13 @@ footer {
   height: auto;
   padding: 1rem;
   background: #fff;
-  border: 2px solid #000;
+  /* border: 2px solid #000; */
   z-index: 1;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
 
-.dropdown .dropdown-menu::after {
+/* .dropdown .dropdown-menu::after {
   content: "";
   height: 23.73px;
   width: 23.73px;
@@ -928,7 +928,7 @@ footer {
   border-left: 2px solid #000;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-}
+} */
 
 .slide-down {
   display: block;
