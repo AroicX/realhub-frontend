@@ -103,7 +103,7 @@ export default function Listing() {
                 <div className="flex justify-between mt-2">
                   <button>Clear</button>
                   <button className="bg-green-700 p-2 text-white font-inter rounded-sm">
-                    Update
+                    Save
                   </button>
                 </div>
               </div>
@@ -209,7 +209,7 @@ export default function Listing() {
                 <div className="flex justify-between mt-2">
                   <button>Clear</button>
                   <button className="bg-green-700 p-2 text-white font-inter rounded-sm">
-                    Update
+                    Save
                   </button>
                 </div>
                 {/*  */}
