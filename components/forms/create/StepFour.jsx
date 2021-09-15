@@ -41,13 +41,10 @@ export default function StepFour({
 
   return (
     <>
-      <Formheader title="Tell Us More About Your Property" back={back} />
+      <Formheader title="Just a few more details on your property and we will be all set" back={back} />
       <div className="sm:pl-8 sm:pr-8 pl-4 pr-4">
-        <div className="mt-8 text-lg w-70 mb-5 w-auto">
-          Just a few more details on your property and we will be all set.
-        </div>
         <div className="mb-3 font-medium text-sm uppercase">
-          Number of Bedrooms
+          Bedrooms
         </div>
         <div className="mb-8">
           <DropDown

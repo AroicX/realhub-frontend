@@ -61,7 +61,7 @@ export default function AddListing() {
 
       {/*  */}
       <div className="flex 2xl:flex-row flex-row justify-center items-start mt-20">
-        {step === 8 && <Item />}
+        {step === 8 && <Item formdata={form}/>}
         {step === 8 && (
           <div className="hidden 2xl:block mt-40">
             <hr className="border-dotted w-80 h-2 mr-5 ml-5 mt-30" />
