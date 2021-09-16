@@ -13,9 +13,11 @@ export default function StepSeven({
   }
 
   const [data, setData] = useState({
-    price: formdata?.price || null,
+    price: formdata?.price || "",
     duration: formdata?.duration || null,
   })
+
+  const [ownersPrice, setOwnersPrice] = useState("")
 
   const handleSelected = (string) => {
     setData({ ...data, duration: string })
@@ -25,6 +27,25 @@ export default function StepSeven({
     console.log(data)
     setStep(currentStep + 1)
   }
+
+  const ownersPriceHandler = (e) => {
+    setData({ ...data, price: e.target.value })
+    let price = parseInt(e.target.value) * 100;
+    let customershare = (0.983 * price);
+    setOwnersPrice(customershare/100);
+  }
+  
+  let options = []
+    if(formdata.listing_type === "Coworking Space" ){
+      options = ["Per Day", "Per week", "Per Month"]
+    }
+    else if(formdata.lease_type == 'Short Lease') {
+      options = ["Per Night", "Per Week"]
+    }
+    else if(formdata?.lease_type == 'Rent'){
+      options = ["Per Month", "Per Year", "Per 2yrs"]
+    }
+
   return (
     <>
       <Formheader title="Lets talk Numbers" back={back} />
@@ -38,7 +59,8 @@ export default function StepSeven({
           placeholder="₦ 700,000.00"
           className="placeholder-secondary pl-6 pr-6 box-border pt-5 pb-5 sm:pt-5 border w-full mb-2 flex flex-row outline-none"
           value={data.price}
-          onChange={(e) => setData({ ...data, price: e.target.value })}
+          onChange={(e) => ownersPriceHandler(e)}
+          type="number"
         />
         <div className="flex flex-row items-start">
           <div className="flex flex-row items-start text-sm font-medium flex-1 mr-2">
@@ -49,13 +71,13 @@ export default function StepSeven({
             </div>
           </div>
           <div className="text-lightgreen text-sm w-5/12 sm:flex-none flex justify-end align-end text-right">
-            You recieve: ₦692,000.00
+           {ownersPrice ? `You recieve: ₦${ownersPrice}`:""} 
           </div>
         </div>
         <div className="mb-3 font-medium text-sm uppercase mt-6">Duration</div>
         <DropDown
           placeholder={data.bathrooms ? data.bathrooms : 'Select Duration'}
-          options={['Per Night', 'Per Day', 'Per Week']}
+          options={options}
           value={handleSelected}
         />
         <button

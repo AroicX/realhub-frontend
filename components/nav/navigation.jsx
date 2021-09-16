@@ -68,9 +68,9 @@ export default function Navigation({}) {
           <span className="m-auto mx-1">Menu</span>
         </button>
 
-        <div className="show-desktop m-auto">
+        {/* <div className="show-desktop m-auto">
           <Search css="my-2" />
-        </div>
+        </div> */}
 
         <div
           className="relative dropdown m-5 hide"

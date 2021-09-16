@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
-import Alert from '@/components/dashboard/alert'
-import DropDown from '@/components/forms/dropdown'
+import React, { useState } from "react";
+import Alert from "@/components/dashboard/alert";
+import DropDown from "@/components/forms/dropdown";
 
 export default function StepOne({ currentStep, setStep, formdata, propagate }) {
   const [data, setData] = useState({
     listing_type: formdata?.listing_type || null,
     is_apartment: formdata?.is_apartment || null,
-  })
+  });
 
   const handleSelected = (string) => {
-    setData({ ...data, listing_type: string })
-  }
+    setData({ ...data, listing_type: string });
+  };
   const handleStep = () => {
-    propagate(data)
-    setStep(currentStep + 1)
+    propagate(data);
+    setStep(currentStep + 1);
     // console.log(data)
-  }
+  };
 
   return (
     <>
@@ -27,15 +27,15 @@ export default function StepOne({ currentStep, setStep, formdata, propagate }) {
       <div className="sm:pl-8 pl-4 pr-4 sm:pr-8 mb-14">
         <DropDown
           placeholder={
-            data.listing_type ? data.listing_type : 'Select A listing Type'
+            data.listing_type ? data.listing_type : "Select A listing Type"
           }
-          options={['Apartment', 'House', 'Coworking Space']}
+          options={["Apartment", "House", "Coworking Space"]}
           value={handleSelected}
         />
 
         <div className="text-lg mb-5">
-          <div className="font-bold">Great!</div>
-          <div>Is your apartment serviced?</div>
+          {data.listing_type && <div className="font-bold">Great!</div>}
+          <div>Is your property serviced?</div>
         </div>
         <div className="flex flex-row items-center mb-8">
           <input
@@ -67,5 +67,5 @@ export default function StepOne({ currentStep, setStep, formdata, propagate }) {
         </button>
       </div>
     </>
-  )
+  );
 }

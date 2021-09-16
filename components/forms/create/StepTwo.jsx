@@ -18,12 +18,8 @@ export default function StepTwo({ currentStep, setStep, formdata, propagate }) {
 
   return (
     <>
-      <Formheader title="Lease Type" back={() => setStep(currentStep - 1)} />
-      <div className="sm:mt-8 text-lg w-70 mb-7 sm:mb-12 w-auto sm:ml-8 ml-4 mr-4 sm:mr-8">
-        Select a preferred lease term for your property.
-      </div>
+      <Formheader title="Select a preferred lease term for your property" back={() => setStep(currentStep - 1)} />
 
-      <div className="sm:ml-8 mb-3 ml-4 text-lg ">Lease Type</div>
       <div className="sm:pl-8 pl-4 pr-4 sm:pr-8 mb-14">
         <DropDown
           placeholder={

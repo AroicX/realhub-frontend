@@ -13,7 +13,7 @@ export default function StepEight({
     setStep(currentStep - 1)
   }
   const [data, setData] = useState({
-    property_name: formdata?.property_name || null,
+    property_name: formdata?.property_name || "",
   })
 
   const handleStep = () => {

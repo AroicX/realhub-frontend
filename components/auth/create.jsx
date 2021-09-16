@@ -419,7 +419,7 @@ export default function CreateAccount({ view, modalHandler }) {
               </div>
             )}
             <label htmlFor="otp" className="my-3">
-              Enter the code we just sent to +234{user.phone}
+              Enter the code we just sent to {user.phone}
               <span
                 className="my-2 mx-3  underline cursor-pointer"
                 onClick={goBack}
