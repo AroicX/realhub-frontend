@@ -20,12 +20,12 @@ export default function Listing() {
   const { listings } = useContext(ListingContext);
   const [priceMenu, setPriceMenu] = useState(false);
   const [propertyMenu, setPropertyMenu] = useState(false);
-  const [guests, setGuest] = useState({ adult: 1, children: 1, infants: 1 });
+  const [guests, setGuest] = useState({ adult: 1, children: 0, infants: 0 });
   const [isCityDropActive, setIsCityDropActive] = useState(false);
   const [searchCity, setSearchCity] = useState("");
   const [currency, setCurrency] = useState("dollar");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState("10");
+  const [maxPrice, setMaxPrice] = useState("1000+");
 
   const handleMap = () => {
     if (grid === 4) {
