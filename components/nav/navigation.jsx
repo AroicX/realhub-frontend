@@ -99,7 +99,7 @@ export default function Navigation({}) {
                 </p>
                 <hr />
                 <Link
-                  to="/app/listings"
+                  to="/app/listings/create"
                   className="font-sm my-2 cursor-pointer"
                 >
                   List your home
@@ -142,7 +142,7 @@ export default function Navigation({}) {
                         <>
                           {' '}
                           <Link
-                            to="/app/listings/"
+                            to="/app/listings/create"
                             className="font-sm my-2 cursor-pointer"
                           >
                             List your home
