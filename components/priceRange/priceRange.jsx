@@ -18,7 +18,7 @@ export default function PriceRange(props) {
       <input
         type="range"
         value={props.minPrice}
-        max="1000000000000000"
+        max="10000000"
         min="10"
         className={classes.MaxPrice}
         onChange={(e) => minPriceHandler(e)}
@@ -26,7 +26,7 @@ export default function PriceRange(props) {
       <input
         type="range"
         value={props.maxPrice}
-        max="1000000000000000"
+        max="10000000"
         min="10"
         className={classes.MaxPrice}
         onChange={(e) => maxPriceHandler(e)}

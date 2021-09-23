@@ -24,8 +24,8 @@ export default function Listing() {
   const [isCityDropActive, setIsCityDropActive] = useState(false);
   const [searchCity, setSearchCity] = useState("");
   const [currency, setCurrency] = useState("dollar");
-  const [minPrice, setMinPrice] = useState("10");
-  const [maxPrice, setMaxPrice] = useState("1000+");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
 
   const handleMap = () => {
     if (grid === 4) {
@@ -82,6 +82,7 @@ export default function Listing() {
                       type="number"
                       placeholder="$10"
                       autoFocus={true}
+                      min="10"
                       value={minPrice}
                       onChange={(e) => setMinPrice(e.target.value)}
                       // onInput={validity.valid || (value = '')}
@@ -94,6 +95,7 @@ export default function Listing() {
                       placeholder="$1,000"
                       type="number"
                       value={maxPrice}
+                      min="10"
                       onChange={(e) => setMaxPrice(e.target.value)}
                     />
                   </div>
