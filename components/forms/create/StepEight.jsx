@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import Formheader from '@/components/dashboard/formheader'
-import Toastr from 'toastr'
+import React, { useState } from "react";
+import Formheader from "@/components/dashboard/formheader";
+import Toastr from "toastr";
 
 export default function StepEight({
   currentStep,
@@ -10,18 +10,18 @@ export default function StepEight({
   handleSumbit,
 }) {
   const back = () => {
-    setStep(currentStep - 1)
-  }
+    setStep(currentStep - 1);
+  };
   const [data, setData] = useState({
     property_name: formdata?.property_name || "",
-  })
+  });
 
   const handleStep = () => {
-    propagate(data)
+    propagate(data);
     setTimeout(() => {
-      handleSumbit()
-    }, 1000)
-  }
+      handleSumbit({ ...formdata, ...data });
+    }, 4000);
+  };
   return (
     <>
       <Formheader title="Tag your listing" back={back} />
@@ -47,5 +47,5 @@ export default function StepEight({
         </button>
       </div>
     </>
-  )
+  );
 }
