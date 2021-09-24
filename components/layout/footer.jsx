@@ -60,7 +60,7 @@ const Footer = () => {
             <Link to="/" className="font-inter--reg text-sm my-3">
               Locations we cover
             </Link>
-            <Link to="/" className="font-inter--reg text-sm my-3">
+            <Link to="/policy" className="font-inter--reg text-sm my-3">
               Read our Guidelines
             </Link>
           </div>
