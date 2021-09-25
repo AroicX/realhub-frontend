@@ -22,16 +22,16 @@ export default function Question(props) {
       >
         {props.answer.map((answer, key) => {
           return (
-            <div className={classes.AnswerInnerContainer}>
-              <p className={classes.Answer} key={key}>
+            <div className={classes.AnswerInnerContainer} key={key}>
+              <p className={classes.Answer}>
                 {answer.main}
               </p>
               {answer.subMain && (
                 <div className={classes.FirstSubAnswer}>
                   {answer.subMain.map((answer, key) => {
                     return (
-                      <div className={classes.SecondSubAnswer}>
-                        <p className={classes.Answer} key={key}>
+                      <div className={classes.SecondSubAnswer} key={key}>
+                        <p className={classes.Answer}>
                           {answer.main}
                         </p>
                         {answer.innerAns && (
