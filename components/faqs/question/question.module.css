@@ -1,0 +1,52 @@
+.QAContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 2em;
+    box-shadow: 4px 0px 5px 5px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-top: 1.2em;
+}
+.QuestionContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.3em;
+}
+
+.Question {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.ArrowDown {
+    cursor: pointer;
+    transition: transform 0.2s linear;
+}
+
+.Answer {
+    text-align: justify;
+    font-size: 1.1rem;
+}
+
+.AnswerContainer {
+    flex-direction: column;
+}
+
+.AnswerInnerContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.FirstSubAnswer {
+    padding-left: 1em;
+    margin-bottom: 0.5em;
+}
+
+.SecondSubAnswer {
+    padding-left: 1em;
+}
+
+.ThirdSubAnswer {
+    padding-left: 1em;
+}
