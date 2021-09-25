@@ -16,6 +16,7 @@ import { ADD_LISTING } from "@/actions/requests";
 export default function AddListing() {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({});
+   const [isLoading, setIsLoading] = useState(false);
   // const [form, setForm] = useState({
   //   listing_type: 'Apartment',
   //   is_apartment: 2,
@@ -38,12 +39,14 @@ export default function AddListing() {
 
   const handleSumbit = (incomingData) => {
     const callback = (response) => {
+      setIsLoading(false);
       if (response.status > 200) {
         setStep(step + 1);
         Toastr.success(response.message);
       }
     };
     const onError = (error) => {
+      setIsLoading(false);
       if (error.response) {
         const { data } = error.response;
         Toastr.error(data.message);
@@ -135,6 +138,8 @@ export default function AddListing() {
                 formdata={form}
                 propagate={propagate}
                 handleSumbit={handleSumbit}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
               />
             )}
             {step === 9 && (
