@@ -5,7 +5,6 @@ import Link from "@/components/link";
 import { useRouter } from "next/router";
 import { setCookie } from "@/services/cookies";
 import { useUser } from "@/hooks/useUser";
-import toastr from "toastr";
 
 export default function Home() {
   const { setLoading } = useUser();
@@ -24,14 +23,9 @@ export default function Home() {
     setCookie(user_data);
     localStorage.setItem("user-data", JSON.stringify(user_data));
     router.push("/");
-    setTimeout(() => {
-      setLoading(false);
-      return toastr.success("Login Successful");
-    }, 100);
   }
 
   if (message) {
-    toastr.error(message);
     router.push("/");
   }
 
