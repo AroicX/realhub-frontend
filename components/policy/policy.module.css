@@ -1,0 +1,71 @@
+.PolicyHeader {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.PolicyFigure {
+  margin-right: 0.5em;
+}
+
+.PolicyDetail {
+  text-align: justify;
+  font-size: 1rem;
+  padding-bottom: 0.5em;
+}
+
+.PolicySubHeading {
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.SubPolicyContainer {
+  padding-left: 0.5em;
+}
+
+.SubPolicyContainer {
+  padding-left: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.SubPolicy {
+  display: flex;
+}
+
+.SubPolicy::before {
+  content: "●";
+  margin-right: 0.7em;
+  font-size: 1rem;
+}
+
+.SubPolicyDetails {
+  text-align: justify;
+  font-size: 1rem;
+}
+
+.DetailsHeader {
+  font-weight: 600;
+}
+
+.InnerPolicyDetailContainer {
+  padding-left: 1em;
+}
+
+.InnerPolicyDetail {
+    display: flex;
+}
+
+.InnerPolicyDetail::before {
+    content: "○";
+    font-size: 1rem;
+    margin-right: 0.8em;
+}
+
+.InnerPolicy {
+    font-size: 1rem;
+    text-align: justify;
+}

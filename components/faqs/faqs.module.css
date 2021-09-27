@@ -1,0 +1,18 @@
+.RentersContainer {
+  padding-left: 8em;
+  padding-right: 8em;
+}
+
+.SectionTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 0.8em;
+  margin-top: 0.8em;
+}
+
+.LongTermRent {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.8em;
+  margin-top: 0.8em;
+}

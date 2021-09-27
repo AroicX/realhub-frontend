@@ -7,7 +7,7 @@ export default function Covid({}) {
         to="/"
         className="text-white font-sm center flex justify-center underline"
       >
-        Read out Covid-19 guidelines
+        Read our Covid-19 guidelines
       </Link>
     </div>
   )

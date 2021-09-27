@@ -7,7 +7,6 @@ export default function GuestDropDownItem(props) {
   const [itemValue, setItemValue] = useState(props.guests[props.name]);
   const subtractItemValue = () => {
     if (itemValue > 0) {
-      props.setTouched(true);
       props.setGuest((guest) => {
         guest[props.name] = itemValue - 1;
         return { ...guest };
@@ -17,7 +16,6 @@ export default function GuestDropDownItem(props) {
   };
 
   const addItemValue = () => {
-    props.setTouched(true);
     props.setGuest((guest) => {
       guest[props.name] = itemValue + 1;
       return { ...guest };

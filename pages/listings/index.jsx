@@ -20,7 +20,7 @@ export default function Listing() {
   const { listings } = useContext(ListingContext);
   const [priceMenu, setPriceMenu] = useState(false);
   const [propertyMenu, setPropertyMenu] = useState(false);
-  const [guests, setGuest] = useState({ adult: 1, children: 1, infants: 1 });
+  const [guests, setGuest] = useState({ adult: 1, children: 0, infants: 0 });
   const [isCityDropActive, setIsCityDropActive] = useState(false);
   const [searchCity, setSearchCity] = useState("");
   const [currency, setCurrency] = useState("dollar");
@@ -82,6 +82,7 @@ export default function Listing() {
                       type="number"
                       placeholder="$10"
                       autoFocus={true}
+                      min="10"
                       value={minPrice}
                       onChange={(e) => setMinPrice(e.target.value)}
                       // onInput={validity.valid || (value = '')}
@@ -94,6 +95,7 @@ export default function Listing() {
                       placeholder="$1,000"
                       type="number"
                       value={maxPrice}
+                      min="10"
                       onChange={(e) => setMaxPrice(e.target.value)}
                     />
                   </div>

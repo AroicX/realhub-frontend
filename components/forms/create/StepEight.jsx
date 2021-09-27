@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import Formheader from '@/components/dashboard/formheader'
-import Toastr from 'toastr'
+import React, { useState } from "react";
+import Formheader from "@/components/dashboard/formheader";
+import Toastr from "toastr";
+import classes from "./button.module.css";
 
 export default function StepEight({
   currentStep,
@@ -8,20 +9,21 @@ export default function StepEight({
   formdata,
   propagate,
   handleSumbit,
+  isLoading,
+  setIsLoading,
 }) {
   const back = () => {
-    setStep(currentStep - 1)
-  }
+    setStep(currentStep - 1);
+  };
   const [data, setData] = useState({
     property_name: formdata?.property_name || "",
-  })
+  });
 
   const handleStep = () => {
-    propagate(data)
-    setTimeout(() => {
-      handleSumbit()
-    }, 1000)
-  }
+    setIsLoading(true);
+    propagate(data);
+    handleSumbit({ ...formdata, ...data });
+  };
   return (
     <>
       <Formheader title="Tag your listing" back={back} />
@@ -41,11 +43,17 @@ export default function StepEight({
         />
         <button
           onClick={() => handleStep()}
-          className="mt-8 sm:mb-14 mb-7 w-full bg-black mb-14 sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white"
+          className={`mt-8 sm:mb-14 mb-7 w-full bg-black mb-14 sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white relative ${
+            isLoading ? classes.LoadingState : ""
+          }`}
         >
-          Submit and Save
+          <span
+            className={isLoading ? classes.RemoveText : classes.DisplayText}
+          >
+            Submit and Save
+          </span>
         </button>
       </div>
     </>
-  )
+  );
 }

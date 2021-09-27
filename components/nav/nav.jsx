@@ -135,7 +135,7 @@ export default function Nav({ custom }) {
                     <>
                       {" "}
                       <Link
-                        to="/app/listings/"
+                        to="/app/listings/create"
                         className="font-sm my-2 cursor-pointer"
                       >
                         List your home
@@ -206,9 +206,12 @@ export default function Nav({ custom }) {
             <Link to="/listings" className="font-inter--light font-13 mx-5">
               View all listings
             </Link>
-            <Link to="/app/listings" className="font-inter--light font-13 mx-5">
+            <p
+              onClick={() => toggleAuthModal("create")}
+              className="font-inter--light font-13 mx-5 cursor-pointer"
+            >
               Become a host
-            </Link>
+            </p>
             <Link to="/app/inbox" className="font-inter--light font-13 mx-5">
               Inbox
             </Link>
@@ -249,7 +252,7 @@ export default function Nav({ custom }) {
                           </p>
                           <hr />
                           <Link
-                            to="/app/listings"
+                            to="/app/listings/create"
                             className="font-sm my-2 cursor-pointer"
                           >
                             List your home

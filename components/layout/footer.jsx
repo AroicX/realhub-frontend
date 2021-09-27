@@ -1,5 +1,5 @@
-import Link from '../link'
-import SVG from 'react-inlinesvg'
+import Link from "../link";
+import SVG from "react-inlinesvg";
 
 const Footer = () => {
   return (
@@ -60,13 +60,15 @@ const Footer = () => {
             <Link to="/" className="font-inter--reg text-sm my-3">
               Locations we cover
             </Link>
-            <Link to="/" className="font-inter--reg text-sm my-3">
+            <Link to="/policy" className="font-inter--reg text-sm my-3">
               Read our Guidelines
             </Link>
           </div>
           <div className="flex flex-col  p-5 lg:p-0 lg:mx-20 ">
             <span className="font-inter--light text-md ">Support</span>
-
+            <Link to="/faqs" className="font-inter--reg text-sm my-3">
+              FAQs
+            </Link>
             <Link to="/" className="font-inter--reg text-sm my-3">
               Help Center
             </Link>
@@ -74,7 +76,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

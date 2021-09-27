@@ -1,0 +1,38 @@
+.RemoveText {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.DisplayText {
+    color: white;
+    transition: all 0.2s;
+}
+
+.LoadingState::after {
+    content: "";
+    position: absolute;
+    height: 1.3em;
+    width: 1.3em;
+    background-color: transparent;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #FFFFFF;
+    border-right-color: #FFFFFF;
+    border-bottom-color: #FFFFFF;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s linear infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        trasform: rotate(0turn)
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
