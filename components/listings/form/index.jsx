@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import Toastr from 'toastr'
-import Item from '@/components/dashboard/item'
-import Layout from '@/components/layout/layout'
-import StepOne from '@/components/forms/create/StepOne'
-import StepTwo from '@/components/forms/create/StepTwo'
-import StepThree from '@/components/forms/create/StepThree'
-import StepFour from '@/components/forms/create/StepFour'
-import StepFive from '@/components/forms/create/StepFive'
-import StepSix from '@/components/forms/create/StepSix'
-import StepSeven from '@/components/forms/create/StepSeven'
-import StepEight from '@/components/forms/create/StepEight'
-import StepCompleted from '@/components/forms/create/StepCompleted'
-import { ADD_LISTING } from '@/actions/requests'
+import React, { useEffect, useState } from "react";
+import Toastr from "toastr";
+import Item from "@/components/dashboard/item";
+import Layout from "@/components/layout/layout";
+import StepOne from "@/components/forms/create/StepOne";
+import StepTwo from "@/components/forms/create/StepTwo";
+import StepThree from "@/components/forms/create/StepThree";
+import StepFour from "@/components/forms/create/StepFour";
+import StepFive from "@/components/forms/create/StepFive";
+import StepSix from "@/components/forms/create/StepSix";
+import StepSeven from "@/components/forms/create/StepSeven";
+import StepEight from "@/components/forms/create/StepEight";
+import StepCompleted from "@/components/forms/create/StepCompleted";
+import { ADD_LISTING } from "@/actions/requests";
 
 export default function AddListing() {
-  const [step, setStep] = useState(1)
-  const [form, setForm] = useState({})
+  const [step, setStep] = useState(1);
+  const [form, setForm] = useState({});
+   const [isLoading, setIsLoading] = useState(false);
   // const [form, setForm] = useState({
   //   listing_type: 'Apartment',
   //   is_apartment: 2,
@@ -31,27 +32,29 @@ export default function AddListing() {
   // })
 
   useEffect(() => {
-    console.log(form)
-  }, [form])
+    console.log(form);
+  }, [form]);
 
-  const propagate = (e) => setForm({ ...form, ...e })
+  const propagate = (e) => setForm({ ...form, ...e });
 
-  const handleSumbit = () => {
+  const handleSumbit = (incomingData) => {
     const callback = (response) => {
+      setIsLoading(false);
       if (response.status > 200) {
-        setStep(step + 1)
-        Toastr.success(response.message)
+        setStep(step + 1);
+        Toastr.success(response.message);
       }
-    }
+    };
     const onError = (error) => {
+      setIsLoading(false);
       if (error.response) {
-        const { data } = error.response
-        Toastr.error(data.message)
+        const { data } = error.response;
+        Toastr.error(data.message);
       }
-    }
+    };
 
-    ADD_LISTING(form, callback, onError)
-  }
+    ADD_LISTING(incomingData, callback, onError);
+  };
 
   return (
     <Layout>
@@ -61,7 +64,7 @@ export default function AddListing() {
 
       {/*  */}
       <div className="flex 2xl:flex-row flex-row justify-center items-start mt-20">
-        {step === 8 && <Item />}
+        {step === 8 && <Item formdata={form} />}
         {step === 8 && (
           <div className="hidden 2xl:block mt-40">
             <hr className="border-dotted w-80 h-2 mr-5 ml-5 mt-30" />
@@ -135,6 +138,8 @@ export default function AddListing() {
                 formdata={form}
                 propagate={propagate}
                 handleSumbit={handleSumbit}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
               />
             )}
             {step === 9 && (
@@ -151,5 +156,5 @@ export default function AddListing() {
 
       {/*  */}
     </Layout>
-  )
+  );
 }

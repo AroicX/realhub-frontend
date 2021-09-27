@@ -64,7 +64,7 @@ export default function DatePicker({ handleDates }) {
               className="w-screen text-black border px-2 pr-5 outline-none my-1 mx-2"
               type="text"
               name="city"
-              placeholder="Chose a city"
+              placeholder="Choose a city"
             />
           </div>
 
@@ -76,7 +76,7 @@ export default function DatePicker({ handleDates }) {
               className="bg-green-700 p-2 text-white font-inter rounded-sm"
               onClick={handleSumbit}
             >
-              Update
+              Save
             </button>
           </div>
         </div>

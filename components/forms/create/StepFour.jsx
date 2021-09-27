@@ -41,20 +41,17 @@ export default function StepFour({
 
   return (
     <>
-      <Formheader title="Tell Us More About Your Property" back={back} />
+      <Formheader title="Just a few more details on your property and we will be all set" back={back} />
       <div className="sm:pl-8 sm:pr-8 pl-4 pr-4">
-        <div className="mt-8 text-lg w-70 mb-5 w-auto">
-          Just a few more details on your property and we will be all set.
-        </div>
         <div className="mb-3 font-medium text-sm uppercase">
-          Number of Bedrooms
+          Bedrooms
         </div>
         <div className="mb-8">
           <DropDown
             placeholder={
               data.bedrooms ? data.bedrooms : 'Select Number of Bedrooms'
             }
-            options={['1', '2', '3']}
+            options={['1 ', '2 ', '3', '4', '5', '6', '7', '8', '9', '10']}
             value={(e) => handleSelected(e, 'bedrooms')}
           />
         </div>
@@ -66,7 +63,7 @@ export default function StepFour({
             placeholder={
               data.bathrooms ? data.bathrooms : 'Select Number of Bathrooms'
             }
-            options={['1 ', '2 ', '3']}
+            options={['1 ', '2 ', '3', '4', '5', '6', '7', '8', '9', '10']}
             value={(e) => handleSelected(e, 'bathrooms')}
           />
           <div className="mb-3 font-medium text-sm uppercase">

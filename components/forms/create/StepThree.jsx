@@ -1,89 +1,94 @@
-import React, { useState, useCallback } from 'react'
-import Formheader from '@/components/dashboard/formheader'
-import { useDropzone } from 'react-dropzone'
-import SVG from 'react-inlinesvg'
-import axios from 'axios'
-import Toastr from 'toastr'
+import React, { useState, useCallback } from "react";
+import Formheader from "@/components/dashboard/formheader";
+import { useDropzone } from "react-dropzone";
+import SVG from "react-inlinesvg";
+import axios from "axios";
+import Toastr from "toastr";
+import classes from "./button.module.css";
 
-let counter = 0
-let links = []
+let counter = 0;
+let links = [];
 export default function StepThree({ currentStep, setStep, propagate }) {
-  const [files, setFiles] = useState(null)
-  const [imagePreview, setImagePreview] = useState(null)
+  const [files, setFiles] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onDrop = useCallback((acceptedFiles) => {
-    let parent = document.getElementById('image-grid')
-    let _images = []
+    let parent = document.getElementById("image-grid");
+    let _images = [];
 
-    setFiles(acceptedFiles)
+    setFiles(acceptedFiles);
     acceptedFiles.forEach((key, i) => {
       _images.push({
         name: key.name,
         value: window.URL.createObjectURL(key),
-      })
+      });
 
       setTimeout(() => {
-        setImagePreview(_images)
-        window.scrollBy(0, 50)
-        parent.click()
-      }, 100)
-    })
-  }, [])
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+        setImagePreview(_images);
+        window.scrollBy(0, 50);
+        parent.click();
+      }, 100);
+    });
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const uploadFiles = () => {
-    Toastr.info('Please wait while uploading...')
+    setIsLoading(true);
+    Toastr.info("Please wait while uploading...");
     files.forEach((file) => {
-      upload(file)
-    })
-  }
+      upload(file);
+    });
+  };
   const upload = (file) => {
-    const formData = new FormData()
-    formData.append('file', file)
-    formData.append('upload_preset', 'realhub_listing')
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "realhub_listing");
 
     try {
       axios
-        .post('https://api.cloudinary.com/v1_1/aroicx/image/upload', formData)
+        .post("https://api.cloudinary.com/v1_1/aroicx/image/upload", formData)
         .then((response) => {
           if (counter < files.length) {
-            counter++
+            counter++;
             links.push({
               images: { image: response.data.url },
-            })
+            });
           }
           if (counter === files.length) {
-            propagate({ images: JSON.stringify(links) })
-            setStep(currentStep + 1)
+            propagate({ images: JSON.stringify(links) });
+            setIsLoading(false);
+            setStep(currentStep + 1);
           }
         })
         .catch((error) => {
-          console.log(error)
-        })
+          setIsLoading(false);
+          console.log(error);
+        });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const remove = (data) => {
-    console.log(data)
+    console.log(data);
 
-    let arr = []
-    let arrPreview = []
+    let arr = [];
+    let arrPreview = [];
     files.filter((file) => {
       if (file.name !== data.name) {
-        arr.push(file)
+        arr.push(file);
       }
-    })
+    });
     imagePreview.filter((file) => {
       if (file.name !== data.name) {
-        arrPreview.push(file)
+        arrPreview.push(file);
       }
-    })
+    });
 
-    setFiles(arr)
-    setImagePreview(arrPreview)
-  }
+    setFiles(arr);
+    setImagePreview(arrPreview);
+  };
 
   return (
     <>
@@ -150,11 +155,17 @@ export default function StepThree({ currentStep, setStep, propagate }) {
 
         <button
           onClick={() => uploadFiles()}
-          className="w-full bg-black sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white mt-14 mb-12"
+          className={`w-full bg-black sm:pl-10 pr-5 pl-5 pt-3 pb-3 sm:pr-10 sm:pb-5 sm:pt-5 text-white mt-14 mb-12 relative ${
+            isLoading ? classes.LoadingState : ""
+          }`}
         >
-          Continue
+          <span
+            className={isLoading ? classes.RemoveText : classes.DisplayText}
+          >
+            Continue
+          </span>
         </button>
       </div>
     </>
-  )
+  );
 }

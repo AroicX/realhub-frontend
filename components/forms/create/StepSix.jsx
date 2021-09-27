@@ -8,7 +8,7 @@ export default function StepSix({ currentStep, setStep, formdata, propagate }) {
     setStep(currentStep - 1)
   }
   const [data, setData] = useState({
-    address: formdata?.address || null,
+    address: formdata?.address || "",
   })
 
   const handleStep = () => {
