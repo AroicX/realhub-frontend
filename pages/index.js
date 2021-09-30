@@ -55,7 +55,7 @@ export default function Home() {
             <img src={"./images/image2.png"} alt='*' />
             <span className='font-unna--bold'> Rent</span>
           </Link>
-          <Link to='/listings' className='quick-listings'>
+          <Link to='/app/listings/create' className='quick-listings'>
             <div className='circle'>
               <span></span>
             </div>
