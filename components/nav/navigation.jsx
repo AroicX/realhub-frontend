@@ -1,49 +1,52 @@
-import { useState } from 'react'
-import Link from '../link'
-import SVG from 'react-inlinesvg'
-import AuthModal from '../auth/AuthModal'
-import Search from '../global/search'
-import useScroll from '@/hooks/useScroll'
-import { useUser } from '@/hooks/useUser'
-import { useRouter } from 'next/router'
+import { useState } from "react";
+import Link from "../link";
+import SVG from "react-inlinesvg";
+import AuthModal from "../auth/AuthModal";
+import Search from "../global/search";
+import useScroll from "@/hooks/useScroll";
+import { useUser } from "@/hooks/useUser";
+import { useRouter } from "next/router";
+
+import NavigationDropdown from "../dropdowns/navigationdropdown/navigationdropdow";
+import NavigationMobileDropdown from "../dropdowns/navigationdropdown/navigationmobiledropdown";
 
 export default function Navigation({}) {
-  const { user, logout } = useUser()
-  const [menu, setMenu] = useState(false)
-  const router = useRouter()
+  const { user, logout } = useUser();
+  const [menu, setMenu] = useState(false);
+  const router = useRouter();
 
-  const [isActive, setIsActive] = useState(false)
-  const [isAuthModal, setIsAuthModal] = useState(false)
-  const [type, setType] = useState('login')
-  const { isSticky, element } = useScroll()
+  const [isActive, setIsActive] = useState(false);
+  const [isAuthModal, setIsAuthModal] = useState(false);
+  const [type, setType] = useState("login");
+  const { isSticky, element } = useScroll();
 
   const handleMobileMenun = () => {
     if (menu) {
-      setMenu(false)
-      document.querySelector('body').classList.toggle('active-scroll')
+      setMenu(false);
+      document.querySelector("body").classList.toggle("active-scroll");
     } else {
-      setMenu(true)
-      document.querySelector('body').classList.toggle('no-scroll')
+      setMenu(true);
+      document.querySelector("body").classList.toggle("no-scroll");
     }
-  }
+  };
 
   const toggleAuthModal = (qry) => {
-    setType(qry)
-    setMenu(false)
+    setType(qry);
+    setMenu(false);
 
     if (isAuthModal) {
-      setIsAuthModal(false)
-      document.querySelector('body').classList.toggle('active-scroll')
+      setIsAuthModal(false);
+      document.querySelector("body").classList.toggle("active-scroll");
     } else {
-      setIsAuthModal(true)
-      document.querySelector('body').classList.toggle('no-scroll')
+      setIsAuthModal(true);
+      document.querySelector("body").classList.toggle("no-scroll");
     }
-  }
+  };
 
   return (
     <nav
       ref={element}
-      className={`w-full ${isSticky ? 'nav-sticky' : ''} border border-gray-md`}
+      className={`w-full ${isSticky ? "nav-sticky" : ""} border border-gray-md`}
     >
       <AuthModal
         showmodal={isAuthModal}
@@ -60,7 +63,7 @@ export default function Navigation({}) {
         <button
           ref={element}
           className={`mobile-handler show-mobile ${
-            isSticky ? 'nav-sticky--mobile' : ''
+            isSticky ? "nav-sticky--mobile" : ""
           }`}
           onClick={() => handleMobileMenun()}
         >
@@ -72,7 +75,7 @@ export default function Navigation({}) {
           <Search css="my-2" />
         </div> */}
 
-        <div
+        {/* <div
           className="relative dropdown m-5 hide"
           onClick={() => setIsActive(!isActive)}
         >
@@ -110,37 +113,37 @@ export default function Navigation({}) {
               </ul>
             </div>
           )}
-        </div>
+        </div> */}
 
         {/* mobile header */}
-
+        <NavigationDropdown onClick={toggleAuthModal} />
         <div
           className={`flex flex-col lg:flex-row mobile-header ${
-            menu ? 'mobile-header__active mt-5' : ''
+            menu ? "mobile-header__active mt-5" : ""
           }`}
         >
           <div className="flex flex-col lg:flex-row ">
             <Search css="m-5" />
 
-            <div className="flex flex-col lg:flex-row my-5 ml-5">
+            {/* <div className="flex flex-col lg:flex-row my-5 ml-5">
               <div
                 className="relative dropdown"
                 onClick={() => setIsActive(!isActive)}
               >
                 <div className="flex font-inter--light font-15 mx-5 cursor-pointer">
-                  {' '}
-                  {/* <SVG className="my-0 mx-5" src={`/svg/account.svg`}></SVG> */}
-                  {user ? user.user?.name : 'My Account'}
+                  {" "}
+                  
+                  {user ? user.user?.name : "My Account"}
                 </div>
 
                 {isActive && (
                   <div
-                    className={`dropdown-menu  ${isActive ? 'slide-down' : ''}`}
+                    className={`dropdown-menu  ${isActive ? "slide-down" : ""}`}
                   >
                     <ul className="flex flex-col">
                       {user ? (
                         <>
-                          {' '}
+                          {" "}
                           <Link
                             to="/app/listings/create"
                             className="font-sm my-2 cursor-pointer"
@@ -154,8 +157,8 @@ export default function Navigation({}) {
                           <p
                             className="font-sm my-2 cursor-pointer"
                             onClick={() => {
-                              logout()
-                              window.location.href = '/'
+                              logout();
+                              window.location.href = "/";
                             }}
                           >
                             Sign-Out
@@ -163,16 +166,16 @@ export default function Navigation({}) {
                         </>
                       ) : (
                         <>
-                          {' '}
+                          {" "}
                           <p
                             className="font-sm my-2 cursor-pointer"
-                            onClick={() => toggleAuthModal('create')}
+                            onClick={() => toggleAuthModal("create")}
                           >
                             Create Acoount
                           </p>
                           <p
                             className="font-sm my-2 cursor-pointer"
-                            onClick={() => toggleAuthModal('login')}
+                            onClick={() => toggleAuthModal("login")}
                           >
                             Login
                           </p>
@@ -182,11 +185,12 @@ export default function Navigation({}) {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
+            <NavigationMobileDropdown onClick={toggleAuthModal} />
           </div>
         </div>
         {/* mobile header */}
       </div>
     </nav>
-  )
+  );
 }
