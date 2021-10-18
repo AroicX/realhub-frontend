@@ -6,6 +6,9 @@ import useScroll from "@/hooks/useScroll";
 import { useUser } from "@/hooks/useUser";
 import { CssDropDown } from "../global/CssDropDown";
 
+import NavDropDown from '../dropdowns/navdropdown/navdropdown';
+import NavMobileDropdown from '../dropdowns/navdropdown/navmobiledropdown';
+
 export default function Nav({ custom }) {
   const { user, logout } = useUser();
 
@@ -118,63 +121,7 @@ export default function Nav({ custom }) {
             <SVG src="/svg/message.svg"></SVG>
           </Link>
 
-          <div
-            className="relative dropdown m-auto"
-            onClick={() => setIsActive(!isActive)}
-          >
-            <div className="flex font-inter--light font-15 mx-5 cursor-pointer">
-              {" "}
-              <SVG className="my-0 mx-5" src={`/svg/account.svg`}></SVG>
-              {user ? user.user?.name : "Account"}
-            </div>
-
-            {isActive && (
-              <div className={`dropdown-menu ${isActive ? "slide-down" : ""}`}>
-                <ul className="flex flex-col">
-                  {user ? (
-                    <>
-                      {" "}
-                      <Link
-                        to="/app/listings/create"
-                        className="font-sm my-2 cursor-pointer"
-                      >
-                        List your home
-                      </Link>
-                      <Link to="/" className="font-sm my-2 cursor-pointer">
-                        Contact Support
-                      </Link>
-                      <hr />
-                      <p
-                        className="font-sm my-2 cursor-pointer"
-                        onClick={() => {
-                          logout();
-                          window.location.href = "/";
-                        }}
-                      >
-                        Sign-Out
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      {" "}
-                      <p
-                        className="font-sm my-2 cursor-pointer"
-                        onClick={() => toggleAuthModal("create")}
-                      >
-                        Create Acoount
-                      </p>
-                      <p
-                        className="font-sm my-2 cursor-pointer"
-                        onClick={() => toggleAuthModal("login")}
-                      >
-                        Login
-                      </p>
-                    </>
-                  )}
-                </ul>
-              </div>
-            )}
-          </div>
+          <NavDropDown onClick={toggleAuthModal}/>
         </div>
 
         {/* mobile header */}
@@ -222,14 +169,14 @@ export default function Nav({ custom }) {
               Notifications
             </Link>
 
-            <div className="flex flex-col lg:flex-row my-5 ml-5">
+            {/* <div className="flex flex-col lg:flex-row my-5 ml-5">
               <div
                 className="relative dropdown"
                 onClick={() => setIsActive(!isActive)}
               >
                 <div className="flex font-inter--light font-15 mx-5 cursor-pointer">
                   {" "}
-                  {/* <SVG className="my-0 mx-5" src={`/svg/account.svg`}></SVG> */}
+                  
                   {user ? user.user?.name : "My Account"}
                 </div>
 
@@ -282,7 +229,8 @@ export default function Nav({ custom }) {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
+            <NavMobileDropdown  onClick={toggleAuthModal}/>
           </div>
         </div>
         {/* mobile header */}
