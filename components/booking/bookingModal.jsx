@@ -12,10 +12,10 @@ export default function BookingModal({ close }) {
   const [booking, setBooking] = useState({
     listingId: 1,
     date: new Date(),
-    time: '11:00',
-    name: 'Gabriel Okunola',
-    email: 'Arowosegbe67@gmail.com',
-    phone: '+2347016762847',
+    time: '',
+    name: '',
+    email: '',
+    phone: '',
   })
 
   const next = () => {
